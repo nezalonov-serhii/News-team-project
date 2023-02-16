@@ -1,0 +1,1 @@
+{"mappings":"AACQA,SAASC,cAAc","sources":["src/js/refs/refs.js"],"sourcesContent":["const refs = {\n  body: document.querySelector('body'),\n};\n\nexport { refs };\n"],"names":["document","querySelector"],"version":3,"file":"index.de50c370.js.map"}
