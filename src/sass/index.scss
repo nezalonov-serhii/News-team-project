@@ -1,1 +1,13 @@
-@import './common';
+@import './base/common';
+@import './base/reset';
+
+@import './utils/variables';
+
+@import './layouts/header';
+@import './layouts/mobileMenu';
+@import './layouts/filter';
+@import './layouts/calendar';
+@import './layouts/newsSection';
+@import './layouts/weather';
+@import './layouts/paginations';
+@import './layouts/footer';
