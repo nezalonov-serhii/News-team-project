@@ -1,0 +1,11 @@
+.calendar-form {
+  display: flex;
+  margin-right: 36px;
+  &__text {
+    display: none;
+    margin-right: 37px;
+    @include desktop {
+      display: block;
+    }
+  }
+}
