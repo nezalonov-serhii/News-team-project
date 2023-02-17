@@ -1,0 +1,10 @@
+.pagination__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  @include tablet {
+    gap: 8px;
+  }
+}

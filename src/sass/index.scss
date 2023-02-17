@@ -1,9 +1,11 @@
 @import './utils/variables';
+@import './utils/mixns';
 
 @import './base/common';
 @import './base/reset';
 
 @import './layouts/header';
+@import './layouts/main';
 @import './layouts/mobileMenu';
 @import './layouts/filter';
 @import './layouts/calendar';

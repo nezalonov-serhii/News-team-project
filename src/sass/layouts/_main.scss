@@ -1,0 +1,11 @@
+main {
+  padding: 24px 0 60px;
+
+  @include tablet {
+    padding: 28px 0 100px;
+  }
+
+  @include desktop {
+    padding: 28px 0 150px;
+  }
+}
