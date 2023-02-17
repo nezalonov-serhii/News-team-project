@@ -1,0 +1,16 @@
+.filter {
+  margin-bottom: 40px;
+
+  @include tablet {
+    margin-bottom: 48px;
+  }
+
+  @include desktop {
+    margin-bottom: 60px;
+  }
+}
+
+.filter__container {
+  display: flex;
+  justify-content: space-between;
+}
