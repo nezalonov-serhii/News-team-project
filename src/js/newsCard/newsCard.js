@@ -1,27 +1,29 @@
+import { getPopular } from '../api/news.js';
 
-import getPopular from "../api/news.js"
+const newsList = document.querySelector('.news__item');
 
-const newsList = document.querySelector(".news__item");
+getPopular().then(data => {
+  console.log(data[0]);
+  console.log(createNewsCard(data[0]));
 
-getPopular().then((data) => {
-    
-console.log(data[0])
-console.log(createNewsCard(data[0]));
-
-addMarkup(newsList, createNewsCard(data[0]));
-
+  addMarkup(newsList, createNewsCard(data[0]));
 });
 
 // url
 
-
-function createNewsCard({title, media, url, published_date, section, abstract}) {
-      
-    return `
+function createNewsCard({
+  title,
+  media,
+  url,
+  published_date,
+  section,
+  abstract,
+}) {
+  return `
             <li class="news__item">
                 <article class="news__article">
                     <div class="news__wrapper">
-                        <img class="news__img" src="${media[0]["media-metadata"][2].url}" alt="">
+                        <img class="news__img" src="${media[0]['media-metadata'][2].url}" alt="">
                         <p class="news__category">${section}</p>
                         <p class="news__favorite">Add to favorite
 
@@ -41,17 +43,14 @@ function createNewsCard({title, media, url, published_date, section, abstract}) 
                     </div>
                 </article>
             </li>
-    `
-;
-};
+    `;
+}
 
 // addMarkup
 
 function addMarkup(element, constMarkup) {
-    element.insertAdjacentHTML("beforeend", constMarkup);
+  element.insertAdjacentHTML('beforeend', constMarkup);
 }
-
-
 
 //             <div class="photo-card">
 //     <a class='photo-link' href="${largeImageURL }">
