@@ -1,69 +1,26 @@
-import {newsSearch,getCategoryList,getDataByCategory,getSearchArticle} from '../api/news';
+import {
+  getPopular,
+  getCategoryList,
+  getSearchArticle,
+  getDataByCategory,
+} from '../api/news';
 
-const searchForm = document.querySelector('.search')
-const form = document.querySelector('.input')
+getPopular()
+  .then(data => {
+    console.log(data);
+  })
+  .catch(error => console.log(error));
 
-searchForm.addEventListener('submit', handleSubmit );
+getCategoryList()
+  .then(data => console.log(data))
+  .catch(error => {
+    console.log(error);
+  });
 
+getDataByCategory('Crosswords & Games')
+  .then(data => console.log(data))
+  .catch(error => console.log(error));
 
-async function handleSubmit(e){
-    e.preventDefault();
-    let inputValue = form.value.trim();
-    if(inputValue === ''){
-        return
-      };
-      try{
-        const pages = await newsSearch(inputValue);
-        let totalPage = pages.data.totalHits;
-
-      alert(`Hooray! We found ${totalPage} images.`)
-      }catch (error) {
-        alert("Sorry, there are no images matching your search query. Please try again.");
-      }
-}
-
-async function handleSubmit(e){
-  e.preventDefault();
-  let inputValue = form.value.trim();
-  if(inputValue === ''){
-      return
-    };
-    try{
-      const pages = await getSearchArticle(inputValue);
-      let totalPage = pages.data.totalHits;
-
-    alert(`Hooray! We found ${totalPage} images.`)
-    }catch (error) {
-      alert("Sorry, there are no images matching your search query. Please try again.");
-    }
-}
-async function handleSubmit(e){
-  e.preventDefault();
-  let inputValue = form.value.trim();
-  if(inputValue === ''){
-      return
-    };
-    try{
-      const pages = await getCategoryList(inputValue);
-      let totalPage = pages.data.totalHits;
-
-    alert(`Hooray! We found ${totalPage} images.`)
-    }catch (error) {
-      alert("Sorry, there are no images matching your search query. Please try again.");
-    }
-}
-async function handleSubmit(e){
-  e.preventDefault();
-  let inputValue = form.value.trim();
-  if(inputValue === ''){
-      return
-    };
-    try{
-      const pages = await getDataByCategory(inputValue);
-      let totalPage = pages.data.totalHits;
-
-    alert(`Hooray! We found ${totalPage} images.`)
-    }catch (error) {
-      alert("Sorry, there are no images matching your search query. Please try again.");
-    }
-}
+getSearchArticle('car', 1)
+  .then(data => console.log(data))
+  .catch(error => console.log(error));
