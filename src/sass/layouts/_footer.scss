@@ -1,0 +1,10 @@
+footer {
+  min-width: 320px;
+  padding-top: 120px;
+
+  background-color: var(--footer-color);
+
+  @include tablet {
+    padding-top: 146px;
+  }
+}
