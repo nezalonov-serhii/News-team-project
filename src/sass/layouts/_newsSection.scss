@@ -30,5 +30,142 @@
 }
 
 .news__item {
-  border: 1px solid black;
+  // border: 1px solid black;
+  position: relative;
 }
+
+.news__title{ 
+font-family: 'Manrope';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 1.4;
+letter-spacing: -0.01em;
+color: #111321;
+
+height: 167px;
+flex-grow: 1;
+overflow: hidden;
+
+}
+
+.news__description{
+  font-family: 'Manrope';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 1.4;
+
+color: #111321;
+margin-bottom: 20px;
+}
+
+.news__date{
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.4;
+  
+  
+  text-align: right;
+  
+  color: #A8A8A8;
+}
+
+ .news__link-more {
+  font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #4440F7;
+    }
+
+    
+
+    .news__category{
+      font-family: 'Manrope';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 16px;
+      text-align: center;
+      color: #FFFFFF;
+      // cursor: url(cursor-hand.fe1b03e6.svg),pointer;
+      min-width: 96px;
+      height: auto;
+      color: var(--white-color);
+      background: rgba(68,64,247,.7);
+      border-radius: 0 4px 4px 0;
+      justify-content: center;
+      margin: 0;
+      padding: 4px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 16px;
+      display: flex;
+      position: absolute;
+      top: 40px;
+      left: 0;
+    }
+
+    .news__img{
+      min-width: 288px;
+      height: 395px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    
+
+
+    .news__add-to-favorite {
+      pointer-events: auto;
+      z-index: 2;
+      min-width: 40px;
+      min-height: 10px;
+      text-align: left;
+      color: #111321;
+      background-color: #FFFFFF;
+      border-radius: 20px;
+      margin: 0;
+      padding: 6px 32px 6px 12px;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 16px;
+      transition-duration: .25s;
+      transition-timing-function: cubic-bezier(.4,0,.2,1);
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+    }
+
+   
+.hidden{
+    display: none;
+  }
+
+  .news__wrapper{
+    pointer-events: auto;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .news__block-icon{
+    fill: #fff;
+    transition-duration: .25s;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    position: absolute;
+    right: 12px;
+  }
+
+  .news__info{
+display: flex;
+justify-content: space-between;
+  }
+
+  .new__text-wrapper{
+    flex-direction: column;
+    justify-content: space-between;
+    display: flex;
+  }
