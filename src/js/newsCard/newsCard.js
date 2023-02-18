@@ -3,8 +3,8 @@ import { getPopular } from '../api/news.js';
 const newsList = document.querySelector('.news__item');
 
 getPopular().then(data => {
-  console.log(data[0]);
-  console.log(createNewsCard(data[0]));
+  // console.log(data[0]);
+  // console.log(createNewsCard(data[0]));
 
   addMarkup(newsList, createNewsCard(data[0]));
 });
