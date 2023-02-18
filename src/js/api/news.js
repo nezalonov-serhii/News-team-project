@@ -8,3 +8,24 @@ export async function newsSearch() {
     return await response;
       
   }
+
+  export async function getCategoryList() {
+    const response = axios.get(
+      `${BASE_URL}//news/v3/content/section-list.json?${KEY}`)
+      return await response;
+    
+  }
+
+  export async function getDataByCategory(newValue) {
+    const response = axios.get(
+      `${BASE_URL}/news/v3/content/all/${newValue}.json?${KEY}``${BASE_URL}/news/v3/content/all/${newValue}.json?${KEY}`)
+      return await response;
+  }
+
+  export async function getSearchArticle(value, page) {
+
+    const response = axios.get(
+      `${BASE_URL}/search/v2/articlesearch.json?q=${value}&page=${page}&${KEY}${dateForUrl}`)
+      return await response;
+  }
+
