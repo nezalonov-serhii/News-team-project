@@ -1,9 +1,9 @@
 
-import API from "../api/news.js"
+import getPopular from "../api/news.js"
 
 const newsList = document.querySelector(".news__item");
 
-API.getPopular().then((data) => {
+getPopular().then((data) => {
     
 console.log(data[0])
 console.log(createNewsCard(data[0]));
