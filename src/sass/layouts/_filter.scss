@@ -14,3 +14,121 @@
   display: flex;
   justify-content: space-between;
 }
+
+.filter__wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.main-categories {
+  display: none;
+
+  @include tablet {
+    display: flex;
+    gap: 16px;
+  }
+}
+
+.main-categories__btn {
+  padding: 8px 22px;
+
+  font-size: 12px;
+  line-height: calc(16 / 12);
+  color: var(--accent-color);
+  background-color: var(--primary-bg-color);
+  border: 1px solid currentColor;
+  border-radius: 20px;
+  outline: none;
+
+  transition: color 250ms ease-in-out, background-color 250ms ease-in-out;
+
+  &.isSelected,
+  &:hover,
+  &:focus {
+    color: var(--white-color);
+    background-color: var(--accent-color);
+  }
+}
+
+.filter__others {
+  position: relative;
+}
+
+.dropdown-btn {
+  @extend .main-categories__btn;
+  display: flex;
+  align-items: center;
+
+  transition: color 250ms ease-in-out, background-color 250ms ease-in-out;
+}
+
+.dropdown-btn.isActive {
+  color: var(--white-color);
+  background-color: var(--accent-color);
+
+  &.isOpen > .dropdown-btn__icon {
+    transform: rotate(180deg);
+  }
+
+  & + .dropdown-list {
+    opacity: 1;
+    pointer-events: all;
+    visibility: visible;
+    transform: translateY(0) scaleY(1);
+  }
+}
+
+.dropdown-btn__text {
+  margin-right: 10px;
+  pointer-events: none;
+}
+
+.dropdown-btn__icon {
+  transition: transform 250ms ease-in-out;
+  pointer-events: none;
+}
+
+.dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+
+  padding: 8px 0;
+  max-height: 380px;
+  width: max-content;
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  background-color: var(--white-color);
+  border-radius: 20px;
+
+  overflow-y: auto;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+
+  transform: translateY(-10%) scaleY(0);
+  transform-origin: top;
+  transition: all 250ms ease-in-out;
+}
+
+.dropdown-list__btn {
+  padding: 6px 14px;
+
+  font-size: 12px;
+  line-height: calc(16 / 12);
+  color: var(--accent-color);
+
+  &.isSelected,
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+    outline: none;
+  }
+
+  @include tablet {
+    padding: 6px 24px;
+  }
+}
