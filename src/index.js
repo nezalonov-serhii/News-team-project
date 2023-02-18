@@ -1,3 +1,4 @@
+import './js/refs/refs';
 import './js/mobileMenu/mobileMenu';
 
 import './js/popularRender/popularRender';
@@ -9,4 +10,5 @@ import './js/search/search';
 import './js/calendar/calendar';
 import './js/pagination/pagination';
 
+import './js/loader/loader';
 import './js/darkMode/darkMode';

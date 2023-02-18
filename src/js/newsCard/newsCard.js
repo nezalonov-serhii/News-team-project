@@ -1,13 +1,17 @@
 import { getPopular } from '../api/news.js';
+import { hideLoader } from '../loader/loader';
 
 const newsList = document.querySelector('.news__item');
 
-getPopular().then(data => {
-  // console.log(data[0]);
-  // console.log(createNewsCard(data[0]));
+getPopular()
+  .then(data => {
+    // console.log(data[0]);
+    // console.log(createNewsCard(data[0]));
 
-  addMarkup(newsList, createNewsCard(data[0]));
-});
+    addMarkup(newsList, createNewsCard(data[0]));
+  })
+  .catch()
+  .finally(data => hideLoader());
 
 // url
 
