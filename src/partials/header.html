@@ -64,6 +64,7 @@
             </button>
         </nav>
 
+        <div class="search-wrapper">
         <!-- форма поиска новостей -->
         <form class="search">
             <button class="search__btn">
@@ -75,19 +76,23 @@
         </form>
 
         <!-- прятать в мобильной версии а на десктопе показывать переключатель темы-->
+
         <div class="theme">
 
             <p class="theme__light">Light</p>
 
             <label class="switch">
-                <input type="checkbox" class="switch-checkbox" />
-                <span class="toggle"></span>
+                <input type="checkbox" class="switch__checkbox" />
+                <div class="wrapper-toggle">
+                    <div class="toggle"></div>
+                </div>
+                
             </label>
 
             <p class="theme__dark ">Dark</p>
 
         </div>
-
+</div>
         <!-- Кнопка открывания мобильного меню -->
         <button type="button" class="mobile-btn-open">
             <svg class="icon" width="24" height="24">
