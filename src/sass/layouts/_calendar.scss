@@ -35,18 +35,13 @@ html, body{
 .container-calendar{
 	width: max-content;
 	height: max-content;
-	position: fixed;
-	// display: flex;
-	// padding: 2% 0px 0px 0px;
+	position: absolute;
 	justify-content: center;
-	// top: 10%;
-	// right: 0%;
 	height: 100%;
 	width: 100%;
 	visibility: hidden;
 	opacity: 0;
 	transition: opacity 250ms ease-in-out, visibility 0.3s ease-in-out;
-	// z-index: -1;
 }
 
 .container--active{

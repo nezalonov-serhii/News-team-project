@@ -7,6 +7,7 @@ let monthInCalendar = document.querySelector('.mounth-year-display');
 let daysInCalendar = document.querySelector('.calendar-week-days');
 const singleBtn = document.querySelector('#choseDataButton');
 const calendarContainer = document.querySelector('.container-calendar');
+
 let monthNames = [
   'January',
   'February',
@@ -22,7 +23,8 @@ let monthNames = [
   'December',
 ];
 
-let dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+let temp = [];
 
 singleBtn.innerHTML = `${dateFix(currentDate)}/${dateFix(month + 1)}/${year}`;
 
@@ -31,19 +33,20 @@ singleBtn.innerHTML = `${dateFix(currentDate)}/${dateFix(month + 1)}/${year}`;
 function getFirstDayOfTheMonth() {
   let firstDayInChosenMonth = new Date(year, month, 1);
   let result = firstDayInChosenMonth.getDay();
-  console.log(result);
-  for (i = 0; i < result; i++) dayNames.unshift(dayNames.pop());
+  temp = dayNames;
+  for (i = 0; i < result; i++) {
+	temp = [].concat(temp.slice(result),temp.slice(0,result));
+  }
+return temp;
 }
 
 //рендр дней недели
 
 function plotWeek() {
-  let count = 0;
   daysInCalendar.innerHTML = '';
-  for (let i = 0; i < dayNames.length; i++) {
-    daysInCalendar.innerHTML += `<p class="calendar-week">${
-      dayNames[count++]
-    }</p>`;
+  console.log(temp);
+  for (let i = 0; i <= 6; i++) {
+    daysInCalendar.innerHTML += `<p class="calendar-week">${temp[i]}</p>`;
   }
 }
 
