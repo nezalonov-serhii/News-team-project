@@ -1,12 +1,10 @@
-@import './utils/variables';
-@import './utils/mixns';
-
 @import './base/common';
 @import './base/reset';
 
-@import './layouts/mobileMenu';
+@import './utils/variables';
+
 @import './layouts/header';
-@import './layouts/main';
+@import './layouts/mobileMenu';
 @import './layouts/filter';
 @import './layouts/calendar';
 @import './layouts/newsSection';
