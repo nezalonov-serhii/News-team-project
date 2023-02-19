@@ -141,9 +141,9 @@ margin-bottom: 20px;
 //     }
 
    
-// .hidden{
-//     display: none;
-//   }
+.hidden{
+    display: none;
+  }
 
   .news__wrapper{
     pointer-events: auto;
@@ -291,4 +291,8 @@ justify-content: space-between;
   
     transition-duration: 250ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .opacity {
+    opacity: 0.5;
   }
