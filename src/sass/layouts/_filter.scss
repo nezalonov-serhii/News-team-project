@@ -90,6 +90,10 @@
   pointer-events: none;
 }
 
+.dropdown-list {
+  display: none;
+}
+
 .dropdown-list[data-simplebar] {
   position: absolute;
   top: 100%;
@@ -100,20 +104,20 @@
   max-height: 380px;
   width: max-content;
   min-width: 100%;
-
-  display: none;
+  display: flex;
+  flex-direction: column;
 
   background-color: var(--white-color);
   border-radius: 20px;
 
-  overflow-x: hidden;
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
 
   transform: translateY(-10%) scaleY(0);
   transform-origin: top;
-  transition: all 250ms ease-in-out;
+  transition: transform 250ms ease-in-out, opacity 250ms ease-in-out,
+    visibility 250ms ease-in-out;
 
   .simplebar-scrollbar::before {
     width: 5px;
@@ -126,9 +130,6 @@
 }
 
 .dropdown-list.isOpen {
-  display: flex;
-  flex-direction: column;
-
   opacity: 1;
   pointer-events: all;
   visibility: visible;
