@@ -66,17 +66,6 @@
 .dropdown-btn.isActive {
   color: var(--white-color);
   background-color: var(--accent-color);
-
-  &.isOpen > .dropdown-btn__icon {
-    transform: rotate(180deg);
-  }
-
-  & + .dropdown-list {
-    opacity: 1;
-    pointer-events: all;
-    visibility: visible;
-    transform: translateY(0) scaleY(1);
-  }
 }
 
 .dropdown-btn__text {
@@ -112,6 +101,19 @@
   transform: translateY(-10%) scaleY(0);
   transform-origin: top;
   transition: all 250ms ease-in-out;
+}
+
+.dropdown-list.isOpen {
+  opacity: 1;
+  pointer-events: all;
+  visibility: visible;
+  transform: translateY(0) scaleY(1);
+}
+
+.dropdown-list.isOpen + .dropdown-btn {
+  .dropdown-btn__icon {
+    transform: rotate(180deg);
+  }
 }
 
 .dropdown-list__btn {
