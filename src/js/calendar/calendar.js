@@ -31,7 +31,6 @@ singleBtn.innerHTML = `${dateFix(currentDate)}/${dateFix(month + 1)}/${year}`;
 function getFirstDayOfTheMonth() {
   let firstDayInChosenMonth = new Date(year, month, 1);
   let result = firstDayInChosenMonth.getDay();
-  console.log(result);
   for (i = 0; i < result; i++) dayNames.unshift(dayNames.pop());
 }
 
