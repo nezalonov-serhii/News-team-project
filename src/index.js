@@ -1,8 +1,10 @@
 import './js/mobileMenu/mobileMenu';
 
 import './js/popularRender/popularRender';
-import './js/newsFilter/fillter';
+
+import './js/newsFilter/filter';
 import './js/newsCard/newsCard';
+
 import './js/weather/weather';
 
 import './js/search/search';
