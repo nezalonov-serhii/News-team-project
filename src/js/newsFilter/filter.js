@@ -1,4 +1,5 @@
 import { getCategoryList, getDataByCategory } from '../api/news';
+import { hideLoader } from '../loader/loader';
 
 import SimpleBar from 'simplebar';
 import 'simplebar/dist/simplebar.css';
@@ -84,6 +85,8 @@ async function selectNewCategory(newCategory) {
     console.log(result);
   } catch (error) {
     Notify.failure('Error: ' + error.message);
+  } finally {
+    hideLoader();
   }
 }
 
@@ -116,6 +119,8 @@ async function updateCategoriesInUI() {
     showCategoryWrapper();
   } catch (error) {
     Notify.failure('Error: ' + error.message);
+  } finally {
+    hideLoader();
   }
 }
 
