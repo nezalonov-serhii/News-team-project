@@ -49,7 +49,7 @@
 // Навигация
 
 .nav {
-
+  // display: none;
   display: flex;
   align-items: baseline;
 
@@ -149,7 +149,17 @@
     outline: none;
     color: var(--primary-text-color);
 
- 
+    // &:focus {
+    //     color: var(--text-color)
+    // }
+
+    // &:autofill,
+    // &:autofill:hover,
+    // &:autofill:focus,
+    // &:autofill:active {
+    //     transition: background-color 9999s, color 9999s;
+    // }
+
     @media screen and (max-width: $pre_tablet) {
       padding: 0;
       transition: 0.4s;
@@ -210,6 +220,11 @@
     display: block;
   }
 
+  // @media screen and (max-width: $pre_tablet) {
+  //     box-sizing: border-box;
+  //         display: flex;
+
+  //     }
 }
 
 // Переключатель тем
