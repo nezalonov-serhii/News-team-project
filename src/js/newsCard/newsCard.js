@@ -81,7 +81,7 @@ function newsCardTextFormat(element) {
 newsList.addEventListener('click', btnAddToFavorite);
 let newLocalStorage = [];
 
-//Перевірна чи є дані в  LocalStorage
+//Перевірка чи є дані в  LocalStorage
 
 
 function isLocalEmpty() {
@@ -97,7 +97,7 @@ isLocalEmpty();
 
 function btnAddToFavorite(event) {
   const btn = event.target.closest(`.item-news__add-to-favorite`);
-  // console.log(btn);
+  console.log(btn.parentNode.parentNode.lastElementChild.children[1].attributes[1].value);
   if (!btn) return;
   isLocalEmpty();
   let uri =
@@ -130,8 +130,8 @@ function addToFavoriteLocal(btn) {
     title: btn.parentNode.parentNode.childNodes[3].children[0].innerText,
     description: btn.parentNode.parentNode.childNodes[3].children[1].innerText,
     date: btn.parentNode.parentNode.lastElementChild.children[0].innerText,
-    // link: btn.parentNode.parentNode.lastElementChild.children[1].attributes[2]
-    //   .value,
+    link: btn.parentNode.parentNode.lastElementChild.children[1].attributes[1]
+      .value,
     favorite: 'true',
     uri: btn.parentNode.nextElementSibling.nextElementSibling.lastElementChild
       .textContent,
