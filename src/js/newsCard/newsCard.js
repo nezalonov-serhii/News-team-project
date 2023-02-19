@@ -6,18 +6,14 @@ console.log(newsList);
 
 //Створюється одна карточка
 
-getPopular().then(data => {
-    addMarkup(newsList, createNewsCard(data[7]));
-});
-
+getPopular()
+  .then(data => {
     addMarkup(newsList, createNewsCard(data[0]));
   })
   .catch()
   .finally(data => hideLoader());
 
-
 //Функція створення однієї карточки
-
 
 function createNewsCard({
   title,
@@ -32,7 +28,9 @@ function createNewsCard({
             <li class="news__item">
                 <article class="news__article" id="${id}">
                     <div class="news__wrapper" >
-                        <img class="news__img" src="${media[0]['media-metadata'][2].url}" alt="">
+                        <img class="news__img" src="${
+                          media[0]['media-metadata'][2].url
+                        }" alt="">
 
                         <p class="news__category">${section}</p>
 
@@ -64,7 +62,7 @@ function createNewsCard({
     `;
 }
 
-// addMarkup Додаю розмітку 
+// addMarkup Додаю розмітку
 
 function addMarkup(element, constMarkup) {
   element.insertAdjacentHTML('beforeend', constMarkup);
@@ -80,17 +78,12 @@ function newsCardTextFormat(element) {
   return textFormat;
 }
 
-
-
 //Клік мишкою на улюблене
-
-
 
 newsList.addEventListener('click', btnAddToFavorite);
 let newLocalStorage = [];
 
 //Перевірка чи є дані в  LocalStorage
-
 
 function isLocalEmpty() {
   if (JSON.parse(localStorage.getItem('newsSection')) === null) {
@@ -101,11 +94,13 @@ function isLocalEmpty() {
 }
 isLocalEmpty();
 
-//Кнопка улюблене 
+//Кнопка улюблене
 
 function btnAddToFavorite(event) {
   const btn = event.target.closest(`.item-news__add-to-favorite`);
-  console.log(btn.parentNode.parentNode.lastElementChild.children[1].attributes[1].value);
+  console.log(
+    btn.parentNode.parentNode.lastElementChild.children[1].attributes[1].value
+  );
   if (!btn) return;
   isLocalEmpty();
   let uri =
@@ -127,9 +122,7 @@ function btnAddToFavorite(event) {
   localStorage.setItem(`newsSection`, JSON.stringify(newLocalStorage));
 }
 
-
 // Додаємо в локальне сховище дані через кнопку
-
 
 function addToFavoriteLocal(btn) {
   const newsSection = {
@@ -147,12 +140,8 @@ function addToFavoriteLocal(btn) {
   };
   for (let i = 0; i < newLocalStorage.length; i += 1) {
     if (newLocalStorage[i].uri === newsSection.uri) return;
-
   }
 
   newLocalStorage.push(newsSection);
   localStorage.setItem(`newsSection`, JSON.stringify(newLocalStorage));
 }
-
-
-
