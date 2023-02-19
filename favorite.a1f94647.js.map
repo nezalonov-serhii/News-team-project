@@ -1,0 +1,1 @@
+{"mappings":"oeAAAA,EAAA,S","sources":["src/js/favorite.js"],"sourcesContent":["import './refs/refs';\n\nimport './mobileMenu/mobileMenu';\nimport './mobileMenu/mobileMenuCurrent';\n"],"names":["parcelRequire"],"version":3,"file":"favorite.a1f94647.js.map"}
