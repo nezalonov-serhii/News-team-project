@@ -35,7 +35,9 @@
 
   font-size: 12px;
   line-height: calc(16 / 12);
+  text-transform: capitalize;
   color: var(--accent-color);
+
   background-color: var(--primary-bg-color);
   border: 1px solid currentColor;
   border-radius: 20px;
@@ -70,6 +72,7 @@
 
 .dropdown-btn__text {
   margin-right: 10px;
+
   pointer-events: none;
 }
 
@@ -82,6 +85,7 @@
   position: absolute;
   top: 100%;
   left: 0;
+  z-index: 10;
 
   padding: 8px 0;
   max-height: 380px;
@@ -122,6 +126,7 @@
   font-size: 12px;
   line-height: calc(16 / 12);
   color: var(--accent-color);
+  text-transform: capitalize;
 
   &.isSelected,
   &:hover,

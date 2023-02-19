@@ -1,3 +1,5 @@
+import { getCategoryList, getDataByCategory } from '../api/news';
+
 const refs = {
   categoryWrapper: document.querySelector('.js-category-wrapper'),
   mainCategories: document.querySelector('.js-main-categories'),
@@ -5,43 +7,6 @@ const refs = {
   dropdownList: document.querySelector('.js-dropdown-list'),
 };
 
-const categoryList = [
-  'monitor',
-  'program',
-  'application',
-  'keyboard',
-  'javascript',
-  'gaming',
-  'network',
-  'authorized',
-  'automatic',
-  'avaricious',
-  'average',
-  'aware',
-  'awesome',
-  'awful',
-  'awkward',
-  'babyish',
-  'bad',
-  'back',
-  'baggy',
-  'bare',
-  'barren',
-  'basic',
-  'beautiful',
-  'belated',
-  'beloved',
-  'beneficial',
-  'better',
-  'best',
-  'bewitched',
-  'big',
-  'bighearted',
-  'biodegradable',
-  'bitesized',
-  'bitter',
-  'black',
-];
 const mql = window.matchMedia('(min-width: 768px) and (max-width: 1279.8px)');
 
 refs.mainCategories.addEventListener('click', onMainCategoriesClick);
@@ -62,11 +27,10 @@ function onMainCategoriesClick({ target }) {
 }
 
 function onShowOthersBtnClick({ target }) {
-  const mainCategoryIsSelected =
-    refs.mainCategories.querySelector('.isSelected');
-
-  if (mainCategoryIsSelected) {
+  if (isMainCategorySelected()) {
     target.classList.toggle('isActive');
+  } else {
+    target.classList.add('isActive');
   }
 
   refs.dropdownList.classList.toggle('isOpen');
@@ -80,13 +44,9 @@ function onShowOthersBtnClick({ target }) {
 
 function hideDropdownList({ target }) {
   if (target.nodeName !== 'BUTTON') {
-    deactivateShowOthersBtn();
+    isMainCategorySelected() && deactivateShowOthersBtn();
     closeDropdownList();
   }
-}
-
-function openDropdownList() {
-  refs.dropdownList.classList.add('isOpen');
 }
 
 function closeDropdownList() {
@@ -105,7 +65,7 @@ function onDropdownListClick({ target }) {
   closeDropdownList();
 }
 
-function selectNewCategory(newCategory) {
+async function selectNewCategory(newCategory) {
   const prevCategory = findPrevCategory();
 
   if (prevCategory === newCategory) {
@@ -114,18 +74,33 @@ function selectNewCategory(newCategory) {
 
   prevCategory && prevCategory.classList.remove('isSelected');
   newCategory.classList.add('isSelected');
+
+  const result = await getDataByCategory(newCategory.dataset.categoryName);
+  console.log(result);
 }
 
 function findPrevCategory() {
   return refs.categoryWrapper.querySelector('.isSelected');
 }
 
+function isMainCategorySelected() {
+  const prevCategory = findPrevCategory();
+
+  return prevCategory
+    ? prevCategory.classList.contains('main-categories__btn')
+    : false;
+}
+
 function init() {
   updateCategoriesInUI();
 }
 
-function updateCategoriesInUI() {
+async function updateCategoriesInUI() {
   refs.showOthersBtn.querySelector('span').textContent = getBtnText();
+
+  const result = await getCategoryList();
+  const categoryList = result.map(item => item.section);
+
   fillCategoryLists(categoryList);
 }
 
@@ -160,6 +135,13 @@ function divideCategories(categoryList) {
 
   for (let i = 0; i < mainCategoriesNumber; i += 1) {
     const randomIndex = Math.floor(Math.random() * dropdownList.length);
+    const categoryLength = dropdownList[randomIndex].length;
+
+    if (categoryLength > 8) {
+      i -= 1;
+      continue;
+    }
+
     const category = dropdownList.splice(randomIndex, 1);
     mainCategories.push(...category);
   }
@@ -197,7 +179,7 @@ function makeCategoriesMarkup(categoryList, className) {
     .map(
       category => `
     <li class="${className}__item">
-      <button class="${className}__btn" type="button">${category}</button>
+      <button class="${className}__btn" type="button" data-category-name="${category}">${category}</button>
     </li>
   `
     )
