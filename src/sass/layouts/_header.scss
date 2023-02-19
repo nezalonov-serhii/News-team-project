@@ -1,0 +1,396 @@
+.header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  min-height: 81px;
+  padding: 24px 0px;
+}
+
+.header__container {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+
+  @media screen and (min-width: $pre_tablet) {
+  }
+}
+
+// Логотип
+.logo {
+  font-weight: 700;
+  font-size: 42px;
+  line-height: 57px;
+
+  color: var(--primary-text-color);
+
+  display: inline-block;
+
+  @media screen and (min-width: $pre_tablet) {
+    font-size: 32px;
+    line-height: 44px;
+  }
+
+  @media screen and (min-width: $pre_desktop) {
+    margin-right: 33px;
+
+    font-size: 42px;
+    line-height: 57px;
+  }
+}
+
+.logo-mobile {
+  visibility: visible;
+  @media screen and (min-width: $pre_tablet) {
+    visibility: hidden;
+  }
+  @media screen and (min-width: $pre_desktop) {
+    visibility: hidden;
+  }
+}
+
+// Навигация
+
+.nav {
+  // display: none;
+  display: flex;
+  align-items: baseline;
+
+  @media screen and (min-width: $pre_tablet) {
+    gap: 44px;
+  }
+
+  @media screen and (min-width: $pre_desktop) {
+    gap: 69px;
+  }
+  @media screen and (max-width: $pre_tablet) {
+  }
+}
+.nav__icon-mobile {
+  display: none;
+  @media screen and (max-width: $pre_mobile) {
+    display: block;
+  }
+}
+.nav__link {
+  font-weight: 700;
+
+  @media screen and (min-width: $pre_desktop) {
+    font-size: 18px;
+    line-height: calc(25 / 18);
+  }
+
+  @media screen and (max-width: $pre_tablet) {
+    display: none;
+  }
+
+  &--current {
+    padding-bottom: 8px;
+
+    border-bottom: 1px solid var(--accent-color);
+  }
+
+  &:hover,
+  &:focus {
+    color: var(--accent-color);
+  }
+}
+
+.nav__icon-wraper {
+  visibility: hidden;
+
+  @media screen and (max-width: $pre_desktop) {
+    visibility: visible;
+  }
+  @media screen and (max-width: $pre_tablet) {
+    visibility: visible;
+  }
+}
+//Поле поиска
+.wrap-search {
+  align-items: center;
+  display: flex;
+}
+
+.search {
+  display: flex;
+  background-color: transparent;
+  height: 31px;
+
+  @media screen and (min-width: $pre_desktop) {
+    margin-right: 147px;
+    box-sizing: border-box;
+    border: 1px solid var(--primary-text-color);
+    width: 213px;
+    border-radius: 20px;
+  }
+  @media screen and (min-width: $pre_tablet) {
+    box-sizing: border-box;
+    margin-right: 24px;
+    border: 1px solid var(--primary-text-color);
+    width: 213px;
+    border-radius: 20px;
+  }
+
+  @media screen and (max-width: $pre_tablet) {
+    margin-right: 14px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    margin-right: 147px;
+    width: 288px;
+  }
+
+  input {
+    font-family: 'Poppins';
+    font-size: 12px;
+    line-height: 24px;
+    letter-spacing: 0.02em;
+    opacity: 0.4;
+    border: none;
+    background: none;
+    outline: none;
+    color: var(--primary-text-color);
+
+    // &:focus {
+    //     color: var(--text-color)
+    // }
+
+    // &:autofill,
+    // &:autofill:hover,
+    // &:autofill:focus,
+    // &:autofill:active {
+    //     transition: background-color 9999s, color 9999s;
+    // }
+
+    @media screen and (max-width: $pre_tablet) {
+      padding: 0;
+      transition: 0.4s;
+      width: 0;
+    }
+
+    @media screen and (min-width: $pre_tablet) {
+      padding: 5px 0;
+      font-size: 14px;
+      line-height: 24px;
+    }
+  }
+
+  @media screen and (max-width: $pre_tablet) {
+    &:hover {
+      border: 1px solid var(--primary-text-color);
+      border-radius: 20px;
+
+      input {
+        width: 125px;
+        padding: 8px 0;
+      }
+
+      .search__btn {
+        padding: 6px 16px 5px 12px;
+      }
+    }
+  }
+}
+
+.search__btn {
+  @media screen and (min-width: $pre_tablet) {
+    padding: 6px 16px 6px 12px;
+  }
+
+  @media screen and (max-width: $pre_tablet) {
+    color: var(--primary-text-color);
+    transition: 0.4s;
+  }
+}
+
+.search__icon {
+  fill: var(--primary-text-color);
+}
+
+.mobile-btn-close {
+  display: none;
+  color: var(--primary-text-color);
+  @media screen and (max-width: $mobile) {
+    display: block;
+  }
+}
+
+.theme-mobile {
+  display: none;
+
+  @media screen and (max-width: $pre_desktop) {
+    display: block;
+  }
+
+  // @media screen and (max-width: $pre_tablet) {
+  //     box-sizing: border-box;
+  //         display: flex;
+
+  //     }
+}
+
+// Переключатель тем
+.search-wrapper {
+  margin-left: auto;
+  display: flex;
+}
+.theme {
+  @media screen and (max-width: $pre_tablet) {
+  }
+
+  @media screen and (min-width: $pre_tablet) {
+    display: flex;
+    width: 98px;
+    height: 21px;
+
+    // flex-direction: row;
+    // justify-content: center;
+    // align-items: center;
+  }
+
+  @media screen and (max-width: $mobile) {
+    display: flex;
+    gap: 8px;
+    position: absolute;
+    z-index: 6;
+    bottom: 18px;
+    opacity: 100%;
+    // pointer-events: all;
+    visibility: inherit;
+  }
+
+  @media screen and (min-width: $pre_desktop) {
+    gap: 12px;
+    width: 148px;
+    height: 24px;
+    margin: 0;
+  }
+}
+
+.theme--descktop {
+  position: static;
+
+  @media screen and (max-width: $pre_tablet) {
+    display: none;
+  }
+}
+
+.theme-icon-text {
+  @media screen and (max-width: $desktop) {
+    display: none;
+  }
+
+  @media screen and (min-width: $desktop) {
+    display: block;
+  }
+
+  &-light {
+    font-size: 18px;
+    line-height: 1.3;
+
+    color: var(--switcher-on);
+  }
+  &-dark {
+    font-size: 18px;
+    line-height: 1.3;
+
+    color: var(--switcher-off);
+  }
+}
+
+.theme-icon-descktop {
+  @media screen and (min-width: $desktop) {
+    display: none;
+  }
+}
+
+.theme__dark {
+  // display: none;
+  font-family: 'Poppins';
+  font-size: 18px;
+  line-height: 24px;
+
+  display: flex;
+  align-items: center;
+
+  color: #5f6775;
+
+  order: 2;
+  flex-grow: 0;
+  // @media screen and (min-width: $pre_tablet) {
+  //         display: none;
+  //     }
+}
+
+.theme__light {
+  display: block;
+  font-family: 'Poppins';
+
+  font-size: 18px;
+  line-height: 24px;
+  color: #4b48db;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  //     @media screen and (min-width: $pre_tablet) {
+  //             display: none;
+  //         }
+  //          @media screen and (min-width: $pre_mobile) {
+  //     display: none;
+  // }
+}
+
+.mobile-btn-open {
+  .icon {
+    fill: var(--primary-text-color);
+  }
+
+  @media screen and (min-width: $pre_tablet) {
+    display: none;
+  }
+}
+
+//Переключатель
+
+.switch {
+  display: flex;
+  align-items: center;
+  width: 40px;
+  height: 20px;
+}
+
+.switch__checkbox {
+  display: none;
+}
+
+.wrapper-toggle {
+  display: flex;
+  align-items: center;
+  padding: 1px;
+  margin-left: 0;
+
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  border: 1px solid var(--switcher-moon-light);
+
+  transition: margin-left 1000ms ease-in;
+}
+
+.toggle {
+  width: 16px;
+  height: 16px;
+
+  border-radius: 50%;
+  background-color: var(--switcher-moon-light);
+}
+
+.switch__checkbox:checked + .wrapper-toggle .toggle {
+  background-color: var(--white-color);
+
+  margin-left: auto;
+}
+
+.switch__checkbox:checked + .wrapper-toggle {
+  border-color: var(--white-color);
+  background-color: var(--switcher-moon-light);
+}

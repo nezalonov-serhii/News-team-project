@@ -1,7 +1,10 @@
+import { showLoader } from '../loader/loader';
+
 const KEY = 'api-key=ccA9QsXbvrHhGuvowEcHjyxEU2jAukPO';
 const BASE_URL = 'https://api.nytimes.com/svc';
 
 async function getPopular() {
+  showLoader();
   const articleFetch = await fetch(
     `${BASE_URL}/mostpopular/v2/viewed/1.json?${KEY}`
   );
@@ -14,6 +17,7 @@ async function getPopular() {
 }
 
 async function getCategoryList() {
+  showLoader();
   const categoryList = await fetch(
     `${BASE_URL}//news/v3/content/section-list.json?${KEY}`
   );
@@ -27,6 +31,7 @@ async function getCategoryList() {
 }
 
 async function getDataByCategory(value) {
+  showLoader();
   let normalazeValue = value.toLowerCase();
   let newValue = encodeURIComponent(normalazeValue);
 
@@ -43,6 +48,7 @@ async function getDataByCategory(value) {
 }
 
 async function getSearchArticle(value, page) {
+  showLoader();
   let dateForUrl = '';
   // dateForUrl = ` &begin_date=${date}&end_date=${date}`;
   // &page=26

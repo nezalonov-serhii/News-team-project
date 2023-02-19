@@ -1,11 +1,150 @@
-.calendar-form {
-  display: flex;
-  margin-right: 36px;
-  &__text {
-    display: none;
-    margin-right: 37px;
-    @include desktop {
-      display: block;
-    }
-  }
+:root {
+	--blue: #4440F6;
+	--main-background: #F8F8F8;
+	--incative-text: rgba(60, 60, 67, 0.3)
+	--border-inactive: rgba(17, 19, 33, 1);
+}
+
+html, body{
+	// place-items: center;
+	// // overflow: hidden;
+	// font-family: 'Monrope';
+	// font-weight: 500;
+	// font-size: 16px;
+	// line-height: 22px;
+	// background: linear-gradient(to right, #9796f0, #fbc7d4);
+}
+
+.choseDataButton{
+	width: 168px;
+	height: 30px;
+	background-color: white;
+	color: var(--blue);
+	border: 1px solid #111321;
+	border-radius: 20px;
+	margin-bottom: 2px;
+}
+
+.choseDataButton:hover,
+.choseDataButton:focus{
+	background-color:#4440F6;
+	border: 0	;
+	color: white;
+}
+
+.container-calendar{
+	width: max-content;
+	height: max-content;
+	position: fixed;
+	// display: flex;
+	// padding: 2% 0px 0px 0px;
+	justify-content: center;
+	// top: 10%;
+	// right: 0%;
+	height: 100%;
+	width: 100%;
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 250ms ease-in-out, visibility 0.3s ease-in-out;
+	// z-index: -1;
+}
+
+.container--active{
+	opacity: 1;
+	visibility: visible;
+}
+
+.calendar{
+	height: 250px;
+	width: 250px;
+	background-color: white;
+	padding: 27px 20px 16px 16px;
+	border-radius: 20px;
+}
+
+.calendar-header{
+	position: relative;
+	height: 26px;
+	padding-bottom: 13px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.mounth-year-display{
+	padding-right: 8px;
+}
+
+.header-left-block{
+	display: flex;
+	justify-content: space-between
+}
+
+.mounth-picker{
+	display: flex;
+	justify-content: space-between;
+	width: 60px;
+}
+
+.date-change{
+	display: flex;
+	justify-content: center;
+	border-radius:20px;
+	width: 20px;
+	height: 20px;
+	color: var(--blue);
+}
+
+.date-change:hover{
+	background-color: var(--blue);
+	color: white;
+	cursor: pointer;
+	border-radius: 20px;
+}
+
+.calendar-week-days{
+	color: var(--incative-text);
+	display: flex;
+	justify-content: space-between;
+	grid-template-columns: repeat(7, 1fr);
+	font-weight: 400;
+	cursor: pointer;
+}
+
+
+
+.calendar-week-days div{
+	display: grid;
+	place-items: center;
+}
+
+.calendar-days{
+	margin-top: 15px;
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar-dates-day{
+	width: 25px;
+	height: 25px;
+}
+
+.calendar-dates-day:hover{
+	background-color:#4440F6;
+	border-radius: 20px;
+	color: white;
+}
+
+.month-change{
+	color: var(--blue);
+	background-color: white;
+	width: 20px;
+	height: 20px;
+}
+
+.month-change:hover{
+	background-color: var(--blue);
+	color: white;
+	border-radius: 26px;
+	cursor: pointer;
 }

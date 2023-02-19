@@ -1,28 +1,89 @@
 <section class="filter">
   <div class="container filter__container">
-    <div class="filter-category">
-      <ul class="filter-category__list">
-        <li>Categories</li>
-        <!-- для списка основных тем -->
+    <div class="filter__wrap js-category-wrapper">
+      <ul class="filter__main-categories main-categories js-main-categories">
+        <!-- <li class="main-categories__item">
+          <button class="main-categories__btn" type="button">Lorem</button>
+        </li>
+        <li class="main-categories__item">
+          <button class="main-categories__btn" type="button">Eius</button>
+        </li>
+        <li class="main-categories__item">
+          <button class="main-categories__btn" type="button">Repell</button>
+        </li>
+        <li class="main-categories__item">
+          <button class="main-categories__btn" type="button">Ipsam</button>
+        </li>
+        <li class="main-categories__item">
+          <button class="main-categories__btn" type="button">Velit</button>
+        </li> -->
       </ul>
-      <div class="filter-category__others-container">
-        <button class="filter-category__others-button"></button>
-        <ul class="filter-category__container">
-          <!--для списка остальных тем-->
+      <div class="filter__others">
+        <ul class="dropdown-list js-dropdown-list">
+          <!-- <li class="dropdown-list__item">
+            <button class="dropdown-list__btn" type="button">
+             Lorem, ipsum
+            </button>
+          </li>
+          <li class="dropdown-list__item">
+            <button class="dropdown-list__btn" type="button">Lorem</button>
+          </li>
+          <li class="dropdown-list__item">
+            <button class="dropdown-list__btn" type="button">Lorem</button>
+          </li>
+          <li class="dropdown-list__item">
+            <button class="dropdown-list__btn" type="button">
+              Lorem, ipsum
+            </button>
+          </li>
+          <li class="dropdown-list__item">
+            <button class="dropdown-list__btn" type="button">Lorem</button>
+          </li> -->
         </ul>
+        <button class="dropdown-btn js-btn-show-others">
+          <span class="dropdown-btn__text"></span>
+          <svg class="dropdown-btn__icon" width="14" height="14">
+            <use href="./images/sprite.svg#arrow-down"></use>
+          </svg>
+        </button>
       </div>
     </div>
 
     <div class="calendar-form">
       <p class="calendar-form__text">Search date news</p>
-      <div class="input-form">
-        <!-- для стилизации input календаря -->
-        <input readonly />
-      </div>
 
-      <div class="calendar-wrapper">
-        <!-- для календаря -->
-        <div class="calendar-wrapper__container"></div>
+
+      <div class="calendarPicker">
+
+        <button class="choseDataButton" id="choseDataButton">current date</button>
+        <div class="container-calendar">
+          <div class="calendar" id="calendar">
+            <div class="calendar-header">
+              <div class="header-left-block">
+                <span class="mounth-year-display" id="mounth-year-display"></span>
+                <button class="date-change" id="next-year">
+                  >
+                </button>
+              </div>
+              <div class="mounth-picker" id="mounth-picker">
+                <button class="month-change" id="pre-month">
+                  < </button>
+                    <button class="month-change" id="next-month">
+                      >
+                    </button>
+              </div>
+            </div>
+
+            <div class="calendar-body">
+              <div class="calendar-week-days">
+              </div>
+              <div class="calendar-days">
+              </div>
+              <div class="calendar-footer">
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

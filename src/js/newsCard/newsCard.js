@@ -1,4 +1,5 @@
 import { getPopular } from '../api/news.js';
+import { hideLoader } from '../loader/loader';
 
 const newsList = document.querySelector('.news__item');
 console.log(newsList);
@@ -9,10 +10,14 @@ getPopular().then(data => {
     addMarkup(newsList, createNewsCard(data[7]));
 });
 
-
+    addMarkup(newsList, createNewsCard(data[0]));
+  })
+  .catch()
+  .finally(data => hideLoader());
 
 
 //Функція створення однієї карточки
+
 
 function createNewsCard({
   title,
@@ -28,6 +33,7 @@ function createNewsCard({
                 <article class="news__article" id="${id}">
                     <div class="news__wrapper" >
                         <img class="news__img" src="${media[0]['media-metadata'][2].url}" alt="">
+
                         <p class="news__category">${section}</p>
 
                         <button type="button" class="item-news__add-to-favorite ">
@@ -45,7 +51,9 @@ function createNewsCard({
                     </div>
                     <div class="new__text-wrapper">
                     <h2 class=" news__title">${title}</h2>
-                    <p class="news__description">${newsCardTextFormat(abstract)}</p>
+                    <p class="news__description">${newsCardTextFormat(
+                      abstract
+                    )}</p>
                     </div>
                     <div class="news__info">
                         <span class="news__date">${published_date}</span>
@@ -65,12 +73,12 @@ function addMarkup(element, constMarkup) {
 //Add ... 80 elements Перевірка довжини тексту
 
 function newsCardTextFormat(element) {
-    let textFormat = element;
-    if (textFormat.length > 80) {
-      textFormat = element.slice(0, 80) + '...';
-    }
-    return textFormat;
+  let textFormat = element;
+  if (textFormat.length > 80) {
+    textFormat = element.slice(0, 80) + '...';
   }
+  return textFormat;
+}
 
 
 
@@ -106,6 +114,7 @@ function btnAddToFavorite(event) {
   console.log(uri);
   if (!btn.classList.contains('hidden-span')) {
     btn.classList.add('hidden-span');
+
     addToFavoriteLocal(btn);
     return;
   }
@@ -138,6 +147,7 @@ function addToFavoriteLocal(btn) {
   };
   for (let i = 0; i < newLocalStorage.length; i += 1) {
     if (newLocalStorage[i].uri === newsSection.uri) return;
+
   }
 
   newLocalStorage.push(newsSection);
