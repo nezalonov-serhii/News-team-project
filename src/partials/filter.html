@@ -51,14 +51,39 @@
 
     <div class="calendar-form">
       <p class="calendar-form__text">Search date news</p>
-      <div class="input-form">
-        <!-- для стилизации input календаря -->
-        <input readonly />
-      </div>
 
-      <div class="calendar-wrapper">
-        <!-- для календаря -->
-        <div class="calendar-wrapper__container"></div>
+
+      <div class="calendarPicker">
+
+        <button class="choseDataButton" id="choseDataButton">current date</button>
+        <div class="container-calendar">
+          <div class="calendar" id="calendar">
+            <div class="calendar-header">
+              <div class="header-left-block">
+                <span class="mounth-year-display" id="mounth-year-display"></span>
+                <button class="date-change" id="next-year">
+                  >
+                </button>
+              </div>
+              <div class="mounth-picker" id="mounth-picker">
+                <button class="month-change" id="pre-month">
+                  < </button>
+                    <button class="month-change" id="next-month">
+                      >
+                    </button>
+              </div>
+            </div>
+
+            <div class="calendar-body">
+              <div class="calendar-week-days">
+              </div>
+              <div class="calendar-days">
+              </div>
+              <div class="calendar-footer">
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
