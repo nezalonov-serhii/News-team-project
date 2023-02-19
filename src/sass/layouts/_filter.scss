@@ -19,6 +19,15 @@
   display: flex;
   align-items: center;
   gap: 16px;
+
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: opacity 250ms ease-in-out, transform 250ms ease-in-out;
+
+  &.isFilled {
+    opacity: 1;
+    transform: translateY(0%);
+  }
 }
 
 .main-categories {
@@ -91,8 +100,8 @@
   max-height: 380px;
   width: max-content;
   min-width: 100%;
-  display: flex;
-  flex-direction: column;
+
+  display: none;
 
   background-color: var(--white-color);
   border-radius: 20px;
@@ -117,6 +126,9 @@
 }
 
 .dropdown-list.isOpen {
+  display: flex;
+  flex-direction: column;
+
   opacity: 1;
   pointer-events: all;
   visibility: visible;

@@ -99,13 +99,27 @@ function init() {
 }
 
 async function updateCategoriesInUI() {
-  refs.showOthersBtn.querySelector('span').textContent = getBtnText();
+  hideCategoryWrapper();
 
   const result = await getCategoryList();
   const categoryList = result.map(item => item.section);
 
   fillCategoryLists(categoryList);
+  updateBtnText();
   new SimpleBar(refs.dropdownList, {});
+  showCategoryWrapper();
+}
+
+function showCategoryWrapper() {
+  refs.categoryWrapper.classList.add('isFilled');
+}
+
+function hideCategoryWrapper() {
+  refs.categoryWrapper.classList.remove('isFilled');
+}
+
+function updateBtnText() {
+  refs.showOthersBtn.querySelector('span').textContent = getBtnText();
 }
 
 function getBtnText() {
@@ -141,7 +155,7 @@ function divideCategories(categoryList) {
     const randomIndex = Math.floor(Math.random() * dropdownList.length);
     const categoryLength = dropdownList[randomIndex].length;
 
-    if (categoryLength > 8) {
+    if (categoryLength > 7) {
       i -= 1;
       continue;
     }
