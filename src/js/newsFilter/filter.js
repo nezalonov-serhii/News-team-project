@@ -2,6 +2,7 @@ import { getCategoryList, getDataByCategory } from '../api/news';
 
 import SimpleBar from 'simplebar';
 import 'simplebar/dist/simplebar.css';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const refs = {
   categoryWrapper: document.querySelector('.js-category-wrapper'),
@@ -69,17 +70,21 @@ function onDropdownListClick({ target }) {
 }
 
 async function selectNewCategory(newCategory) {
-  const prevCategory = findPrevCategory();
+  try {
+    const prevCategory = findPrevCategory();
 
-  if (prevCategory === newCategory) {
-    return;
+    if (prevCategory === newCategory) {
+      return;
+    }
+
+    prevCategory && prevCategory.classList.remove('isSelected');
+    newCategory.classList.add('isSelected');
+
+    const result = await getDataByCategory(newCategory.dataset.categoryName);
+    console.log(result);
+  } catch (error) {
+    Notify.failure('Error: ' + error.message);
   }
-
-  prevCategory && prevCategory.classList.remove('isSelected');
-  newCategory.classList.add('isSelected');
-
-  const result = await getDataByCategory(newCategory.dataset.categoryName);
-  console.log(result);
 }
 
 function findPrevCategory() {
@@ -99,15 +104,19 @@ function init() {
 }
 
 async function updateCategoriesInUI() {
-  hideCategoryWrapper();
+  try {
+    hideCategoryWrapper();
 
-  const result = await getCategoryList();
-  const categoryList = result.map(item => item.section);
+    const result = await getCategoryList();
+    const categoryList = result.map(item => item.section);
 
-  fillCategoryLists(categoryList);
-  updateBtnText();
-  new SimpleBar(refs.dropdownList, {});
-  showCategoryWrapper();
+    fillCategoryLists(categoryList);
+    updateBtnText();
+    new SimpleBar(refs.dropdownList, {});
+    showCategoryWrapper();
+  } catch (error) {
+    Notify.failure('Error: ' + error.message);
+  }
 }
 
 function showCategoryWrapper() {
