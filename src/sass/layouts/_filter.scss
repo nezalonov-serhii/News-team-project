@@ -81,7 +81,7 @@
   pointer-events: none;
 }
 
-.dropdown-list {
+.dropdown-list[data-simplebar] {
   position: absolute;
   top: 100%;
   left: 0;
@@ -97,7 +97,7 @@
   background-color: var(--white-color);
   border-radius: 20px;
 
-  overflow-y: auto;
+  overflow-x: hidden;
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
@@ -105,6 +105,15 @@
   transform: translateY(-10%) scaleY(0);
   transform-origin: top;
   transition: all 250ms ease-in-out;
+
+  .simplebar-scrollbar::before {
+    width: 5px;
+    background-color: var(--accent-color);
+  }
+
+  .simplebar-scrollbar.simplebar-visible::before {
+    opacity: 0.7;
+  }
 }
 
 .dropdown-list.isOpen {
@@ -138,4 +147,9 @@
   @include tablet {
     padding: 6px 24px;
   }
+}
+
+.simplebar-content {
+  width: max-content;
+  min-width: 100%;
 }

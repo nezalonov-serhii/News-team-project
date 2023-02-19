@@ -1,5 +1,8 @@
 import { getCategoryList, getDataByCategory } from '../api/news';
 
+import SimpleBar from 'simplebar';
+import 'simplebar/dist/simplebar.css';
+
 const refs = {
   categoryWrapper: document.querySelector('.js-category-wrapper'),
   mainCategories: document.querySelector('.js-main-categories'),
@@ -102,6 +105,7 @@ async function updateCategoriesInUI() {
   const categoryList = result.map(item => item.section);
 
   fillCategoryLists(categoryList);
+  new SimpleBar(refs.dropdownList, {});
 }
 
 function getBtnText() {
