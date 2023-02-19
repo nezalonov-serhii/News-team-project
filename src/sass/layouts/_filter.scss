@@ -133,7 +133,7 @@
   opacity: 1;
   pointer-events: all;
   visibility: visible;
-  transform: translateY(0) scaleY(1);
+  transform: translateY(0.01%) scaleY(1);
 }
 
 .dropdown-list.isOpen + .dropdown-btn {
