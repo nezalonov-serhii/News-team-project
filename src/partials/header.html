@@ -1,100 +1,99 @@
 <header class="header">
-    <div class="header__container container">
-        <a href="./index.html" class="logo">News</a>
-
-        <nav class="nav">
-            <!-- прятать в десктоп версии а на мобилке в меню показывать-->
-            <a href="./index.html" class="logo logo-mobile">News</a>
-
-            <a href="./index.html" class="nav__link nav__link--current">
-
-                <!-- Показывать иконки только в мобильной версии -->
-                <div class="nav__icon-wraper">
-                    <svg class="nav__icon-mobile" width="18" height="18">
-                        <use href="./images/sprite.svg#home-icon"></use>
-                    </svg>
-                </div>
-                Home
-            </a>
-
-            <a href="./" class="nav__link">
-
-                <!-- Показывать иконки только в мобильной версии -->
-                <div class="nav__icon-wraper">
-                    <svg class="nav__icon-mobile" width="18" height="18">
-                        <use href="./images/sprite.svg#favourite-heart-icon"></use>
-                    </svg>
-                </div>
-                Favorite
-            </a>
-
-            <a href="./" class="nav__link">
-
-                <!-- Показывать иконки толко в мобильной версии -->
-                <div class="nav__icon-wraper">
-                    <svg class="nav__icon-mobile" width="18" height="18">
-                        <use href="./images/sprite.svg#book-icon"></use>
-                    </svg>
-                </div>
-                Read
-            </a>
-
-            <!-- прятать в десктоп версии а на мобилке в меню показывать переключатель темы -->
-           
-
-            <!-- Кнопка закрытия мобильного меню -->
-            <!-- прятать в десктоп версии а на мобилке в меню показывать -->
-            <button type="button" class="mobile-btn-close">
-                <svg class="icon" width="24" height="24">
-                    <use href="./images/sprite.svg#close-icon"></use>
-                </svg>
-            </button>
-        </nav>
-
-        <div class="search-wrapper">
-        <!-- форма поиска новостей -->
-        <form class="search">
-            <button class="search__btn">
-                <svg class="search__icon" width="16" height="15">
-                    <use href="./images/sprite.svg#search-icon"></use>
-                </svg>
-            </button>
-            <input type="text" placeholder="Search" />
-        </form>
-
-        <!-- прятать в мобильной версии а на десктопе показывать переключатель темы-->
-
-    <div class="theme">
-     <div class="theme-mobile">
-                <svg class="theme__svg sun" width="21" height="21">
-                    <use href="./images/sprite.svg#sun"></use>
-                </svg>
+  <div class="header__container container">
+    <a href="./index.html" class="logo">News</a>
 
 
-                <svg class="theme__svg moon" width="21" height="21">
-                    <use href="./images/sprite.svg#moon"></use>
-                </svg>
-            </div>
-        <p class="theme__light">Light</p>
-    
+      <nav class="nav">
+      <!-- прятать в десктоп версии а на мобилке в меню показывать-->
+      <a href="./index.html" class="logo logo--mobile">News</a>
+
+      <a href="./index.html" class="nav__link nav__link--current">
+        <!-- Показывать иконки только в мобильной версии -->
+        <div class="nav__icon-wraper">
+          <svg class="nav__icon-mobile" width="18" height="18">
+            <use href="./images/sprite.svg#home-icon"></use>
+          </svg>
+        </div>
+        Home
+      </a>
+
+
+      <a href="./" class="nav__link">
+        <!-- Показывать иконки только в мобильной версии -->
+        <div class="nav__icon-wraper">
+          <svg class="nav__icon-mobile" width="18" height="18">
+            <use href="./images/sprite.svg#favourite-heart-icon"></use>
+          </svg>
+        </div>
+        Favorite
+      </a>
+
+      <a href="./" class="nav__link">
+        <!-- Показывать иконки толко в мобильной версии -->
+        <div class="nav__icon-wraper">
+          <svg class="nav__icon-mobile" width="18" height="18">
+            <use href="./images/sprite.svg#book-icon"></use>
+          </svg>
+        </div>
+        Read
+      </a>
+
+      <!-- прятать в десктоп версии а на мобилке в меню показывать переключатель темы -->
+      <div class="theme-mobile">
+        <svg class="theme__svg sun" width="21" height="21">
+          <use href="./images/sprite.svg#sun"></use>
+        </svg>
+
         <label class="switch">
-            <input type="checkbox" class="switch__checkbox" />
-            <div class="wrapper-toggle">
-                <div class="toggle"></div>
-            </div>
-    
+          <input type="checkbox" class="switch-checkbox" />
+          <span class="toggle"></span>
         </label>
-    
-        <p class="theme__dark ">Dark</p>
-    
-    </div>
-    
 
-        <!-- Кнопка открывания мобильного меню -->
-        <button type="button" class="mobile-btn-open">
-            <svg class="icon" width="24" height="24">
-                <use href="./images/sprite.svg#mobile-menu"></use>
-            </svg>
-        </button>
+        <svg class="theme__svg moon" width="21" height="21">
+          <use href="./images/sprite.svg#moon"></use>
+        </svg>
+      </div>
+
+      <!-- Кнопка закрытия мобильного меню -->
+      <!-- прятать в десктоп версии а на мобилке в меню показывать -->
+      <button type="button" class="mobile-btn-close">
+        <svg class="icon" width="24" height="24">
+          <use href="./images/sprite.svg#close-icon"></use>
+        </svg>
+      </button>
+    </nav>
+
+    <!-- форма поиска новостей -->
+    <form class="search">
+      <button class="search__btn">
+        <svg class="search__icon" width="16" height="15">
+          <use href="./images/sprite.svg#search-icon"></use>
+        </svg>
+      </button>
+      <input type="text" class="input" placeholder="Search" />
+    </form>
+
+    <!-- прятать в мобильной версии а на десктопе показывать переключатель темы-->
+    <div class="theme">
+      <p class="theme__light">Light</p>
+
+      <label class="switch">
+        <input type="checkbox" class="switch-checkbox" />
+        <span class="toggle"></span>
+      </label>
+
+      <p class="theme__dark">Dark</p>
     </div>
+
+    <!-- Кнопка открывания мобильного меню -->
+    <button
+      class="menu-toggle js-open-menu mobile-btn-open"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <svg class="icon" width="24" height="24">
+        <use href="./images/sprite.svg#mobile-menu"></use>
+      </svg>
+    </button>
+  </div>
 </header>
