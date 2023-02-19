@@ -1,5 +1,6 @@
 import './js/refs/refs';
 import './js/mobileMenu/mobileMenu';
+import './js/mobileMenu/mobileMenuCurrent';
 
 import './js/popularRender/popularRender';
 
