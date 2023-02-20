@@ -10,6 +10,12 @@
   }
 }
 
+.read-news__list {
+  position: relative;
+
+  overflow: hidden;
+}
+
 .read-news__list:not(:last-child) {
   margin-bottom: 40px;
 
@@ -65,8 +71,9 @@
 }
 
 .read-news__btn + .news__lists {
-  position: relative;
+  position: absolute;
   z-index: -1;
+  top: 100%;
 
   opacity: 0;
   pointer-events: none;
@@ -76,6 +83,7 @@
 }
 
 .read-news__btn.isOpen + .news__lists {
+  position: relative;
   z-index: 0;
 
   opacity: 1;

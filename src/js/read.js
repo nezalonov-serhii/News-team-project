@@ -14,18 +14,30 @@ function init() {
 }
 
 function renderReadNews() {
-  const readNews = getDataFromLocalStorage('readMoreLocal');
-  const cardMarkup = readNews.map(item => createNewsCard(item));
+  let markup = '';
 
-  const markup = `<div class="read-news__list">
+  const readNews = getDataFromLocalStorage('readMoreLocal');
+
+  const dates = readNews.map(item => item.date);
+  const uniqDates = Array.from(new Set(dates));
+
+  console.log(uniqDates);
+  console.log(uniqDates.sort((a, b) => b.localeCompare(a)));
+
+  for (let i = 0; i < uniqDates.length; i += 1) {
+    const filteredNews = readNews.filter(item => item.date === uniqDates[i]);
+    const cardMarkup = filteredNews.map(item => createNewsCard(item));
+
+    markup += `<div class="read-news__list">
       <button class="read-news__btn js-read-news-btn">
-        <span>20/02/2021</span>
+        <span>${uniqDates[i]}</span>
         <svg><use href="${Sprite + '#arrow-down'}"></use></svg>
       </button>
       <ul class="news__lists">
         ${cardMarkup}
-      </ul>    
+      </ul>
     </div>`;
+  }
 
   refs.readNewsContainer.insertAdjacentHTML('beforeend', markup);
   addEventHandlers();
@@ -43,8 +55,6 @@ function addEventHandlers() {
 function onReadNewsBtnClick({ target }) {
   target.classList.toggle('isOpen');
 
-  // const markup = makeReadNewsMarkup();
-  // refs.readNewsContainer.insertAdjacentHTML('beforeend', markup);
   addEventHandlers();
 }
 
