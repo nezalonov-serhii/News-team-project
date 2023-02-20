@@ -211,7 +211,7 @@ function makeCategoriesMarkup(categoryList, className) {
     .map(
       category => `
     <li class="${className}__item">
-      <button class="${className}__btn" type="button" data-category-name="${category}">${category}</button>
+      <button class="${className}__btn" type="button" data-category_name="${category}">${category}</button>
     </li>
   `
     )

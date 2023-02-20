@@ -4,8 +4,9 @@ const refs = {
   loader: document.querySelector('.loader-backdrop'),
   // Search news
   form : document.querySelector(".search"),
+  filterCategories  : document.querySelector(".filter__wrap"),
   //main
-  newsList: document.querySelector(".news_lists"),
+  newsList: document.querySelector(".news__lists"),
   // favorite
   favorite: document.querySelector('.news'),
   favoriteLists: document.querySelector('.news__lists'),

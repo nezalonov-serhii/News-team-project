@@ -281,7 +281,7 @@
   opacity: 0.5;
 }
 
-
+// Мый варіант через flexbox
 // .news {
 //   // margin: 0 auto;
 //   background-color: var(--primary-background-color);
@@ -400,36 +400,35 @@
 //   width: 395px;
 //   }
 // }
-// &__weather{
+// Тимчасовий муляж віджету погоди 
+.news__weather{
   
-//   width: 288px;
-//   height: 469px;
-//   background-color: #4440F6;
-//   @include tablet{
+  width: 288px;
+  height: 469px;
+  background-color: #4440F6;
+  @include tablet{
 
-//   width:353px ;
-//   height: 675px;}
-//   @include desktop {
+  width:353px ;
+  height: 675px;}
+  @include desktop {
   
-//   height: 675px;
-//   width: 395px;
-//   }
+  height: 675px;
+  width: 395px;
+  }
   
-// }
-// }
+}
 
-
-// .text_weather{
-//   font-size: 40px;
-//   color:white
-// }
-// .location_weather{
-//   order:1;
-//   @include tablet{
-//     order:2;
-//  }
-//   @include desktop {
-//     order: 3;
-//     }
-// }
+.text_weather{
+  font-size: 40px;
+  color:white
+}
+.location_weather{
+  order:1;
+  @include tablet{
+    order:2;
+ }
+  @include desktop {
+    order: 3;
+    }
+}
 

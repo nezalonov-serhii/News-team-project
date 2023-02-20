@@ -1,63 +1,156 @@
-import { refs } from "../refs/refs";
-import { getPopular, getCategoryList, getSearchArticle, getDataByCategory } from "../api/news"
-import {createNewsCard,newsCardTextFormat} from "../newsCard/newsCard"
-// import {KEY,BASE_URL,POPULAR_NEWS} from "../api/news"
-const sonic = "https://images.app.goo.gl/JcSM7XQrF2fSyDfa7"
+import { refs } from '../refs/refs';
+import { hideLoader } from '../loader/loader';
+import {
+  getPopular,
+  getCategoryList,
+  getSearchArticle,
+  getDataByCategory,
+} from '../api/news';
+import { createNewsCard, newsCardTextFormat } from '../newsCard/newsCard';
 
+// import {KEY,BASE_URL,POPULAR_NEWS} from "../api/news"
+// const sonic = "https://images.app.goo.gl/JcSM7XQrF2fSyDfa7"
+
+let page = 8;
+let arrayNewsCard = [];
+
+const listOfNewsValues = {
+  title,
+  media,
+  url,
+  published_date,
+  section,
+  abstract,
+  id,
+  uri,
+};
+
+// function saveValuesFromSearchNews(article){
+//     listOfNewsValues.title = article.title;
+//     listOfNewsValues.media = article.media[0]['media-metadata'][2].url;
+//     listOfNewsValues.url = article.url;
+//     listOfNewsValues.published_date = article.published_date
+//     listOfNewsValues.section = article.section
+//     listOfNewsValues.abstract = article.abstract
+//     listOfNewsValues.id = article.id
+//     listOfNewsValues.uri = article.uri
+
+// };
+function saveValuesFromPopularNews(articles) {
+    console.log(articles)
+  articles.map(article => {
+    console.log(article)
+    listOfNewsValues.title = article.title;
+    listOfNewsValues.media = article.media[0]['media-metadata'][2].url;
+    listOfNewsValues.url = article.url;
+    listOfNewsValues.published_date = article.published_date;
+    listOfNewsValues.section = article.section;
+    listOfNewsValues.abstract = article.abstract;
+    listOfNewsValues.id = article.id;
+    listOfNewsValues.uri = article.uri;
+    arrayNewsCard.push(listOfNewsValues);
+  });
+}
+// function saveValuesFromCategoryNews(article){
+//     listOfNewsValues.title = article.title;
+//     listOfNewsValues.media = article.media[0]['media-metadata'][2].url;
+//     listOfNewsValues.url = article.url;
+//     listOfNewsValues.published_date = article.published_date
+//     listOfNewsValues.section = article.section
+//     listOfNewsValues.abstract = article.abstract
+//     listOfNewsValues.id = article.id
+//     listOfNewsValues.uri = article.uri
+// };
 
 let orderedNumber = 0;
-refs.form .addEventListener("submit", searchNews)
+refs.form.addEventListener('submit', renderSearchNews);
+refs.filterCategories.addEventListener('click', renderNewsCategory);
 
-function searchNews (e){
-    e.preventDefault()
-    // const query =  refs.form.elements.inputSearch.value
-    // console.log(query)
-    getCategoryList().then(articles =>{ console.log(articles); renderNewsList(articles)})
+renderPopularNews();
 
+function renderSearchNews(e) {
+  e.preventDefault();
+  const inputSearchValue = refs.form.elements.inputSearch.value;
+  getSearchArticle(inputSearchValue, page)
+    .then(articles => {
+      console.log(articles);
+      renderNewsList(articles);
+    })
+    .catch()
+    .finally(data => {
+      hideLoader();
+      // reset()
+    });
 }
-// function  fetchNews (query){
-//     // по запросу
-//     // return fetch(`https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${query}&api-key=ccA9QsXbvrHhGuvowEcHjyxEU2jAukPO`).then(resp => resp.json()).then(data => { ; return data.response.docs})
-// // "https://static01.nyt.com/images/2023/02/18/multimedia/18xp-koons-miami/18xp-koons-miami-thumbStandard.jpg" полная нормальная ссылка
+function renderPopularNews() {
+  getPopular()
+    .then(articles => {
+        
+      console.log(articles);
+    saveValuesFromPopularNews(articles)
+      renderNewsList(arrayNewsCard);
+    })
+    .catch()
+    .finally(hideLoader());
+}
 
-//     //    популярные нужно при открытии страници должны сразу быть  
-//     // return fetch(`https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=ccA9QsXbvrHhGuvowEcHjyxEU2jAukPO`).then(resp => resp.json()).then(data => { console.log(data);return data.results})
-//     // {article.media[0]["media-metadata"][2].url !== null ? article.media[0]["media-metadata"][2].url : sonic}
+function renderNewsCategory(e) {
+  // console.log(e.target)
+  if (e.target.nodeName !== 'BUTTON') {
+    return;
+  }
 
-//     // По категориям
-//     return fetch(`https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=ccA9QsXbvrHhGuvowEcHjyxEU2jAukPO`).then(resp => resp.json()).then(data => { return data.results})
-    
-// }
+  const categoryName = e.target.dataset.category_name;
 
+  //   console.log(categoryName);
 
-   
- //  Сheck viewport
-// const mqlMobile = window.matchMedia("(max-width:480px)")  
+  //   const currentBank = findParticularId(identification);
+  //   renderBankInfo(currentBank);
+  getDataByCategory(categoryName)
+    .then(articles => {
+      console.log(articles);
+      renderNewsList(articles);
+    })
+    .catch()
+    .finally(hideLoader());
+}
+
+//  Сheck viewport
+// const mqlMobile = window.matchMedia("(max-width:480px)")
 // const mqlTablet = window.matchMedia("(max-width:768px)")
 // const mqlDekstop  = window.matchMedia("(min-width:1280px)")
 
+// const listOfValuesForCard = {
+//     title,
+//   media,
+//   url,
+//   published_date,
+//   section,
+//   abstract,
+//   id,
+//   uri,
+// }
 
-function  renderNewsList(articles) {
-    
-  const markup = articles.reduce ((previousValue,article, index) => { 
-    orderedNumber += 1
-    if(index === 2)
-    { return createMarkupWidgetWeather(orderedNumber) + previousValue}
- 
-     
-    return  createNewsCard(article,orderedNumber) + previousValue
-    
-    },"")
+function renderNewsList(articles) {
+  const markup = articles.reduce((previousValue, article, index) => {
+    orderedNumber += 1;
+    if (index === 2) {
+      return createMarkupWidgetWeather(orderedNumber) + previousValue;
+    }
 
-updateNewList( markup)
-orderedNumber = 0
+    //  console.log(previousValue)
+    return createNewsCard(article, orderedNumber) + previousValue;
+  }, '');
+
+  updateNewsList(markup);
+  orderedNumber = 0;
 }
 
-
+// Мій варіант картки
 // function createMarkupNewsCard({
 //     title,
 //     multimedia,
-    
+
 //     published_date,
 //     section,
 //     abstract,
@@ -69,12 +162,12 @@ orderedNumber = 0
 //                  alt="">
 //             <p class="news__category">Job searching</p>
 //             <p class="news__favorite">Add to favorite
-    
+
 //                 <svg class="news__icon" width="16" height="16">
 //                     <use href="./images/sprite.svg#icon-like-stroke"></use>
 //                     <use href="./images/sprite.svg#like"></use>
 //                 </svg>
-    
+
 //             </p>
 //         </div>
 //         <h2 class=" news__title">${title}
@@ -82,24 +175,29 @@ orderedNumber = 0
 //         <p class="news__description">${abstract}</p>
 //         <div class="news__info">
 //             <span class="news__date">${published_date}
-    
+
 //             </span>
 //             <a class="news__link-more" href="#">Read more</a>
 //         </div>
 //     </article>
 //     </li>`
 // }
-function updateNewList( markup){
-    // refs.newsList.insertAdjacentHTML('beforeend', markup);
-    refs.newsList.innerHTML = markup
+function updateNewsList(markup) {
+  // refs.newsList.insertAdjacentHTML('beforeend', markup);
+
+  refs.newsList.innerHTML = markup;
 }
 
-function createMarkupWidgetWeather(){
-   return `<li class =" news__item location_weather"  ><div class=" news__weather"><p class = "text_weather">Weather<p></div></li>`
+function createMarkupWidgetWeather() {
+  return `<li class =" news__item location_weather"  ><div class=" news__weather"><p class = "text_weather">Weather<p></div></li>`;
 }
 
-export{renderNewsList,updateNewList,createMarkupWidgetWeather,orderedNumber}
-
+export {
+  renderNewsList,
+  updateNewList,
+  createMarkupWidgetWeather,
+  orderedNumber,
+};
 
 // It doesn't work!!! Why?
 // function  increaseQuantityOfOrder(orderedNumber){
