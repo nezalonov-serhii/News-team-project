@@ -1,8 +1,13 @@
 import { getPopular } from '../api/news.js';
 import { hideLoader } from '../loader/loader';
+import Sprite from '../../images/sprite.svg';
+
 
 const newsList = document.querySelector('.news__lists');
-// console.log(newsList)
+console.log(newsList)
+
+const newsCard = document.querySelector('.news__item');
+console.log(newsCard)
 
 // const readMoreBtn = document.querySelector("a");
 // console.log(readMoreBtn)
@@ -38,6 +43,8 @@ function createNewsCard({
 
                         <p class="news__category">${section}</p>
 
+                        <span class ="news__read-status hidden">Already read <svg class="icon-chek" width="24" height="24"><use href=${Sprite + '#icon-chek'}></use></svg></span>
+
                         <button type="button" class="item-news__add-to-favorite ">
                           <span class="item-news__add-to-favorite-btn">Add to favorite
                             <svg class="item-news__block-icon active-news-icon" width="16" height="16" viewBox="0 0 37 32">
@@ -72,6 +79,11 @@ function createNewsCard({
 function addMarkup(element, constMarkup) {
   element.insertAdjacentHTML('beforeend', constMarkup);
 }
+
+function addMarkupAfter(element, constMarkup) {
+  element.insertAdjacentHTML('afterbegin', constMarkup);
+}
+
 
 //Add ... 80 elements Перевірка довжини тексту
 
@@ -121,19 +133,28 @@ function linkReadMore(event) {
   if (!readMore) return;
 
   console.log(readMore);
-  console.log(readMore.nextElementSibling);
+  // console.log(readMore.nextElementSibling);
 
   readMore.parentNode.parentNode.parentNode.classList.add('opacity');
   addReadMore(readMore);
+// Have read
+const btn = event.target.closest(`.news__item`);
+const Readmorestatus = btn.children[0].children[2];
+console.log(Readmorestatus);
+
+Readmorestatus.classList.remove('hidden');
+addMarkupAfter(newsCard, );
+
+
 }
 
 //Кнопка улюблене
 
 function btnAddToFavorite(event) {
   const btn = event.target.closest(`.item-news__add-to-favorite`);
-  // console.log(
-  //   btn.parentNode.parentNode.lastElementChild.children[1].attributes[1].value
-  // );
+  // const Readmorestatus = btn.parentNode.children[2]
+  // console.log(Readmorestatus);
+  // Readmorestatus.classList.add('hidden');
 
   if (!btn) return;
   isLocalEmpty();
@@ -196,6 +217,7 @@ function addReadMore(readMore) {
     description:
       readMore.parentNode.parentNode.childNodes[3].children[1].innerText,
     link: readMore.parentNode.children[1].href,
+    read: 'true',
     category:
       readMore.parentNode.parentNode.childNodes[1].children[1].innerHTML,
     dayRead: readDateNow,
@@ -210,3 +232,16 @@ function addReadMore(readMore) {
 }
 
 //
+      
+
+
+
+function makeReadNewsMarkup(news) {
+  return `
+  <div class="read-news__list">
+    <button class="read-news__btn js-read-news-btn">
+      <span>20/02/2021</span>
+      <svg><use href="${Sprite + '#arrow-down'}"></use></svg></button></div>
+      `;
+}
+
