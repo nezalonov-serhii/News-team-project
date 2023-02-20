@@ -36,10 +36,7 @@ function getFirstDayOfTheMonth() {
   let firstDayInChosenMonth = new Date(year, month, 1);
   let result = firstDayInChosenMonth.getDay();
   temp = dayNames;
-  for (i = 0; i < result; i++) {
-	temp = [].concat(temp.slice(result),temp.slice(0,result));
-  }
-return temp;
+  temp = [].concat(temp.slice(result),temp.slice(0,result));
 }
 
 //рендр дней недели
