@@ -10,8 +10,16 @@ body {
 
   //background-color: var(--primary-bg-color);
 
+  position: relative;
+  z-index: -999;
+
   background-color: var(--bg-color);
   color: var(--text-color);
+}
+
+main {
+  position: relative;
+  z-index: -999;
 }
 
 .container {

@@ -27,7 +27,7 @@ function renderReadNews() {
 
   for (let i = 0; i < uniqDates.length; i += 1) {
     const filteredNews = readNews.filter(item => item.date === uniqDates[i]);
-    const cardMarkup = filteredNews.map(item => createNewsCard(item));
+    const cardMarkup = filteredNews.map(item => createNewsCard(item)).join('');
 
     markup += `<div class="read-news__list">
       <button class="read-news__btn js-read-news-btn">
