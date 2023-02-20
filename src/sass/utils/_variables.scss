@@ -12,12 +12,14 @@
 
 
   //   темная тема
-  --bg-color: #2e2e2e;
-  --text-color: #f4f4f4;
-
-  --switcher-dark-off: #f4f4f4;
-  --switcher-dark-on: #4440f7;
-
+  body.darkMode {
+      --bg-color: #2e2e2e;
+      --text-color: #f4f4f4;
+  
+      --switcher-dark-off: #f4f4f4;
+      --switcher-dark-on: #4440f7;
+  
+    }
 }
 
 $pre_mobile: 479.98px;

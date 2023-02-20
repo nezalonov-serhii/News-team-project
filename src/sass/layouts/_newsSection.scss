@@ -1,30 +1,27 @@
 .news {
-  margin-bottom: 40px;
+  position: relative;
+  z-index: -1;
+  padding: 40px 0;
 
   @include tablet {
-    margin-bottom: 48px;
+    padding: 48px 0;
   }
 
   @include desktop {
-    margin-bottom: 60px;
+    padding: 60px 0;
   }
 }
 
 .news__lists {
-  display: grid;
-  grid-template: 469px / minmax(auto, 288px);
-  grid-auto-rows: 630px;
-  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
   gap: 28px;
 
   @include tablet {
-    grid-template: 675px / repeat(2, 1fr);
-    grid-auto-rows: 675px;
     gap: 30px;
   }
 
   @include desktop {
-    grid-template: 675px / repeat(3, 1fr);
     gap: 32px;
   }
 }
@@ -32,140 +29,275 @@
 .news__item {
   // border: 1px solid black;
   position: relative;
+  flex-basis: 100%;
+
+  @include tablet {
+    flex-basis: 30%;
+    flex-basis: calc(50% - 15px);
+  }
+
+  @include desktop {
+    flex-basis: calc(33% - 18px);
+  }
 }
 
-.news__title{ 
-font-family: 'Manrope';
-font-style: normal;
-font-weight: 700;
-font-size: 32px;
-line-height: 1.4;
-letter-spacing: -0.01em;
-color: #111321;
-
-height: 167px;
-flex-grow: 1;
-overflow: hidden;
-
-}
-
-.news__description{
+.news__title {
   font-family: 'Manrope';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-line-height: 1.4;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
 
-color: #111321;
-margin-bottom: 20px;
+  height: 167px;
+  flex-grow: 1;
+  overflow: hidden;
 }
 
-.news__date{
+.news__description {
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.4;
-  
-  
-  text-align: right;
-  
-  color: #A8A8A8;
+
+  margin-bottom: 20px;
 }
 
- .news__link-more {
+.news__date {
   font-family: 'Manrope';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.4;
-    color: #4440F7;
-    }
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.4;
 
-    
+  text-align: right;
 
-    .news__category{
-      font-family: 'Manrope';
-      font-style: normal;
-      font-weight: 500;
-      font-size: 12px;
-      line-height: 16px;
-      text-align: center;
-      color: #FFFFFF;
-      // cursor: url(cursor-hand.fe1b03e6.svg),pointer;
-      min-width: 96px;
-      height: auto;
-      color: var(--white-color);
-      background: rgba(68,64,247,.7);
-      border-radius: 0 4px 4px 0;
-      justify-content: center;
-      margin: 0;
-      padding: 4px 14px;
-      font-size: 12px;
-      font-weight: 500;
-      line-height: 16px;
-      display: flex;
-      position: absolute;
-      top: 40px;
-      left: 0;
-    }
+  color: #a8a8a8;
+}
 
-    .news__img{
-      min-width: 288px;
-      height: 395px;
-      object-fit: cover;
-      border-radius: 4px;
-    }
-    
+.news__link-more {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.4;
+  color: #4440f7;
+}
 
+.news__category {
+  // cursor: url(cursor-hand.fe1b03e6.svg),pointer;
+  min-width: 96px;
+  height: auto;
+  color: var(--white-color);
+  background: rgba(68, 64, 247, 0.7);
+  border-radius: 0 4px 4px 0;
+  justify-content: center;
+  margin: 0;
+  padding: 4px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  display: flex;
+  position: absolute;
+  top: 40px;
+  left: 0;
+}
 
-    .news__add-to-favorite {
-      pointer-events: auto;
-      z-index: 2;
-      min-width: 40px;
-      min-height: 10px;
-      text-align: left;
-      color: #111321;
-      background-color: #FFFFFF;
-      border-radius: 20px;
-      margin: 0;
-      padding: 6px 32px 6px 12px;
-      font-size: 12px;
-      font-weight: 500;
-      line-height: 16px;
-      transition-duration: .25s;
-      transition-timing-function: cubic-bezier(.4,0,.2,1);
-      position: absolute;
-      bottom: 12px;
-      right: 12px;
-    }
+.news__img {
+  min-width: 288px;
+  height: 395px;
+  object-fit: cover;
+  border-radius: 4px;
+}
 
-   
-.hidden{
-    display: none;
-  }
+//     .news__add-to-favorite {
+//       pointer-events: auto;
+//       z-index: 2;
+//       min-width: 40px;
+//       min-height: 10px;
+//       text-align: left;
+//       color: #111321;
+//       background-color: #FFFFFF;
+//       border-radius: 20px;
+//       margin: 0;
+//       padding: 6px 32px 6px 12px;
+//       font-size: 12px;
+//       font-weight: 500;
+//       line-height: 16px;
+//       transition-duration: .25s;
+//       transition-timing-function: cubic-bezier(.4,0,.2,1);
+//       position: absolute;
+//       bottom: 12px;
+//       right: 12px;
+//     }
 
-  .news__wrapper{
-    pointer-events: auto;
-    margin-bottom: 20px;
-    position: relative;
-  }
+.hidden {
+  display: none;
+  opacity: 0;
+}
 
-  .news__block-icon{
-    fill: #fff;
-    transition-duration: .25s;
-    transition-timing-function: cubic-bezier(.4,0,.2,1);
+.news__wrapper {
+  pointer-events: auto;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.news__block-icon {
+  fill: #fff;
+  transition-duration: 0.25s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  position: absolute;
+  right: 12px;
+}
+
+.news__info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.new__text-wrapper {
+  flex-direction: column;
+  justify-content: space-between;
+  display: flex;
+}
+
+//BTN test
+
+.item-news__add-to-favorite {
+  position: absolute;
+
+  pointer-events: auto;
+  z-index: 2;
+
+  min-width: 40px;
+  min-height: 10px;
+  margin: 0;
+  padding: 6px 32px 6px 12px;
+  right: 12px;
+  bottom: 12px;
+
+  background: #ffffff00;
+  border-radius: 20px;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: left;
+
+  color: #111321;
+
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  &::after {
+    content: '';
+    display: block;
     position: absolute;
-    right: 12px;
+    right: 0;
+    top: 0;
+    border-radius: 20px;
+    height: 28px;
+    width: 126px;
+    z-index: -1;
+
+    background: #ffffff;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .news__info{
-display: flex;
-justify-content: space-between;
+  & .item-news__remove-to-favorite-btn {
+    position: absolute;
+
+    left: -26px;
+    width: 153px;
+    opacity: 0;
+    z-index: 2;
+    pointer-events: none;
+
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .new__text-wrapper{
-    flex-direction: column;
-    justify-content: space-between;
-    display: flex;
+  & .item-news__remove-to-favorite-btn::after {
+    content: '';
+    display: block;
+    position: absolute;
+
+    transform: translateX(0px);
+
+    right: 0;
+    top: -6px;
+    border-radius: 20px;
+    height: 28px;
+    width: 126px;
+    z-index: -1;
+
+    background: #ffffff;
+
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
+
+  &.hidden-span .item-news__remove-to-favorite-btn {
+    opacity: 1;
+    pointer-events: auto;
+
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+    .active-news-icon {
+      fill: var(--accent-color);
+      stroke: var(--accent-color);
+
+      transition-duration: 250ms;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  }
+
+  &.hidden-span .item-news__add-to-favorite-btn {
+    opacity: 0;
+    pointer-events: none;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+.item-news__add-to-favorite.hidden-span
+  .item-news__remove-to-favorite-btn::after {
+  transform: translateX(-42px);
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.item-news__block-icon {
+  fill: white;
+  position: absolute;
+  right: 12px;
+
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.opacity {
+  opacity: 0.5;
+}
+
+.news__read-status {
+  color: #00dd73;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.4;
+  position: absolute;
+  top: 10px;
+  right: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.icon-chek {
+  padding-left: 4px;
+  fill: #00dd73;
+}

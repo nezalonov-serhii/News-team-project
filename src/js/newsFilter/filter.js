@@ -1,20 +1,14 @@
-import { getCategoryList, getDataByCategory } from '../api/news';
-import { hideLoader } from '../loader/loader';
-
 import SimpleBar from 'simplebar';
 import 'simplebar/dist/simplebar.css';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-const refs = {
-  categoryWrapper: document.querySelector('.js-category-wrapper'),
-  mainCategories: document.querySelector('.js-main-categories'),
-  showOthersBtn: document.querySelector('.js-btn-show-others'),
-  dropdownList: document.querySelector('.js-dropdown-list'),
-};
+import { getCategoryList, getDataByCategory } from '../api/news';
+import { hideLoader } from '../loader/loader';
+import { refs } from '../refs/refs';
 
 const mql = window.matchMedia('(min-width: 768px) and (max-width: 1279.8px)');
 
-refs.mainCategories.addEventListener('click', onMainCategoriesClick);
+// refs.mainCategories.addEventListener('click', onMainCategoriesClick);
 refs.showOthersBtn.addEventListener('click', onShowOthersBtnClick);
 refs.dropdownList.addEventListener('click', onDropdownListClick);
 mql.addEventListener('change', updateCategoriesInUI);
@@ -105,7 +99,6 @@ function isMainCategorySelected() {
 function init() {
   updateCategoriesInUI();
 }
-
 async function updateCategoriesInUI() {
   try {
     hideCategoryWrapper();
@@ -211,7 +204,7 @@ function makeCategoriesMarkup(categoryList, className) {
     .map(
       category => `
     <li class="${className}__item">
-      <button class="${className}__btn" type="button" data-category-name="${category}">${category}</button>
+      <button class="${className}__btn" type="button" data-category_name="${category}">${category}</button>
     </li>
   `
     )

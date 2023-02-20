@@ -1,5 +1,6 @@
 import './js/refs/refs';
 import './js/mobileMenu/mobileMenu';
+import './js/mobileMenu/mobileMenuCurrent';
 
 import './js/popularRender/popularRender';
 
@@ -14,3 +15,5 @@ import './js/pagination/pagination';
 
 import './js/loader/loader';
 import './js/darkMode/darkMode';
+
+import './js/currentPage/currentPage';
