@@ -280,3 +280,156 @@
 .opacity {
   opacity: 0.5;
 }
+
+
+// .news {
+//   // margin: 0 auto;
+//   background-color: var(--primary-background-color);
+//   padding: 40px 0; 
+  
+//     @include tablet {
+//       padding: 48px 0; 
+     
+//     }
+  
+//     @include desktop {
+//       padding: 60px 0;
+//     }
+  
+//   &_lists {
+//   //    margin: 0 auto;
+//   // padding: 15px 15px 0 15px;
+//   display: flex;
+//   flex-wrap: wrap;
+//   justify-content: center;
+  
+//   @include tablet {
+//     column-gap:30px;
+   
+//   }
+
+//   @include desktop {
+//     column-gap:31px;
+//   }
+
+//   }
+  
+//   &__item
+//   // :not(:last-child) 
+//   {
+//     width: auto;
+//     height: auto;
+//     margin-bottom: 28px ;
+//     list-style:  none;
+    
+//     @include tablet {
+//       // width: 353px;
+//       // height: 395px;
+//       margin-bottom: 30px ;
+     
+//     }
+  
+//     @include desktop {
+//       // height: 395px;
+//       // width: 395px;
+//       margin-bottom: 40px ;
+//     }
+// }
+//     &__date {
+//   font-family: Manrope;
+//   font-size: 16px;
+//   font-weight: 400;
+//   line-height: 1, 4;
+//   letter-spacing: 0em;
+//   text-align: right;
+// }
+// &__title {
+//   margin-top: 20px;
+//   font-family: Manrope;
+//   font-size: 32px;
+//   font-weight: 700;
+//   line-height: 1, 4;
+//   letter-spacing: -0.01em;
+//   text-align: left;
+//   width: 353px;
+// }
+// &__description {
+//   margin-top: 20px;
+//   font-family: Manrope;
+//   font-size: 16px;
+//   font-weight: 400;
+//   line-height: 1, 4;
+//   letter-spacing: 0em;
+//   text-align: left;
+//   width: 353px;
+// }
+// &__wrapper {
+//   box-shadow: 0px 4px 4px 0px #00000040;
+//   position: relative;
+// }
+// &__category {
+//   position: absolute;
+//   left: 0;
+//   top: 40px;
+//   color: white;
+// }
+
+// &__favorite {
+//   position: absolute;
+//   right: 12px;
+//   bottom: 12px;
+//   color: white;
+// }
+
+
+
+
+// &__img {
+//   height: 395px;
+//   width: 288px;
+//   object-fit:cover ;
+  
+//   @include tablet {
+//     height: 395px;
+//   width: 353px;
+//   object-fit: cover;
+//   }
+
+//   @include desktop {
+//     height: 395px;
+//   width: 395px;
+//   }
+// }
+// &__weather{
+  
+//   width: 288px;
+//   height: 469px;
+//   background-color: #4440F6;
+//   @include tablet{
+
+//   width:353px ;
+//   height: 675px;}
+//   @include desktop {
+  
+//   height: 675px;
+//   width: 395px;
+//   }
+  
+// }
+// }
+
+
+// .text_weather{
+//   font-size: 40px;
+//   color:white
+// }
+// .location_weather{
+//   order:1;
+//   @include tablet{
+//     order:2;
+//  }
+//   @include desktop {
+//     order: 3;
+//     }
+// }
+
