@@ -1,6 +1,6 @@
 import { getPopular } from '../api/news.js';
 import { hideLoader } from '../loader/loader';
-
+import { orderedNumber } from '../markup/markup.js';
 const newsList = document.querySelector('.news__lists');
 // console.log(newsList)
 
@@ -29,7 +29,7 @@ function createNewsCard({
   uri,
 }) {
   return `
-      <li class="news__item ">
+      <li class="news__item" style = "order:${orderedNumber} ">
         <article class="news__article" id="${id}">
                     <div class="news__wrapper" >
                         <img class="news__img" src="${

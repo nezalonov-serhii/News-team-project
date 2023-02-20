@@ -10,8 +10,8 @@ refs.form .addEventListener("submit", searchNews)
 
 function searchNews (e){
     e.preventDefault()
-    const query =  refs.form.elements.inputSearch.value
-    console.log(query)
+    // const query =  refs.form.elements.inputSearch.value
+    // console.log(query)
     getCategoryList().then(articles =>{ console.log(articles); renderNewsList(articles)})
 
 }
@@ -98,7 +98,7 @@ function createMarkupWidgetWeather(){
    return `<li class =" news__item location_weather"  ><div class=" news__weather"><p class = "text_weather">Weather<p></div></li>`
 }
 
-export{renderNewsList,updateNewList,createMarkupWidgetWeather}
+export{renderNewsList,updateNewList,createMarkupWidgetWeather,orderedNumber}
 
 
 // It doesn't work!!! Why?
