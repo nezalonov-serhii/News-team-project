@@ -1,8 +1,10 @@
 import { getPopular, getSearchArticle } from '../api/news';
 import { hideLoader } from '../loader/loader';
 
+
 const form = document.querySelector('.search');
 const input = document.querySelector('.input');
+
 
 form.addEventListener('submit', onInput);
 
@@ -36,3 +38,4 @@ function onInput(e) {
     .catch(error => console.log(error))
     .finally(hideLoader);
 }
+
