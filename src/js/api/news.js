@@ -4,7 +4,6 @@ const KEY = 'api-key=ccA9QsXbvrHhGuvowEcHjyxEU2jAukPO';
 const BASE_URL = 'https://api.nytimes.com/svc';
 
 async function getPopular() {
-  showLoader();
   const articleFetch = await fetch(
     `${BASE_URL}/mostpopular/v2/viewed/1.json?${KEY}`
   );
@@ -47,7 +46,7 @@ async function getDataByCategory(value) {
   throw new Error(data.statusText);
 }
 
-async function getSearchArticle(value, page) {
+async function getSearchArticle(value, page = 0) {
   showLoader();
   let dateForUrl = '';
   // dateForUrl = ` &begin_date=${date}&end_date=${date}`;
