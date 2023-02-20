@@ -36,7 +36,7 @@ async function getDataByCategory(value) {
   let newValue = encodeURIComponent(normalazeValue);
 
   const data = await fetch(
-    `${BASE_URL}/news/v3/content/all/${newValue}.json?${KEY}`
+    `${BASE_URL}/news/v3/content/all/${newValue}.json?${KEY}&limit=100`
   );
   if (data.ok) {
     const articles = await data.json();
@@ -49,11 +49,16 @@ async function getDataByCategory(value) {
 
 async function getSearchArticle(value, page = 0, date) {
   showLoader();
-  // let dateForUrl = '';
+  let dateUrl = '';
   // dateForUrl = ` &begin_date=${date}&end_date=${date}`;
   // &page=26
+
+  if (date !== '') {
+    dateUrl = `&begin_date=${date}&end_date=${date}`;
+  }
+
   const articleFetch = await fetch(
-    `${BASE_URL}/search/v2/articlesearch.json?q=${value}&page=${page}&${KEY}&pub_date${date}`
+    `${BASE_URL}/search/v2/articlesearch.json?q=${value}&page=${page}&${KEY}${dateUrl}`
   );
 
   https: if (articleFetch.ok) {
