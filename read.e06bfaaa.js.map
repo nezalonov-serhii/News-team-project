@@ -1,1 +1,0 @@
-{"mappings":"gfAAAA,EAAA,S","sources":["src/js/read.js"],"sourcesContent":["import './refs/refs';\n\nimport './mobileMenu/mobileMenu';\nimport './mobileMenu/mobileMenuCurrent';\n"],"names":["parcelRequire"],"version":3,"file":"read.e06bfaaa.js.map"}
