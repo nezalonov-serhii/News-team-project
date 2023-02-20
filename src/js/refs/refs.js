@@ -14,6 +14,7 @@ const refs = {
   showOthersBtn: document.querySelector('.js-btn-show-others'),
   dropdownList: document.querySelector('.js-dropdown-list'),
 
+
   //read news
   readNewsContainer: document.querySelector('.read-news__container'),
 };
