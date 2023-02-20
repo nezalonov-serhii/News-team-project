@@ -3,6 +3,7 @@ import { Notify } from 'notiflix';
 import './refs/refs';
 import './mobileMenu/mobileMenu';
 import './mobileMenu/mobileMenuCurrent';
+import './currentPage/currentPage';
 import { refs } from './refs/refs';
 import Sprite from '../images/sprite.svg';
 
