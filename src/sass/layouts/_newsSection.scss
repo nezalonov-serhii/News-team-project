@@ -1,28 +1,24 @@
 .news {
-  margin-bottom: 40px;
+  padding: 40px 0;
 
   @include tablet {
-    margin-bottom: 48px;
+    padding: 48px 0;
   }
 
   @include desktop {
-    margin-bottom: 60px;
+    padding: 60px 0;
   }
 }
 
 .news__lists {
-  display: grid;
-  justify-content: center;
+  display: flex;
   gap: 28px;
 
   @include tablet {
-    grid-template: 675px / repeat(2, 1fr);
-    grid-auto-rows: 675px;
     gap: 30px;
   }
 
   @include desktop {
-    grid-template: 675px / repeat(3, 1fr);
     gap: 32px;
   }
 }
@@ -30,6 +26,16 @@
 .news__item {
   // border: 1px solid black;
   position: relative;
+  flex-basis: 100%;
+
+  @include tablet {
+    flex-basis: 30%;
+    flex-basis: calc(50% - 30px);
+  }
+
+  @include desktop {
+    flex-basis: calc(30% - 56px);
+  }
 }
 
 .news__title {
@@ -79,13 +85,6 @@
 }
 
 .news__category {
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
-  text-align: center;
-  color: #ffffff;
   // cursor: url(cursor-hand.fe1b03e6.svg),pointer;
   min-width: 96px;
   height: auto;

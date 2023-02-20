@@ -1,12 +1,11 @@
 import { getPopular } from '../api/news.js';
 import { hideLoader } from '../loader/loader';
 
-const newsList = document.querySelector('.news__item');
+const newsList = document.querySelector('.news__lists');
 // console.log(newsList)
 
 // const readMoreBtn = document.querySelector("a");
 // console.log(readMoreBtn)
-
 
 //Створюється одна карточка
 
@@ -30,8 +29,8 @@ function createNewsCard({
   uri,
 }) {
   return `
-            
-                <article class="news__article" id="${id}">
+      <li class="news__item >
+        <article class="news__article" id="${id}">
                     <div class="news__wrapper" >
                         <img class="news__img" src="${
                           media[0]['media-metadata'][2].url
@@ -64,7 +63,7 @@ function createNewsCard({
                         <p class="hidden">${uri}</p>
                     </div>
                 </article>
-            
+      </li>    
     `;
 }
 
@@ -88,7 +87,6 @@ function newsCardTextFormat(element) {
 
 newsList.addEventListener('click', btnAddToFavorite);
 let newLocalStorage = [];
-
 
 //Клік на readmore
 
@@ -116,39 +114,27 @@ function isLocalReadEmpty() {
   readMoreId = JSON.parse(localStorage.getItem('readMoreLocal'));
 }
 
-
-
-
-
 //Кнопка Readmore
-      
-  function linkReadMore(event) {
-    const readMore = event.target.closest(`.news__link-more`);
-    if (!readMore) return;
 
-    console.log(readMore)
-    console.log(readMore.nextElementSibling)
-    
+function linkReadMore(event) {
+  const readMore = event.target.closest(`.news__link-more`);
+  if (!readMore) return;
 
+  console.log(readMore);
+  console.log(readMore.nextElementSibling);
 
-    readMore.parentNode.parentNode.parentNode.classList.add('opacity');
-    addReadMore(readMore);
-  }
-
-
-
-
+  readMore.parentNode.parentNode.parentNode.classList.add('opacity');
+  addReadMore(readMore);
+}
 
 //Кнопка улюблене
 
 function btnAddToFavorite(event) {
   const btn = event.target.closest(`.item-news__add-to-favorite`);
-// console.log(
+  // console.log(
   //   btn.parentNode.parentNode.lastElementChild.children[1].attributes[1].value
   // );
 
-  
-  
   if (!btn) return;
   isLocalEmpty();
   let uri =
@@ -194,7 +180,6 @@ function addToFavoriteLocal(btn) {
   localStorage.setItem(`newsSection`, JSON.stringify(newLocalStorage));
 }
 
-
 //Додаємо в Readmore
 
 function addReadMore(readMore) {
@@ -208,9 +193,11 @@ function addReadMore(readMore) {
     date: readMore.parentNode.firstElementChild.innerText,
     img: readMore.parentNode.parentNode.childNodes[1].children[0].currentSrc,
     title: readMore.parentNode.parentNode.childNodes[3].children[0].innerText,
-    description: readMore.parentNode.parentNode.childNodes[3].children[1].innerText,
+    description:
+      readMore.parentNode.parentNode.childNodes[3].children[1].innerText,
     link: readMore.parentNode.children[1].href,
-    category: readMore.parentNode.parentNode.childNodes[1].children[1].innerHTML,
+    category:
+      readMore.parentNode.parentNode.childNodes[1].children[1].innerHTML,
     dayRead: readDateNow,
   };
   for (let i = 0; i < readMoreId.length; i += 1) {
@@ -222,5 +209,4 @@ function addReadMore(readMore) {
   localStorage.setItem(`readMoreLocal`, JSON.stringify(readMoreId));
 }
 
-
-// 
+//
