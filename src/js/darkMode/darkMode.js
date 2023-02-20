@@ -1,12 +1,12 @@
 import { refs } from '../refs/refs';
 
 // console.log(refs.body);
-const changeThemeBtn = document.querySelector('.switch-checkbox');
+const changeThemeBtn = document.querySelectorAll('.switch-checkbox');
 const bodyTheme = document.querySelector('body');
 const themeDarkEl = document.querySelector('.theme__dark');
 const themeLightEl = document.querySelector('.theme__light');
 
-changeThemeBtn.addEventListener('click', changeTheme);
+[...changeThemeBtn].map(btn => btn.addEventListener('click', changeTheme));
 
 function changeTheme() {
   bodyTheme.classList.toggle('darkMode');

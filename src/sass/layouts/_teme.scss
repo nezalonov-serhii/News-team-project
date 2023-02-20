@@ -1,9 +1,12 @@
 body.darkMode {
-    .header {
-        border-bottom: 1px solid rgba(244, 244, 244, 0.2);
-    }
+  .header {
+    border-bottom: 1px solid rgba(244, 244, 244, 0.2);
+  }
 
-    .theme__dark {
-        opacity: 1;
-    }
+  .theme__dark {
+    opacity: 1;
+  }
+}
+
+body {
 }

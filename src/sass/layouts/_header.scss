@@ -237,10 +237,6 @@
   }
 
   @media screen and (min-width: $pre_tablet) {
-    display: flex;
-    width: 98px;
-    height: 21px;
-
     // flex-direction: row;
     // justify-content: center;
     // align-items: center;
@@ -308,9 +304,6 @@
   font-size: 18px;
   line-height: 24px;
 
-  display: flex;
-  align-items: center;
-
   color: #5f6775;
 
   order: 2;
@@ -321,7 +314,6 @@
 }
 
 .theme__light {
-  display: block;
   font-family: 'Poppins';
 
   font-size: 18px;
