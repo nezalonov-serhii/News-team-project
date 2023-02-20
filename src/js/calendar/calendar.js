@@ -37,10 +37,7 @@ function getFirstDayOfTheMonth() {
   let result = firstDayInChosenMonth.getDay();
 
   temp = dayNames;
-  for (i = 0; i < result; i++) {
-	temp = [].concat(temp.slice(result),temp.slice(0,result));
-  }
-return temp;
+  temp = [].concat(temp.slice(result),temp.slice(0,result));
 
 }
 
