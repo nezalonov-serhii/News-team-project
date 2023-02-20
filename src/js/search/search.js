@@ -6,6 +6,7 @@ import {
 } from '../api/news';
 const input = document.querySelector('.input');
 
+
 input.addEventListener('submit', onInput);
 
 
@@ -15,15 +16,16 @@ input.addEventListener('submit', onInput);
   })
   .catch(error => console.log(error));
 
-getCategoryList()
-  .then(data => console.log(data))
-  .catch(error => {
-    console.log(error);
-  });
 
-getDataByCategory('Crosswords & Games')
-  .then(data => console.log(data))
-  .catch(error => console.log(error));
+// getCategoryList()
+//   .then(data => console.log(data))
+//   .catch(error => {
+//     console.log(error);
+//   });
+
+// getDataByCategory('Crosswords & Games')
+//   .then(data => console.log(data))
+//   .catch(error => console.log(error));
 
 
   function onInput(e){
@@ -37,3 +39,4 @@ getSearchArticle('car', 1)
   .catch(error => console.log(error));
 
   }
+
