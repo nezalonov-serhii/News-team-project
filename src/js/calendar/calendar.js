@@ -115,7 +115,7 @@ function generateYearList(){
 	yearListAllButtons.forEach(event => {
 		event.addEventListener('click', e => {
 			let eventButton = e.currentTarget;
-			year = eventButton.innerHTML;
+			year = Number(eventButton.innerHTML);
 			yearList.classList.toggle('year-list--active');
 			updateRender();
 		});
