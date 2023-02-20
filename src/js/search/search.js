@@ -4,8 +4,12 @@ import {
   getSearchArticle,
   getDataByCategory,
 } from '../api/news';
+const input = document.querySelector('.input');
 
-getPopular()
+input.addEventListener('submit', onInput);
+
+
+ getPopular()
   .then(data => {
     console.log(data);
   })
@@ -21,6 +25,15 @@ getDataByCategory('Crosswords & Games')
   .then(data => console.log(data))
   .catch(error => console.log(error));
 
+
+  function onInput(e){
+    e.preventDefault();
+    const inputValue = input.value.trim();
+    if(inputValue === ""){
+      return
+    }
 getSearchArticle('car', 1)
   .then(data => console.log(data))
   .catch(error => console.log(error));
+
+  }

@@ -1,7 +1,7 @@
 const KEY = "api-key=ccA9QsXbvrHhGuvowEcHjyxEU2jAukPO";
 const BASE_URL = "https://api.nytimes.com/svc";
 
-async function getPopular() {
+ async function getPopular() {
    const articleFetch = await fetch(
       `${BASE_URL}/mostpopular/v2/viewed/1.json?${KEY}`
    );
