@@ -8,7 +8,10 @@ body {
   justify-content: space-between;
   min-height: 100vh;
 
-  background-color: var(--primary-bg-color);
+  //background-color: var(--primary-bg-color);
+
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 .container {
