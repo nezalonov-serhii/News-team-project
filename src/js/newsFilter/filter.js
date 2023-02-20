@@ -1,16 +1,10 @@
-import { getCategoryList, getDataByCategory } from '../api/news';
-import { hideLoader } from '../loader/loader';
-
 import SimpleBar from 'simplebar';
 import 'simplebar/dist/simplebar.css';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-const refs = {
-  categoryWrapper: document.querySelector('.js-category-wrapper'),
-  mainCategories: document.querySelector('.js-main-categories'),
-  showOthersBtn: document.querySelector('.js-btn-show-others'),
-  dropdownList: document.querySelector('.js-dropdown-list'),
-};
+import { getCategoryList, getDataByCategory } from '../api/news';
+import { hideLoader } from '../loader/loader';
+import { refs } from '../refs/refs';
 
 const mql = window.matchMedia('(min-width: 768px) and (max-width: 1279.8px)');
 
