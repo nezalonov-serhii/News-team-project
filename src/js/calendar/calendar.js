@@ -9,7 +9,9 @@ const singleBtn = document.querySelector('#choseDataButton');
 const calendarContainer = document.querySelector('.container-calendar');
 const calendarIcon = document.querySelector('.calendar-icon');
 const dropdownIcon = document.querySelector('.dropdown-icon');
-
+const yearListButton = document.querySelector('.year-change');
+let yearList = document.querySelector('.year-list');
+let yearsListArr = [];
 let monthNames = [
   'January',
   'February',
@@ -31,7 +33,6 @@ let temp = [];
 singleBtn.innerHTML = `${dateFix(currentDate)}/${dateFix(month + 1)}/${year}`;
 
 // массив с правильным порядком дней недели в текущем месяце
-
 function getFirstDayOfTheMonth() {
   let firstDayInChosenMonth = new Date(year, month, 1);
   let result = firstDayInChosenMonth.getDay();
@@ -40,7 +41,6 @@ function getFirstDayOfTheMonth() {
 }
 
 //рендр дней недели
-
 function plotWeek() {
   daysInCalendar.innerHTML = '';
   for (let i = 0; i <= 6; i++) {
@@ -49,7 +49,6 @@ function plotWeek() {
 }
 
 // получение и рендр чисел в текущем месяце
-
 const getDays = (year, month) => {
   return new Date(year, month, 0).getDate();
 };
@@ -67,11 +66,11 @@ function plotDays() {
 }
 
 // кнопка открытия календаря
-
 singleBtn.addEventListener('click', handleClick);
 
 function handleClick() {
-  calendarContainer.classList.toggle('container--active');
+  singleBtn.classList.toggle('choseDataButton-active');
+  calendarContainer.classList.toggle('container-calendar--active');
   calendarIcon.classList.toggle('calendar-icon--active');
   dropdownIcon.classList.toggle('dropdown-icon--active');
   updateRender();
@@ -79,26 +78,51 @@ function handleClick() {
 }
 
 // получение даты месяца по нажатию на число в календаре
-
 let choosenDateButtons = document.querySelectorAll('.calendar-dates-day');
 
 function addEventForDates() {
   choosenDateButtons.forEach(el => {
     el.addEventListener('click', e => {
       let currentBtn = e.currentTarget;
-      calendarContainer.classList.toggle('container--active');
+	  singleBtn.classList.toggle('choseDataButton-active');
+      calendarContainer.classList.toggle('container-calendar--active');
 	  calendarIcon.classList.toggle('calendar-icon--active');
 	  dropdownIcon.classList.toggle('dropdown-icon--active');
       singleBtn.innerHTML = `${dateFix(currentBtn.innerHTML)}/${dateFix(month + 1)}/${year}`;
 	  singleBtn.setAttribute('data-time' ,singleBtn.innerHTML);
 //	  console.log(singleBtn.getAttribute('data-time'));  
-//получение дата атрибута
+//	  получение дата атрибута
     });
   });
 }
 
-// смена месяца кнопками
+ //открытие массива годов списком
+ yearListButton.addEventListener('click', generateYearList);
 
+function generateYearList(){
+	yearList.classList.toggle('year-list--active');
+	if(yearsListArr.length == 0){
+		for(i = 1990; i <= 2030; i++) yearsListArr.push(i);
+		for(let i = 0; i < yearsListArr.length; i++){
+			yearList.innerHTML += `<button class="yearListButtons">${yearsListArr[i]}</button>`;
+		}
+		addListenerToYearButtons();
+	} 
+ }
+
+ function addListenerToYearButtons(){
+	let yearListAllButtons = document.querySelectorAll('.yearListButtons');
+	yearListAllButtons.forEach(event => {
+		event.addEventListener('click', e => {
+			let eventButton = e.currentTarget;
+			year = eventButton.innerHTML;
+			yearList.classList.toggle('year-list--active');
+			updateRender();
+		});
+	});
+ }
+
+// смена месяца кнопками
 const preMonth = document.querySelector('#pre-month');
 preMonth.addEventListener('click', decrementMonth);
 
