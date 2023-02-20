@@ -1,4 +1,4 @@
-import { getPopular, getDataByCategory } from '../api/news';
+import { getPopular, getSearchArticle } from '../api/news';
 import { hideLoader } from '../loader/loader';
 
 const form = document.querySelector('.search');
@@ -12,15 +12,15 @@ getPopular()
   })
   .catch(error => console.log(error));
 
-getCategoryList()
-  .then(data => console.log(data))
-  .catch(error => {
-    console.log(error);
-  });
+// getCategoryList()
+//   .then(data => console.log(data))
+//   .catch(error => {
+//     console.log(error);
+//   });
 
-getDataByCategory('Crosswords & Games')
-  .then(data => console.log(data))
-  .catch(error => console.log(error));
+// getDataByCategory('Crosswords & Games')
+//   .then(data => console.log(data))
+//   .catch(error => console.log(error));
 
 function onInput(e) {
   e.preventDefault();
@@ -31,7 +31,7 @@ function onInput(e) {
 
   form.reset();
 
-  getDataByCategory(inputValue)
+  getSearchArticle(inputValue)
     .then(data => console.log(data))
     .catch(error => console.log(error))
     .finally(hideLoader);
