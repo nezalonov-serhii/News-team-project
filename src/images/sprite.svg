@@ -107,5 +107,8 @@
             <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="4.5714"
                 d="M2.286 29.714l13.714-13.714-13.714-13.714"></path>
         </symbol>
-    </defs>
+		<symbol id="calendar" >
+			<path d="M13.167 2.5H16.5a.833.833 0 0 1 .834.833v13.334a.833.833 0 0 1-.834.833h-15a.834.834 0 0 1-.833-.833V3.333A.833.833 0 0 1 1.5 2.5h3.334V.833H6.5V2.5h5V.833h1.667V2.5zm2.5 6.667H2.334v6.666h13.333V9.167zm-4.167-5h-5v1.666H4.834V4.167h-2.5V7.5h13.333V4.167h-2.5v1.666H11.5V4.167zM4 10.833h1.667V12.5H4v-1.667zm4.167 0h1.667V12.5H8.167v-1.667zm4.167 0H14V12.5h-1.666v-1.667z" fill="none"/>
+		</symbol>
+	</defs>
 </svg>
