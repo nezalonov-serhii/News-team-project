@@ -8,9 +8,13 @@ p {
 }
 
 ul {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
   margin: 0;
+}
+
+li {
+  list-style: none;
 }
 
 a {

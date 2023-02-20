@@ -1,0 +1,42 @@
+.error-search {
+  padding: 40px 0 60px 0;
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &___title {
+    margin-bottom: 40px;
+
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.35;
+    text-align: center;
+    letter-spacing: -0.01em;
+
+    @media screen and (min-width: $pre_tablet) {
+      font-size: 40px;
+      line-height: 1.4;
+    }
+  }
+  &___picture {
+    width: 248px;
+    @media screen and (min-width: $pre_tablet) {
+      width: 560px;
+    }
+    @media screen and (min-width: $pre_desktop) {
+      width: 601px;
+    }
+  }
+}
+
+.is-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0 0 0 0);
+}
