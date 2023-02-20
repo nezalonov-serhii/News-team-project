@@ -13,6 +13,10 @@ const refs = {
   mainCategories: document.querySelector('.js-main-categories'),
   showOthersBtn: document.querySelector('.js-btn-show-others'),
   dropdownList: document.querySelector('.js-dropdown-list'),
+
+
+  //read news
+  readNewsContainer: document.querySelector('.read-news__container'),
 };
 
 export { refs };
