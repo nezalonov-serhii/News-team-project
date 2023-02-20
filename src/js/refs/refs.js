@@ -5,6 +5,7 @@ const refs = {
   // Search news
   form : document.querySelector(".search"),
   filterCategories  : document.querySelector(".filter__wrap"),
+  filterOthers : document.getElementById("filter-others"),
   //main
   newsList: document.querySelector(".news__lists"),
   // favorite

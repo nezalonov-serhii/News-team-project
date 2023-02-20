@@ -33,7 +33,7 @@ function createNewsCard({
         <article class="news__article" id="${id}">
                     <div class="news__wrapper" >
                         <img class="news__img" src="${
-                          media[0]['media-metadata'][2].url
+                          media
                         }" alt="">
 
                         <p class="news__category">${section}</p>

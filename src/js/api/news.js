@@ -47,7 +47,7 @@ async function getDataByCategory(value) {
   throw new Error(data.statusText);
 }
 
-async function getSearchArticle(value, page) {
+async function getSearchArticle(value,page) {
   showLoader();
   let dateForUrl = '';
   // dateForUrl = ` &begin_date=${date}&end_date=${date}`;
