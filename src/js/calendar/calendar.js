@@ -7,6 +7,8 @@ let monthInCalendar = document.querySelector('.mounth-year-display');
 let daysInCalendar = document.querySelector('.calendar-week-days');
 const singleBtn = document.querySelector('#choseDataButton');
 const calendarContainer = document.querySelector('.container-calendar');
+const calendarIcon = document.querySelector('.calendar-icon');
+const dropdownIcon = document.querySelector('.dropdown-icon');
 
 let monthNames = [
   'January',
@@ -44,7 +46,6 @@ return temp;
 
 function plotWeek() {
   daysInCalendar.innerHTML = '';
-  console.log(temp);
   for (let i = 0; i <= 6; i++) {
     daysInCalendar.innerHTML += `<p class="calendar-week">${temp[i]}</p>`;
   }
@@ -74,6 +75,8 @@ singleBtn.addEventListener('click', handleClick);
 
 function handleClick() {
   calendarContainer.classList.toggle('container--active');
+  calendarIcon.classList.toggle('calendar-icon--active');
+  dropdownIcon.classList.toggle('dropdown-icon--active');
   updateRender();
   monthInCalendar.innerHTML = `${monthNames[month]} ${year}`;
 }
@@ -87,9 +90,12 @@ function addEventForDates() {
     el.addEventListener('click', e => {
       let currentBtn = e.currentTarget;
       calendarContainer.classList.toggle('container--active');
-      singleBtn.innerHTML = `${dateFix(currentBtn.innerHTML)}/${dateFix(
-        month + 1
-      )}/${year}`;
+	  calendarIcon.classList.toggle('calendar-icon--active');
+	  dropdownIcon.classList.toggle('dropdown-icon--active');
+      singleBtn.innerHTML = `${dateFix(currentBtn.innerHTML)}/${dateFix(month + 1)}/${year}`;
+	  singleBtn.setAttribute('data-time' ,singleBtn.innerHTML);
+//	  console.log(singleBtn.getAttribute('data-time'));  
+//получение дата атрибута
     });
   });
 }
