@@ -8,7 +8,7 @@ import { refs } from '../refs/refs';
 
 const mql = window.matchMedia('(min-width: 768px) and (max-width: 1279.8px)');
 
-refs.mainCategories.addEventListener('click', onMainCategoriesClick);
+// refs.mainCategories.addEventListener('click', onMainCategoriesClick);
 refs.showOthersBtn.addEventListener('click', onShowOthersBtnClick);
 refs.dropdownList.addEventListener('click', onDropdownListClick);
 mql.addEventListener('change', updateCategoriesInUI);
@@ -99,7 +99,6 @@ function isMainCategorySelected() {
 function init() {
   updateCategoriesInUI();
 }
-
 async function updateCategoriesInUI() {
   try {
     hideCategoryWrapper();

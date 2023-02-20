@@ -31,6 +31,7 @@ async function getCategoryList() {
 
 async function getDataByCategory(value) {
   showLoader();
+  console.log(value);
   let normalazeValue = value.toLowerCase();
   let newValue = encodeURIComponent(normalazeValue);
 
@@ -46,20 +47,19 @@ async function getDataByCategory(value) {
   throw new Error(data.statusText);
 }
 
-
-async function getSearchArticle(value, page = 0) {
+async function getSearchArticle(value, page = 0, date) {
   showLoader();
-  let dateForUrl = '';
+  // let dateForUrl = '';
   // dateForUrl = ` &begin_date=${date}&end_date=${date}`;
   // &page=26
   const articleFetch = await fetch(
-    `${BASE_URL}/search/v2/articlesearch.json?q=${value}&page=${page}&${KEY}${dateForUrl}`
+    `${BASE_URL}/search/v2/articlesearch.json?q=${value}&page=${page}&${KEY}&pub_date${date}`
   );
 
   https: if (articleFetch.ok) {
     const articles = await articleFetch.json();
 
-    console.log(articles.response);
+    // console.log(articles.response);
     return articles.response.docs;
   }
 

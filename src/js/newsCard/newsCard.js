@@ -4,25 +4,23 @@ import { orderedNumber } from '../markup/markup.js';
 
 import Sprite from '../../images/sprite.svg';
 
-
-
 const newsList = document.querySelector('.news__lists');
-console.log(newsList)
+// console.log(newsList);
 
 const newsCard = document.querySelector('.news__item');
-console.log(newsCard)
+// console.log(newsCard);
 
 // const readMoreBtn = document.querySelector("a");
 // console.log(readMoreBtn)
 
 //Створюється одна карточка
 
-getPopular()
-  .then(data => {
-    addMarkup(newsList, createNewsCard(data[0]));
-  })
-  .catch()
-  .finally(data => hideLoader());
+// getPopular()
+//   .then(data => {
+//     addMarkup(newsList, createNewsCard(data[0]));
+//   })
+//   .catch()
+//   .finally(data => hideLoader());
 
 //Функція створення однієї карточки
 
@@ -40,13 +38,13 @@ function createNewsCard({
       <li class="news__item" style = "order:${orderedNumber} ">
         <article class="news__article" id="${id}">
                     <div class="news__wrapper" >
-                        <img class="news__img" src="${
-                          media
-                        }" alt="">
+                        <img class="news__img" src="${media}" alt="">
 
                         <p class="news__category">${section}</p>
 
-                        <span class ="news__read-status hidden">Already read <svg class="icon-chek" width="24" height="24"><use href=${Sprite + '#icon-chek'}></use></svg></span>
+                        <span class ="news__read-status hidden">Already read <svg class="icon-chek" width="24" height="24"><use href=${
+                          Sprite + '#icon-chek'
+                        }></use></svg></span>
 
                         <button type="button" class="item-news__add-to-favorite ">
                           <span class="item-news__add-to-favorite-btn">Add to favorite
@@ -86,7 +84,6 @@ function addMarkup(element, constMarkup) {
 function addMarkupAfter(element, constMarkup) {
   element.insertAdjacentHTML('afterbegin', constMarkup);
 }
-
 
 //Add ... 80 elements Перевірка довжини тексту
 
@@ -140,15 +137,13 @@ function linkReadMore(event) {
 
   readMore.parentNode.parentNode.parentNode.classList.add('opacity');
   addReadMore(readMore);
-// Have read
-const btn = event.target.closest(`.news__item`);
-const Readmorestatus = btn.children[0].children[2];
-console.log(Readmorestatus);
+  // Have read
+  const btn = event.target.closest(`.news__item`);
+  const Readmorestatus = btn.children[0].children[2];
+  console.log(Readmorestatus);
 
-Readmorestatus.classList.remove('hidden');
-addMarkupAfter(newsCard, );
-
-
+  Readmorestatus.classList.remove('hidden');
+  addMarkupAfter(newsCard);
 }
 
 //Кнопка улюблене
@@ -236,7 +231,6 @@ function addReadMore(readMore) {
 
 //
 
-
 function makeReadNewsMarkup(news) {
   return `
   <div class="read-news__list">
@@ -246,4 +240,4 @@ function makeReadNewsMarkup(news) {
       `;
 }
 
-export {createNewsCard,newsCardTextFormat}
+export { createNewsCard, newsCardTextFormat };

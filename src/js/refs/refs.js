@@ -3,11 +3,11 @@ const refs = {
   main: document.querySelector('main'),
   loader: document.querySelector('.loader-backdrop'),
   // Search news
-  form : document.querySelector(".search"),
-  filterCategories  : document.querySelector(".filter__wrap"),
-  filterOthers : document.getElementById("filter-others"),
+  form: document.querySelector('.search'),
+  filterCategories: document.querySelector('.filter__wrap'),
+  filterOthers: document.getElementById('filter-others'),
   //main
-  newsList: document.querySelector(".news__lists"),
+  newsList: document.querySelector('.news__lists'),
   // favorite
   favorite: document.querySelector('.news'),
   favoriteLists: document.querySelector('.news__lists'),
@@ -19,9 +19,11 @@ const refs = {
   showOthersBtn: document.querySelector('.js-btn-show-others'),
   dropdownList: document.querySelector('.js-dropdown-list'),
 
-
   //read news
   readNewsContainer: document.querySelector('.read-news__container'),
+
+  // celendar
+  celendarDate: document.querySelector('#choseDataButton'),
 };
 
 export { refs };
