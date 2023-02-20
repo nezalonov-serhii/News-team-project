@@ -3,17 +3,18 @@ import { showLoader } from '../loader/loader';
 const KEY = 'api-key=ccA9QsXbvrHhGuvowEcHjyxEU2jAukPO';
 const BASE_URL = 'https://api.nytimes.com/svc';
 
-async function getPopular() {
-  showLoader();
-  const articleFetch = await fetch(
-    `${BASE_URL}/mostpopular/v2/viewed/1.json?${KEY}`
-  );
 
-  if (articleFetch.ok) {
-    const popular = await articleFetch.json();
-    return popular.results;
-  }
-  throw new Error(articleFetch.statusText);
+ async function getPopular() {
+   const articleFetch = await fetch(
+      `${BASE_URL}/mostpopular/v2/viewed/1.json?${KEY}`
+   );
+
+   if (articleFetch.ok) {
+      const popular = await articleFetch.json();
+      return popular.results;
+   }
+   throw new Error(articleFetch.statusText);
+
 }
 
 async function getCategoryList() {

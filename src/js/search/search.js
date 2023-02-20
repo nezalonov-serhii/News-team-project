@@ -4,12 +4,18 @@ import {
   getSearchArticle,
   getDataByCategory,
 } from '../api/news';
+const input = document.querySelector('.input');
 
-// getPopular()
-//   .then(data => {
-//     console.log(data);
-//   })
-//   .catch(error => console.log(error));
+
+input.addEventListener('submit', onInput);
+
+
+ getPopular()
+  .then(data => {
+    console.log(data);
+  })
+  .catch(error => console.log(error));
+
 
 // getCategoryList()
 //   .then(data => console.log(data))
@@ -21,6 +27,16 @@ import {
 //   .then(data => console.log(data))
 //   .catch(error => console.log(error));
 
-// getSearchArticle('car', 1)
-//   .then(data => console.log(data))
-//   .catch(error => console.log(error));
+
+  function onInput(e){
+    e.preventDefault();
+    const inputValue = input.value.trim();
+    if(inputValue === ""){
+      return
+    }
+getSearchArticle('car', 1)
+  .then(data => console.log(data))
+  .catch(error => console.log(error));
+
+  }
+
