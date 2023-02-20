@@ -4,6 +4,7 @@ import './refs/refs';
 import './mobileMenu/mobileMenu';
 import './mobileMenu/mobileMenuCurrent';
 import './currentPage/currentPage';
+import './darkMode/darkMode';
 import { refs } from './refs/refs';
 import Sprite from '../images/sprite.svg';
 // import { btnAddToFavorite } from './newsCard/newsCard';
@@ -23,9 +24,6 @@ function renderReadNews() {
   console.log(readNews);
   const dates = readNews.map(item => item.date);
   const uniqDates = Array.from(new Set(dates));
-
-  console.log(uniqDates);
-  console.log(uniqDates.sort((a, b) => b.localeCompare(a)));
 
   for (let i = 0; i < uniqDates.length; i += 1) {
     const filteredNews = readNews.filter(item => item.date === uniqDates[i]);
