@@ -1,6 +1,9 @@
 import { getPopular } from '../api/news.js';
 import { hideLoader } from '../loader/loader';
+import { orderedNumber } from '../markup/markup.js';
+
 import Sprite from '../../images/sprite.svg';
+
 
 
 const newsList = document.querySelector('.news__lists');
@@ -34,11 +37,11 @@ function createNewsCard({
   uri,
 }) {
   return `
-      <li class="news__item >
+      <li class="news__item" style = "order:${orderedNumber} ">
         <article class="news__article" id="${id}">
                     <div class="news__wrapper" >
                         <img class="news__img" src="${
-                          media[0]['media-metadata'][2].url
+                          media
                         }" alt="">
 
                         <p class="news__category">${section}</p>
@@ -232,8 +235,6 @@ function addReadMore(readMore) {
 }
 
 //
-      
-
 
 
 function makeReadNewsMarkup(news) {
@@ -245,3 +246,4 @@ function makeReadNewsMarkup(news) {
       `;
 }
 
+export {createNewsCard,newsCardTextFormat}
