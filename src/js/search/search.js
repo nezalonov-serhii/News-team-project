@@ -6,11 +6,11 @@ const input = document.querySelector('.input');
 
 form.addEventListener('submit', onInput);
 
-getPopular()
-  .then(data => {
-    // console.log(data);
-  })
-  .catch(error => console.log(error));
+// getPopular()
+//   .then(data => {
+//     // console.log(data);
+//   })
+//   .catch(error => console.log(error));
 
 // getCategoryList()
 //   .then(data => console.log(data))
@@ -29,7 +29,7 @@ function onInput(e) {
     return;
   }
 
-  form.reset();
+  // form.reset();
 
   // getSearchArticle(inputValue)
   //   .then(data => console.log(data))
