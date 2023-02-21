@@ -1,5 +1,3 @@
-import { Notify } from 'notiflix';
-
 import './refs/refs';
 import './mobileMenu/mobileMenu';
 import './mobileMenu/mobileMenuCurrent';
@@ -7,6 +5,7 @@ import './currentPage/currentPage';
 import './darkMode/darkMode';
 import { refs } from './refs/refs';
 import Sprite from '../images/sprite.svg';
+
 // import { btnAddToFavorite } from './newsCard/newsCard';
 
 init();
@@ -21,12 +20,18 @@ function renderReadNews() {
 
   const readNews = getDataFromLocalStorage('readMoreLocal');
 
-  console.log(readNews);
-  const dates = readNews.map(item => item.date);
+  if (!readNews) {
+    return;
+  }
+
+  const dates = readNews.map(item => item.dayRead);
   const uniqDates = Array.from(new Set(dates));
+  const sortedDates = uniqDates.sort((a, b) => b.localeCompare(a));
 
   for (let i = 0; i < uniqDates.length; i += 1) {
-    const filteredNews = readNews.filter(item => item.date === uniqDates[i]);
+    const filteredNews = readNews.filter(
+      item => item.dayRead === sortedDates[i]
+    );
     const cardMarkup = filteredNews.map(item => createNewsCard(item)).join('');
 
     markup += `<div class="read-news__list">
@@ -51,8 +56,8 @@ function getReadNewsBtn() {
 function addEventHandlers() {
   const btns = getReadNewsBtn();
   const newsLists = document.querySelectorAll('.read-news__list');
-  btns.forEach(btn => btn.addEventListener('click', onReadNewsBtnClick));
 
+  btns.forEach(btn => btn.addEventListener('click', onReadNewsBtnClick));
   newsLists.forEach(list => list.addEventListener('click', btnAddToFavorite));
 }
 
@@ -76,7 +81,8 @@ function getDataFromLocalStorage(key) {
     const data = localStorage.getItem(key);
     return data === null ? undefined : JSON.parse(data);
   } catch (error) {
-    Notify.failure('Error: ' + error.message);
+    refs.errorSearch.classList.remove('is-hidden');
+    refs.readNewsContainer.classList.add('is-hidden');
   }
 }
 
@@ -84,7 +90,7 @@ function createNewsCard({
   title,
   img,
   url,
-  published_date,
+  date,
   category,
   description,
   id,
@@ -116,7 +122,7 @@ function createNewsCard({
                     <p class="news__description">${description}</p>
                     </div>
                     <div class="news__info">
-                        <span class="news__date">${published_date}</span>
+                        <span class="news__date">${date}</span>
                         <a target="_blank" class="news__link-more" href="${url}">Read more</a>
                         <p class="hidden">${uri}</p>
                     </div>
