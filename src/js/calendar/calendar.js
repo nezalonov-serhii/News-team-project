@@ -36,8 +36,9 @@ singleBtn.innerHTML = `${dateFix(currentDate)}/${dateFix(month + 1)}/${year}`;
 function getFirstDayOfTheMonth() {
   let firstDayInChosenMonth = new Date(year, month, 1);
   let result = firstDayInChosenMonth.getDay();
+
   temp = dayNames;
-  temp = [].concat(temp.slice(result),temp.slice(0,result));
+  temp = [].concat(temp.slice(result), temp.slice(0, result));
 }
 
 //рендр дней недели
@@ -84,43 +85,45 @@ function addEventForDates() {
   choosenDateButtons.forEach(el => {
     el.addEventListener('click', e => {
       let currentBtn = e.currentTarget;
-	  singleBtn.classList.toggle('choseDataButton-active');
+      singleBtn.classList.toggle('choseDataButton-active');
       calendarContainer.classList.toggle('container-calendar--active');
+
 	  calendarIcon.classList.toggle('calendar-icon--active');
 	  dropdownIcon.classList.toggle('dropdown-icon--active');
       singleBtn.innerHTML = `${dateFix(currentBtn.innerHTML)}/${dateFix(month + 1)}/${year}`;
 	  singleBtn.setAttribute('data-time',`${year}-${dateFix(month + 1)}-${dateFix(currentBtn.innerHTML)}`);
 //	  console.log(singleBtn.getAttribute('data-time'));  
 //	  получение дата атрибута
+
     });
   });
 }
 
- //открытие массива годов списком
- yearListButton.addEventListener('click', generateYearList);
+//открытие массива годов списком
+yearListButton.addEventListener('click', generateYearList);
 
-function generateYearList(){
-	yearList.classList.toggle('year-list--active');
-	if(yearsListArr.length == 0){
-		for(i = 1990; i <= 2030; i++) yearsListArr.push(i);
-		for(let i = 0; i < yearsListArr.length; i++){
-			yearList.innerHTML += `<button class="yearListButtons">${yearsListArr[i]}</button>`;
-		}
-		addListenerToYearButtons();
-	} 
- }
+function generateYearList() {
+  yearList.classList.toggle('year-list--active');
+  if (yearsListArr.length == 0) {
+    for (let i = 1990; i <= 2030; i++) yearsListArr.push(i);
+    for (let i = 0; i < yearsListArr.length; i++) {
+      yearList.innerHTML += `<button class="yearListButtons">${yearsListArr[i]}</button>`;
+    }
+    addListenerToYearButtons();
+  }
+}
 
- function addListenerToYearButtons(){
-	let yearListAllButtons = document.querySelectorAll('.yearListButtons');
-	yearListAllButtons.forEach(event => {
-		event.addEventListener('click', e => {
-			let eventButton = e.currentTarget;
-			year = Number(eventButton.innerHTML);
-			yearList.classList.toggle('year-list--active');
-			updateRender();
-		});
-	});
- }
+function addListenerToYearButtons() {
+  let yearListAllButtons = document.querySelectorAll('.yearListButtons');
+  yearListAllButtons.forEach(event => {
+    event.addEventListener('click', e => {
+      let eventButton = e.currentTarget;
+      year = Number(eventButton.innerHTML);
+      yearList.classList.toggle('year-list--active');
+      updateRender();
+    });
+  });
+}
 
 // смена месяца кнопками
 const preMonth = document.querySelector('#pre-month');

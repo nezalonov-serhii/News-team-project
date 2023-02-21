@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>News</title>
+  <title>Read</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,22 +17,15 @@
 <body>
   <include src="./partials/header.html"></include>
   <main>
-    <include src="./partials/filter.html"></include>
+    <include src="./partials/readNews.html"></include>
     <include src="./partials/errorSearch.html"></include>
-    <!-- <include src="./partials/datePicker.html"></include> -->
-
-    <!-- <span class ="news__read-status">Already read <svg class="icon-chek" width="15" height="11"><use href="./images/sprite.svg#icon-chek"></use></svg></span> -->
-
-
-    <include src="./partials/newsSection.html"></include>
-    <include src="./partials/paginations.html"></include>
   </main>
 
   <include src="./partials/footer.html"></include>
-  <include src="./partials/loader.html"></include>
+  <!-- <include src="./partials/loader.html"></include> -->
   <include src="./partials/mobileMenu.html"></include>
 
-  <script type="module" src="./index.js"></script>
+  <script type="module" src="./js/read.js"></script>
 </body>
 
 </html>

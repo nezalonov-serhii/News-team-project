@@ -3,6 +3,23 @@
 body {
   font-family: 'Manrope', sans-serif;
   // font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+
+  //background-color: var(--primary-bg-color);
+
+  position: relative;
+  z-index: -999;
+
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+main {
+  position: relative;
+  z-index: -999;
 }
 
 .container {
@@ -21,13 +38,6 @@ body {
   }
 }
 
-.is-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  border: 0;
-  clip: rect(0 0 0 0);
+main {
+  flex-grow: 1;
 }

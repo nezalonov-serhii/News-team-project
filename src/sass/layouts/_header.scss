@@ -19,8 +19,6 @@
   font-size: 42px;
   line-height: 57px;
 
-  color: var(--primary-text-color);
-
   display: inline-block;
 
   @media screen and (min-width: $pre_tablet) {
@@ -202,7 +200,7 @@
 }
 
 .search__icon {
-  fill: var(--primary-text-color);
+  fill: inherit;
 }
 
 .mobile-btn-close {
@@ -237,10 +235,6 @@
   }
 
   @media screen and (min-width: $pre_tablet) {
-    display: flex;
-    width: 98px;
-    height: 21px;
-
     // flex-direction: row;
     // justify-content: center;
     // align-items: center;
@@ -308,9 +302,6 @@
   font-size: 18px;
   line-height: 24px;
 
-  display: flex;
-  align-items: center;
-
   color: #5f6775;
 
   order: 2;
@@ -321,7 +312,6 @@
 }
 
 .theme__light {
-  display: block;
   font-family: 'Poppins';
 
   font-size: 18px;
