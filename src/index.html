@@ -1,38 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>News</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Roboto&display=swap"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News</title>
 
-    <link rel="stylesheet" href="./sass/index.scss" />
-  </head>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Roboto&display=swap"
+    rel="stylesheet" />
 
-  <body>
-    <include src="./partials/header.html"></include>
-    <main>
-      <include src="./partials/filter.html"></include>
-      <include src="./partials/errorSearch.html"></include>
-      <!-- <include src="./partials/datePicker.html"></include> -->
+  <link rel="stylesheet" href="./sass/index.scss" />
+</head>
 
-      <!-- <span class ="news__read-status">Already read <svg class="icon-chek" width="15" height="11"><use href="./images/sprite.svg#icon-chek"></use></svg></span> -->
+<body>
+  <include src="./partials/header.html"></include>
+  <main>
+    <include src="./partials/filter.html"></include>
+    <include src="./partials/errorSearch.html"></include>
 
-      <include src="./partials/newsSection.html"></include>
-      <include src="./partials/weather.html"></include>
-      <include src="./partials/paginations.html"></include>
-    </main>
+    <include src="./partials/newsSection.html"></include>
+    <include src="./partials/weather.html"></include>
+    <include src="./partials/paginations.html"></include>
+  </main>
 
-    <include src="./partials/footer.html"></include>
-    <include src="./partials/loader.html"></include>
-    <include src="./partials/mobileMenu.html"></include>
+  <include src="./partials/footer.html"></include>
+  <include src="./partials/loader.html"></include>
+  <include src="./partials/mobileMenu.html"></include>
 
-    <script type="module" src="./index.js"></script>
-  </body>
+  <script type="module" src="./index.js"></script>
+</body>
+
 </html>
