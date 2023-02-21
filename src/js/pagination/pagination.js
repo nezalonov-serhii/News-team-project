@@ -18,6 +18,29 @@
 //   currentPage++;
 //   loadNews(currentPage);
 // });
+<<<<<<< Updated upstream
+=======
+// const prevBtn = document.querySelector('#prev-btn');
+// const nextBtn = document.querySelector('#next-btn');
+// // const pageBtns = document.querySelectorAll('.page-btn');
+
+// // поточна сторінка
+// let currentPage = 1;
+
+// // кількість новин на сторінці
+// const newsPerPage = 20;
+
+// // обробка подій на кнопки "Prev" та "Next"
+// prevBtn.addEventListener('click', () => {
+//   currentPage--;
+//   loadNews(currentPage);
+// });
+
+// nextBtn.addEventListener('click', () => {
+//   currentPage++;
+//   loadNews(currentPage);
+// });
+>>>>>>> Stashed changes
 
 
 import { getPopular, getSearchArticle } from '../api/news';
@@ -77,6 +100,7 @@ function loadNews(data, page) {
   const start = (page - 1) * itemsPerPage;
   const end = start + itemsPerPage;
   const itemsToShow = data.slice(start, end);
+<<<<<<< Updated upstream
 
   const newsList = document.getElementById('news-list');
   newsList.innerHTML = '';
@@ -97,3 +121,26 @@ function loadNews(data, page) {
     newsList.appendChild(newsItem);
   });
 }
+=======
+}
+
+//   const newsList = document.getElementById('news-list');
+//   newsList.innerHTML = '';
+
+//   itemsToShow.forEach(item => {
+//     const newsItem = document.createElement('div');
+//     newsItem.classList.add('news-item');
+//     newsItem.innerHTML = `
+//       <div class="news-item__image">
+//         <img src="${item.urlToImage}" alt="">
+//       </div>
+//       <div class="news-item__content">
+//         <h2 class="news-item__title">${item.title}</h2>
+//         <p class="news-item__description">${item.description}</p>
+//         <a class="news-item__link" href="${item.url}" target="_blank">Read more</a>
+//       </div>
+//     `;
+//     newsList.appendChild(newsItem);
+//   });
+// }
+>>>>>>> Stashed changes
