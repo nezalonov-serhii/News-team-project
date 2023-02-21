@@ -89,7 +89,7 @@ function addEventForDates() {
 	  calendarIcon.classList.toggle('calendar-icon--active');
 	  dropdownIcon.classList.toggle('dropdown-icon--active');
       singleBtn.innerHTML = `${dateFix(currentBtn.innerHTML)}/${dateFix(month + 1)}/${year}`;
-	  singleBtn.setAttribute('data-time' ,singleBtn.innerHTML);
+	  singleBtn.setAttribute('data-time',`${year}-${dateFix(month + 1)}-${dateFix(currentBtn.innerHTML)}`);
 //	  console.log(singleBtn.getAttribute('data-time'));  
 //	  получение дата атрибута
     });
