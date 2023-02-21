@@ -17,8 +17,6 @@ let orderedNumber = 0;
 refs.form.addEventListener('submit', renderSearchNews);
 refs.filterCategories.addEventListener('click', renderNewsCategory);
 
-renderPopularNews();
-
 function saveValuesFromCategoryNews(articles) {
   console.log(articles);
   articles.map(article => {
@@ -76,14 +74,12 @@ function saveValuesFromPopularNews(articles) {
   });
 }
 
-function renderPopularNews() {
-  getPopular()
-    .then(articles => {
-      saveValuesFromPopularNews(articles);
-      renderNewsList(arrayNewsCard);
-    })
-    .catch()
-    .finally(hideLoader());
+function renderPopularNews(articles) {
+  refs.newsList.innerHTML = '';
+  arrayNewsCard = [];
+
+  saveValuesFromPopularNews(articles);
+  renderNewsList(arrayNewsCard);
 }
 
 function renderSearchNews(e) {
@@ -92,7 +88,7 @@ function renderSearchNews(e) {
   refs.newsList.innerHTML = '';
   arrayNewsCard = [];
 
-  const date = refs.celendarDate.dataset.time.replaceAll('/', '');
+  const date = refs.celendarDate.dataset.time.replaceAll('-', '');
   console.log(date);
 
   const inputSearchValue = refs.form.elements.inputSearch.value;
@@ -155,4 +151,5 @@ export {
   updateNewList,
   createMarkupWidgetWeather,
   orderedNumber,
+  renderPopularNews,
 };

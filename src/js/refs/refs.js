@@ -24,6 +24,11 @@ const refs = {
 
   // celendar
   celendarDate: document.querySelector('#choseDataButton'),
+
+  //pagination
+  prevBtn: document.querySelector('.prev-page'),
+  nextBtn: document.querySelector('.next-page'),
+  pgContainer: document.querySelector('#pagination'),
 };
 
 export { refs };

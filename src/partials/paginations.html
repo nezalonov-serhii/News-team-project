@@ -1,18 +1,26 @@
-<section class="pagination">
-  <div class="container pagination__container">
-    <!-- кнопка на предыдущую страницу -->
-    <button class="pagination__prew" id="prev-btn" disabled>
-      <a class="pagination__link-left">&#8249; Prew</a>
+<div class="page-container pagination-hidden pagination">
+  <div class="pagin">
+
+    <button class="prev-page" disabled>
+      <a class="fas fa-angle-left"> <span class="s_prew">&#8249; Prew</span> </a>
     </button>
 
-    <div>
-      <!-- место для диномической вставки пагинацыи (кнопок) -->
-    </div>
+    <ul id="pagination"></ul>
 
-    <!-- кнопка на следующую страницу -->
-    <button class="pagination__next" id="next-btn">
-      <a class="pagination__link-right" > Next &#8250;</a>
+
+    <button class="next-page">
+      <a class="fas fa-angle-right"> Next <span class="s_next">&#8250;<span></a>
     </button>
+
+
   </div>
-</section>
+</div>
 
+<!-- одним із рішень може бути наступне:
+1) стягуємо з бека всі об‘єкти в один масив
+2) відповідно до розміру екрану визначаємо кількість сторінок і рендеримо кнопки пагінації , а в дата атрибуті кнопок
+записуємо номер сторінки - 1
+3) вішаємо обробники події на кнопки, а як колбек передаємо функцію, яка буде визначати, які об‘єкти будуть рендеритись
+на конкретній сторінці. Це можна зробити наступним чином:
+arrayOfObjects.slice(dataAttribute * countOfCardsOnPage, dataAttribute * countOfCardsOnPage + countOfCardsOnPage)
+4) Очищуємо попередній список. Рендеримо новий. -->
