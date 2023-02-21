@@ -4,7 +4,6 @@ const KEY = 'api-key=ccA9QsXbvrHhGuvowEcHjyxEU2jAukPO';
 const BASE_URL = 'https://api.nytimes.com/svc';
 
 async function getPopular() {
-  showLoader();
   const articleFetch = await fetch(
     `${BASE_URL}/mostpopular/v2/viewed/1.json?${KEY}`
   );
@@ -32,11 +31,12 @@ async function getCategoryList() {
 
 async function getDataByCategory(value) {
   showLoader();
+  console.log(value);
   let normalazeValue = value.toLowerCase();
   let newValue = encodeURIComponent(normalazeValue);
 
   const data = await fetch(
-    `${BASE_URL}/news/v3/content/all/${newValue}.json?${KEY}`
+    `${BASE_URL}/news/v3/content/all/${newValue}.json?${KEY}&limit=100`
   );
   if (data.ok) {
     const articles = await data.json();
@@ -47,19 +47,24 @@ async function getDataByCategory(value) {
   throw new Error(data.statusText);
 }
 
-async function getSearchArticle(value, page) {
+async function getSearchArticle(value, page = 0, date = '') {
   showLoader();
-  let dateForUrl = '';
+  let dateUrl = '';
   // dateForUrl = ` &begin_date=${date}&end_date=${date}`;
   // &page=26
+
+  if (date !== '') {
+    dateUrl = `&begin_date=${date}&end_date=${date}`;
+  }
+
   const articleFetch = await fetch(
-    `${BASE_URL}/search/v2/articlesearch.json?q=${value}&page=${page}&${KEY}${dateForUrl}`
+    `${BASE_URL}/search/v2/articlesearch.json?q=${value}&page=${page}&${KEY}${dateUrl}`
   );
 
   https: if (articleFetch.ok) {
     const articles = await articleFetch.json();
 
-    console.log(articles.response);
+    // console.log(articles.response);
     return articles.response.docs;
   }
 

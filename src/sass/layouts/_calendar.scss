@@ -1,191 +1,254 @@
 :root {
-	--blue: #4440F6;
-	--main-background: #F8F8F8;
-	--incative-text: rgba(60, 60, 67, 0.3);
-	--border-inactive: rgba(162, 162, 162, 1);	
+  --blue: #4440f6;
+  --main-white: #fff;
+  --main-background: #f8f8f8;
+  --incative-text: rgba(60, 60, 67, 0.3);
+  --border-inactive: rgba(162, 162, 162, 1);
+}
+.calendar-form {
+  display: flex;
+  align-items: center;
 }
 
-.choseDataButton{
-	width: 168px;
-	height: 30px;
-	background-color: white;
-	color: var(--incative-text);
-	border: 1px solid #111321;
-	border-radius: 20px;
-	margin-bottom: 2px;
-	font-family: 'Manrope';
-	font-style: normal;
-	font-weight: 400;
-	font-size: 14px;
-	line-height: 21px;
-	transition: transform 250ms ease-in-out;
+.calendar-form__text {
+  display: none;
+  margin-right: 40px;
+
+  @include desktop {
+    display: block;
+  }
+}
+.choseDataButton {
+  width: 151px;
+  height: 30px;
+  background-color: var(--main-white);
+  color: var(--incative-text);
+  border: 1px solid #111321;
+  border-radius: 20px;
+  margin-bottom: 2px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  transition: background-color 250ms ease-in-out;
+
+  @include tablet {
+    width: 168px;
+  }
 }
 
 .choseDataButton:hover,
-.choseDataButton:hover + .calendar-icon,
-.choseDataButton:focus,
-.choseDataButton:focus + .calendar-icon,
-.choseDataButton:hover,
-.choseDataButton:hover + .dropdown-btn__icon,
-.choseDataButton:focus,
-.choseDataButton:focus + .dropdown-btn__icon
-{
-	background-color:#4440F6;
-	fill: white;
-	border: 0	;
-	color: white;
+.choseDataButton-active {
+  background-color: var(--blue);
+  border: 0;
+  color: var(--main-white);
 }
 
-.container-calendar{
-	width: max-content;
-	height: max-content;
-	position: absolute;
-	justify-content: center;
-	height: 100%;
-	width: 100%;
-	visibility: hidden;
-	opacity: 0;
-	transition: opacity 250ms ease-in-out, visibility 0.3s ease-in-out;
+.choseDataButton:hover ~ .calendar-icon,
+.choseDataButton:hover ~ .dropdown-icon {
+  transition: transform 250ms ease-in-out;
+  color: var(--main-white);
 }
 
-.container--active{
-	opacity: 1;
-	visibility: visible;
-	transition: transform 250ms ease-in-out;
+.container-calendar {
+  width: max-content;
+  height: max-content;
+  position: absolute;
+  top: 35px;
+  left: -80px;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 250ms ease-in-out, visibility 0.3s ease-in-out;
 }
 
-.calendar{
-	height: 250px;
-	width: 250px;
-	background-color: white;
-	padding: 27px 20px 16px 16px;
-	border-radius: 20px;
-	font-family: 'Manrope';
-	font-style: normal;
-	font-weight: 500;
-	font-size: 16px;
-	line-height: 22px;
-	letter-spacing: -0.408px;
-	font-feature-settings: 'case' on;
+.container-calendar--active {
+  opacity: 1;
+  visibility: visible;
+  transition: transform 250ms ease-in-out;
 }
 
-.calendar-header{
-	font-size: 16px;
-	height: 26px;
-	padding-bottom: 13px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+.calendar {
+  height: 250px;
+  width: 250px;
+  background-color: var(--main-background);
+  padding: 27px 20px 16px 16px;
+  border-radius: 20px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: -0.408px;
+  font-feature-settings: 'case' on;
 }
 
-.mounth-year-display{
-	padding-right: 8px;
+.calendar-header {
+  font-size: 16px;
+  height: 26px;
+  padding-bottom: 13px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.header-left-block{
-	display: flex;
-	justify-content: space-between
+.mounth-year-display {
+  padding-right: 8px;
 }
 
-.mounth-picker{
-	display: flex;
-	justify-content: space-between;
-	width: 60px;
+.header-left-block {
+  display: flex;
+  justify-content: space-between;
 }
 
-.calendarPicker{
-	position: relative;
+.mounth-picker {
+  display: flex;
+  justify-content: space-between;
+  width: 60px;
 }
 
-.calendar-icon{
-	position: absolute;
-	top: 8px;
-	left: 10px;
-	color: var(--blue);
-	transition: transform 250ms ease-in-out;
+.calendarPicker {
+  position: relative;
 }
 
-.calendar-icon--active{
-	fill: white;
+.calendar-icon {
+  position: absolute;
+  pointer-events: none;
+  top: 8px;
+  left: 10px;
+  color: var(--blue);
+  transition: transform 250ms ease-in-out;
 }
 
-.dropdown-icon{
-	position: absolute;
-	top: 8px;
-	right: 10px;
-	color: var(--incative-text);
-	transition: transform 250ms ease-in-out;
+.calendar-icon--active {
+  color: var(--main-white);
 }
 
-.dropdown-icon--active{
-	transform: rotate(180deg);
-	color: white;
+.dropdown-icon {
+  position: absolute;
+  pointer-events: none;
+  top: 8px;
+  right: 10px;
+  color: var(--incative-text);
+  rotate: 0;
+  transition: all 250ms ease-in-out;
 }
 
-.date-change{
-	display: flex;
-	justify-content: center;
-	border-radius:20px;
-	width: 20px;
-	height: 20px;
-	color: var(--blue);
+.dropdown-icon--active {
+  color: var(--main-white);
+  transform: rotate(180deg);
 }
 
-.date-change:hover{
-	background-color: var(--blue);
-	color: white;
-	cursor: pointer;
-	border-radius: 20px;
+.year-change {
+  display: flex;
+  rotate: -90deg;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  width: 20px;
+  height: 20px;
+  color: var(--blue);
 }
 
-.calendar-week-days{
-	color: var(--incative-text);
-	display: flex;
-	justify-content: space-between;
-	// grid-template-columns: repeat(7, 1fr);
-	//1fr minmax(auto, 20%)
-	font-weight: 400;
-	font-size: 12px;
-	line-height: 18px;
-	cursor: pointer;
-	color: rgba(60, 60, 67, 0.3);
+.year-change:hover {
+  background-color: var(--blue);
+  color: var(--main-white);
+  cursor: pointer;
+  border-radius: 20px;
 }
 
-
-
-.calendar-week-days div{
-	display: grid;
-	place-items: center;
+.calendar-week-days {
+  color: var(--incative-text);
+  display: flex;
+  justify-content: space-between;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  cursor: pointer;
 }
 
-.calendar-days{
-	margin-top: 15px;
-	display: grid;
-	grid-template-columns: repeat(7, 32px);
-	height: 150px;
+.calendar-week-days div {
+  display: grid;
+  place-items: center;
 }
 
-.calendar-dates-day{
-	width: 25px;
-	height: 25px;
+.calendar-days {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: repeat(7, 32px);
+  height: 150px;
 }
 
-.calendar-dates-day:hover{
-	background-color:#4440F6;
-	border-radius: 20px;
-	color: white;
+.calendar-dates-day {
+  width: 25px;
+  height: 25px;
 }
 
-.month-change{
-	color: var(--blue);
-	background-color: white;
-	width: 20px;
-	height: 20px;
+.calendar-dates-day:hover {
+  background-color: var(--blue);
+  border-radius: 20px;
+  color: var(--main-white);
 }
 
-.month-change:hover{
-	background-color: var(--blue);
-	color: white;
-	border-radius: 26px;
-	cursor: pointer;
+.month-change {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--blue);
+  background-color: var(--main-background);
+  width: 30px;
+  height: 30px;
+}
+
+.month-change:hover {
+  background-color: var(--blue);
+  color: var(--main-white);
+  border-radius: 26px;
+  cursor: pointer;
+}
+
+.month-change-prev {
+  rotate: 90deg;
+}
+
+.month-change-next {
+  rotate: -90deg;
+}
+
+.year-list {
+  visibility: hidden;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: -10px;
+  right: 175px;
+  margin-top: 20px;
+  border-radius: 5px;
+  padding: 10px 0px;
+  background-color: var(--main-background);
+  position: absolute;
+  height: 240px;
+  overflow: auto;
+  width: max-content;
+}
+
+.year-list--active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.yearListButtons {
+  margin-bottom: 10px;
+  width: 70px;
+}
+
+.yearListButtons:hover {
+  color: var(--main-background);
+  background-color: var(--blue);
+  cursor: pointer;
 }

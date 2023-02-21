@@ -1,4 +1,6 @@
 .news {
+  position: relative;
+  z-index: -1;
   padding: 40px 0;
 
   @include tablet {
@@ -12,6 +14,7 @@
 
 .news__lists {
   display: flex;
+  flex-wrap: wrap;
   gap: 28px;
 
   @include tablet {
@@ -30,11 +33,11 @@
 
   @include tablet {
     flex-basis: 30%;
-    flex-basis: calc(50% - 30px);
+    flex-basis: calc(50% - 15px);
   }
 
   @include desktop {
-    flex-basis: calc(30% - 56px);
+    flex-basis: calc(33% - 18px);
   }
 }
 
@@ -46,7 +49,7 @@
   line-height: 1.4;
   letter-spacing: -0.01em;
 
-  height: 167px;
+  height: 180px;
   flex-grow: 1;
   overflow: hidden;
 }
@@ -131,6 +134,7 @@
 
 .hidden {
   display: none;
+  opacity: 0;
 }
 
 .news__wrapper {
@@ -277,4 +281,23 @@
 
 .opacity {
   opacity: 0.5;
+}
+
+.news__read-status {
+  color: #00dd73;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.4;
+  position: absolute;
+  top: 10px;
+  right: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.icon-chek {
+  padding-left: 4px;
+  fill: #00dd73;
 }

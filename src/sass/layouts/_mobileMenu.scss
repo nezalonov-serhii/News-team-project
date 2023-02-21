@@ -33,13 +33,11 @@
   letter-spacing: 0.02em;
   margin-top: 0;
   margin-bottom: 302px;
-  max-width: 480px;
 
   &__item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 6px 0 6px 16px;
     margin-bottom: 18px;
     height: 44px;
 
@@ -54,8 +52,10 @@
     background-color: var(--accent-color);
     background-size: cover;
     color: var(--white-color);
-    margin: 0 0 18px -16px;
-    padding-left: 32px;
+    margin: 0 -25px 18px -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+
   }
 }
 .menu-both {

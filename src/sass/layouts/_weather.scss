@@ -1,0 +1,68 @@
+.weather {
+  height: 100%;
+  border-radius: 4px;
+
+  background-color: var(--accent-color);
+  color: var(--white-color);
+  padding: 32px 37px;
+
+  &-hidden {
+    display: none;
+  }
+
+  @media screen and(min-width: $tablet) {
+    width: 353px;
+    padding: 40px 32px 60px 32px;
+  }
+
+  @media screen and(min-width: $desktop) {
+    width: 395px;
+    padding: 40px 53px;
+  }
+
+  &__position {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: center;
+
+    @media screen and(min-width: $pre_tablet) {
+      // margin-bottom: 65px;
+    }
+  }
+
+  &__degree {
+    font-weight: 400;
+    font-size: 55px;
+    line-height: calc((64 / 55));
+    border-right: 1px solid var(--white-color);
+
+    @media screen and (min-width: $pre_tablet) {
+      font-size: 64px;
+      line-height: calc(75 / 64);
+      padding-right: 8px;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    margin-left: 11px;
+
+    @media screen and(min-width: $pre_tablet) {
+      margin-left: 8px;
+    }
+  }
+
+  svg {
+    width: 18px;
+    height: 18px;
+    color: var(--white-color);
+    margin-right: 5px;
+
+    @media screen and(min-width: $pre_tablet) {
+      width: 27px;
+      height: 27px;
+    }
+  }
+}
