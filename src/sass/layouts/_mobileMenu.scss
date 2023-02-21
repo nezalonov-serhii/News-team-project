@@ -10,6 +10,10 @@
 
   transform: translateX(100%);
   transition: transform 250ms ease-in-out;
+
+  @include tablet {
+      display: none;
+    }
 }
 
 .menu-container.is-open {
@@ -29,6 +33,7 @@
   letter-spacing: 0.02em;
   margin-top: 0;
   margin-bottom: 302px;
+  max-width: 480px;
 
   &__item {
     display: flex;
@@ -49,9 +54,8 @@
     background-color: var(--accent-color);
     background-size: cover;
     color: var(--white-color);
-    margin: 0 -25px 18px -16px;
+    margin: 0 0 18px -16px;
     padding-left: 32px;
-    padding-right: 10px;
   }
 }
 .menu-both {
@@ -79,6 +83,7 @@
 .menu-icon__arrow {
   stroke: var(--white-color);
   fill: transparent;
+  margin-right: 25px;
 }
 
 .theme {
