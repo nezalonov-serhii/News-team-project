@@ -66,3 +66,12 @@
     }
   }
 }
+.location_weather{
+  order:1;
+  @include tablet{
+    order:2;
+ }
+  @include desktop {
+    order: 3;
+    }
+}
