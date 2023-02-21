@@ -130,7 +130,7 @@ function renderNewsList(arrayNewsCard) {
   const markup = arrayNewsCard.reduce((previousValue, article, index) => {
     orderedNumber += 1;
     if (index === 2) {
-      return createMarkupWidgetWeather(orderedNumber) + previousValue;
+      createMarkupWidgetWeather(orderedNumber) + previousValue;
     }
 
     return createNewsCard(article, orderedNumber) + previousValue;

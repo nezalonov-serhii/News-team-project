@@ -2,10 +2,18 @@ import { getPopular } from '../api/news';
 import { renderPopularNews } from '../markup/markup';
 import { refs } from '../refs/refs';
 
-let newsPerPage = 8;
 let totalPage = 0;
 let currentPage = 0;
+let newsPerPage = 0;
 let rightAmount = [];
+
+if (window.matchMedia('(max-width: 480px)').matches) {
+  newsPerPage = 4;
+} else if (window.matchMedia('(min-width: 480px)').matches) {
+  newsPerPage = 9;
+} else if (window.matchMedia('(min-width: 1280px)').matches) {
+  newsPerPage = 8;
+}
 
 getPopular()
   .then(news => {
@@ -75,15 +83,30 @@ getPopular()
     refs.pgContainer.addEventListener('click', clickOnPage);
 
     function clickOnPage(e) {
-      if (e.target.nodeName === 'UL') return;
+      if (
+        e.target.nodeName === 'UL' ||
+        e.target.classList.contains('active') ||
+        e.target.classList.contains('dots')
+      )
+        return;
+      console.log(e.target);
+
       currentPage = e.target.getAttribute('data-page');
 
       getRightAmount();
       renderPopularNews(rightAmount);
       activePage(e);
+
+      if (currentPage > 0) refs.prevBtn.disabled = false;
+      else refs.prevBtn.disabled = true;
+
+      if (currentPage > totalPage - 2) {
+        refs.nextBtn.disabled = true;
+      } else refs.nextBtn.disabled = false;
     }
 
     function activePage(e) {
+      if (e.target.classList.contains('dots')) return;
       const allBtns = document.querySelectorAll('.pg-item');
       allBtns.forEach(btn => {
         btn.classList.remove('active');
@@ -98,6 +121,50 @@ getPopular()
 
 function renderPage(totalPage) {
   let marcup = '';
+
+  // if (window.matchMedia('(max-width: 480px)').matches) {
+  //   for (let i = 1; i <= totalPage; i += 1) {
+  //     if (i === 1) {
+  //       marcup += `<li class="pg-item active" data-page="${
+  //         i - 1
+  //       }"><a>${i}</a></li>`;
+  //       continue;
+  //     }
+
+  //     if (i === 2) {
+  //       marcup += `<li class="pg-item " data-page="${i - 1}"><a>${i}</a></li>`;
+  //       continue;
+  //     }
+
+  //     if ((i === 2 && totalPage > 3) || (totalPage > 3 && i === 4)) {
+  //       marcup += `<li class="dots">...</li>`;
+  //     }
+  //     if (totalPage === i) {
+  //       marcup += `<li class="pg-item" data-page="${i - 1}"><a>${i}</a></li>`;
+  //     }
+  //   }
+  // } else if (window.matchMedia('(min-width: 480px)').matches) {
+  //   for (let i = 1; i <= totalPage; i += 1) {
+  //     if (i === 1) {
+  //       marcup += `<li class="pg-item active" data-page="${
+  //         i - 1
+  //       }"><a>${i}</a></li>`;
+  //       continue;
+  //     }
+  //     marcup += `<li class="pg-item" data-page="${i - 1}"><a>${i}</a></li>`;
+  //   }
+  // } else if (window.matchMedia('(min-width: 1280px)').matches) {
+  //   for (let i = 1; i <= totalPage; i += 1) {
+  //     if (i === 1) {
+  //       marcup += `<li class="pg-item active" data-page="${
+  //         i - 1
+  //       }"><a>${i}</a></li>`;
+  //       continue;
+  //     }
+  //     marcup += `<li class="pg-item" data-page="${i - 1}"><a>${i}</a></li>`;
+  //   }
+  // }
+
   for (let i = 1; i <= totalPage; i += 1) {
     if (i === 1) {
       marcup += `<li class="pg-item active" data-page="${
@@ -107,5 +174,6 @@ function renderPage(totalPage) {
     }
     marcup += `<li class="pg-item" data-page="${i - 1}"><a>${i}</a></li>`;
   }
+
   refs.pgContainer.innerHTML = marcup;
 }

@@ -94,13 +94,13 @@ button.next-page {
   overflow: hidden;
   margin: 0 4px;
 }
-#pagination li.active {
+#pagination .pg-item.active {
   background-color: var(--accent-color);
 }
-#pagination li.active a {
+#pagination .pg-item.active a {
   color: var(--white-color);
 }
-#pagination li a {
+#pagination .pg-item a {
   text-decoration: none;
   padding: 4px auto;
   display: inline-block;
@@ -113,10 +113,10 @@ button.next-page {
   pointer-events: none;
   color: var(--text-color);
 }
-#pagination li:hover {
+#pagination .pg-item:hover {
   background-color: var(--accent-color);
 }
-#pagination li:hover a {
+#pagination .pg-item:hover a {
   color: var(--white-color);
   background-color: var(--accent-color);
 }
@@ -174,7 +174,7 @@ button.next-page {
 }
 
 .s_prew {
-  font-family: Manrope;
+  display: flex;
   font-size: 14px;
   font-weight: 500;
   line-height: 19px;
@@ -187,5 +187,14 @@ button.next-page {
 // }
 
 a.fas {
+  display: flex;
   height: 28px;
 }
+
+// тут можна використати той же дата атрибут:
+// при рендері перевіряємо скільки кнопок залишається
+//  між активною та першою, тобто беремо дата атрибут
+//  активної кнопки та віднімаємо від нього дата атрибут першої.
+//   якщо вийде число більше 1,
+//   то після першої кнопки вставляємо умовний спан з крапками,
+//    і після нього рендеримо активну кнопку
