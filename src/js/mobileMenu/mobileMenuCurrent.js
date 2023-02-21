@@ -1,7 +1,8 @@
 const homePage = document.querySelector('#home');
 const favouritePage = document.querySelector('#favourite');
 const readPage = document.querySelector('#read');
-const logoHomePage = document.querySelectorAll('.logo');
+const logoHomePage = document.querySelector('.logo');
+const logoHomePageMenu = document.querySelector('#mob-logo');
 
 const arr = [homePage, favouritePage, readPage];
 
@@ -14,6 +15,7 @@ homePage.addEventListener('click', changeCurrentPageLink);
 favouritePage.addEventListener('click', changeCurrentPageLink);
 readPage.addEventListener('click', changeCurrentPageLink);
 logoHomePage.addEventListener('click', changeCurrentPageLogo);
+logoHomePageMenu.addEventListener('click', changeCurrentPageLogo);
 
 
 function changeCurrentPageLink(event) {
