@@ -6,7 +6,7 @@ import './js/popularRender/popularRender';
 
 import './js/newsFilter/filter';
 import './js/newsCard/newsCard';
-
+import './js/api/weather';
 import './js/weather/weather';
 
 import './js/search/search';
