@@ -1,4 +1,4 @@
-import { getPopular, getSearchArticle } from '../api/news';
+// import { getPopular, getSearchArticle } from '../api/news';
 import { hideLoader } from '../loader/loader';
 
 
@@ -8,11 +8,11 @@ const input = document.querySelector('.input');
 
 form.addEventListener('submit', onInput);
 
-getPopular()
-  .then(data => {
-    console.log(data);
-  })
-  .catch(error => console.log(error));
+// getPopular()
+//   .then(data => {
+//     console.log(data);
+//   })
+//   .catch(error => console.log(error));
 
 // getCategoryList()
 //   .then(data => console.log(data))
