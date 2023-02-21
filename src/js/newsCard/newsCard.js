@@ -138,8 +138,11 @@ function linkReadMore(event) {
   readMore.parentNode.parentNode.parentNode.classList.add('opacity');
   addReadMore(readMore);
   // Have read
-  const btn = event.target.closest(`.news__item`);
-  const Readmorestatus = btn.children[0].children[2];
+  const btn = event.target.closest(`.news__article`);
+  console.log(btn);
+
+  const Readmorestatus = btn.parentNode.children[0].children[0].children[2];
+  // const Readmorestatus = btn.children[0].children[2];
   console.log(Readmorestatus);
 
   Readmorestatus.classList.remove('hidden');
