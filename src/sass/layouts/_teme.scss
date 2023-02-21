@@ -43,4 +43,24 @@ body.darkMode {
   .theme-icon__dark {
     fill: var(--switcher-on);
   }
+
+  .read-news__btn {
+    color: var(--text-color);
+  }
+
+  .menu-icon__close {
+    fill: var(--text-color);
+  }
+
+  .menu-both {
+    color: var(--text-color);
+  }
+
+  .menu-icon__arrow {
+    stroke: var(--bg-color);
+  }
+
+  .mobile-menu__current .menu-icon__arrow {
+    stroke: var(--text-color);
+  }
 }
