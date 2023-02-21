@@ -5,7 +5,21 @@
 	--incative-text: rgba(60, 60, 67, 0.3);
 	--border-inactive: rgba(162, 162, 162, 1);	
 }
+.calendar-form{
+	display: flex;
+	align-items: center;
+}
 
+.calendar-form__text{
+	visibility: hidden;
+	opacity: 0;
+	margin-right: 40px;
+
+	@include desktop {
+		visibility: visible;
+		opacity: 1;
+	}  
+}
 .choseDataButton{
 	width: 151px;
 	height: 30px;
@@ -104,6 +118,7 @@
 
 .calendar-icon{
 	position: absolute;
+	pointer-events: none;
 	top: 8px;
 	left: 10px;
 	color: var(--blue);
@@ -116,6 +131,7 @@
 
 .dropdown-icon{
 	position: absolute;
+	pointer-events: none;
 	top: 8px;
 	right: 10px;
 	color: var(--incative-text);
