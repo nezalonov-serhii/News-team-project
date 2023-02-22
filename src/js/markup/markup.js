@@ -15,11 +15,8 @@ const error =
 let page = 2;
 let orderedNumber = 0;
 
-refs.form.addEventListener('submit', renderSearchNews);
-
 function saveValuesFromCategoryNews(articles) {
   refs.newsList.innerHTML = '';
-  console.log(arrayNewsCard);
   arrayNewsCard = [];
 
   articles.map(article => {
@@ -39,6 +36,9 @@ function saveValuesFromCategoryNews(articles) {
 }
 
 function saveValuesFromSearchNews(articles) {
+  refs.newsList.innerHTML = '';
+  arrayNewsCard = [];
+
   articles.map(article => {
     arrayNewsCard.push({
       title: article.headline.main,
@@ -84,28 +84,6 @@ function renderPopularNews(articles) {
 
   saveValuesFromPopularNews(articles);
   renderNewsList(arrayNewsCard);
-}
-
-function renderSearchNews(e) {
-  e.preventDefault();
-
-  refs.newsList.innerHTML = '';
-  arrayNewsCard = [];
-
-  const date = refs.celendarDate.dataset.time.replaceAll('-', '');
-  // console.log(date);
-
-  const inputSearchValue = refs.form.elements.inputSearch.value;
-  getSearchArticle(inputSearchValue, date)
-    .then(articles => {
-      saveValuesFromSearchNews(articles);
-      renderNewsList(arrayNewsCard);
-    })
-    .catch()
-    .finally(data => {
-      hideLoader();
-      // reset()
-    });
 }
 
 // function renderNewsCategory(e) {
@@ -187,6 +165,7 @@ export {
   renderPopularNews,
   arrayNewsCard,
   saveValuesFromCategoryNews,
+  saveValuesFromSearchNews,
 };
 function normolizeDate(date) {
   return date.slice(0, 10);
