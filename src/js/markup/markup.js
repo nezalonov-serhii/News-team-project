@@ -6,9 +6,11 @@ import {
   getSearchArticle,
   getDataByCategory,
 } from '../api/news';
+
 import { createNewsCard } from '../markup/card';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { fillWeather } from '../weather/weather';
+import { newsCardTextFormat } from '../newsCard/newsCard';
 
 const error =
   'https://img.freepik.com/free-vector/404-error-with-cute-animal-concept-illustration_114360-1931.jpg';
@@ -57,37 +59,30 @@ function saveValuesFromSearchNews(articles) {
 }
 
 function saveValuesFromPopularNews(articles) {
-  return articles.map(article => {
-    return {
-      id: article.id,
-      media: `${
-        article.media?.[0]?.['media-metadata']?.[2]?.url
-          ? article.media?.[0]?.['media-metadata']?.[2]?.url
-          : error
-      }`,
+  articles.map(article => {
+    arrayNewsCard.push({
       title: article.title,
-      section: article.section,
-      abstract: newsCardTextFormat(article.abstract),
-      published_date: article.published_date,
+      media: `${
+        article.media[0] === undefined
+          ? error
+          : article.media[0]['media-metadata'][2].url
+      }`,
       url: article.url,
+      published_date: article.published_date,
+      section: article.section,
+      abstract: article.abstract,
+      id: article.id,
       uri: article.uri,
-    };
+    });
   });
 }
 
-function newsCardTextFormat(element) {
-  let textFormat = element;
-  if (textFormat.length > 80) {
-    textFormat = element.slice(0, 80) + '...';
-  }
-  return textFormat;
-}
-
 function renderPopularNews(articles) {
-  const cardArray = saveValuesFromPopularNews(articles);
+  refs.newsList.innerHTML = '';
+  arrayNewsCard = [];
 
-  resetNewsList();
-  renderNewsList(cardArray);
+  saveValuesFromPopularNews(articles);
+  renderNewsList(arrayNewsCard);
 }
 
 function renderSearchNews(e) {
@@ -97,8 +92,7 @@ function renderSearchNews(e) {
   const date = refs.celendarDate.dataset.time.replaceAll('-', '');
 
   const inputSearchValue = refs.form.elements.inputSearch.value;
-
-  getSearchArticle(inputSearchValue, page, date)
+  getSearchArticle(inputSearchValue, date)
     .then(articles => {
       const cardArray = saveValuesFromSearchNews(articles);
       renderNewsList(cardArray);
@@ -180,7 +174,7 @@ function createMarkupWidgetWeather() {
 
 export {
   renderNewsList,
-  updateNewsList,
+  updateNewList,
   createMarkupWidgetWeather,
   orderedNumber,
   renderPopularNews,

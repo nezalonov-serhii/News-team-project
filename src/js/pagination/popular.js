@@ -1,6 +1,8 @@
 import { getPopular } from '../api/news';
 import { renderPopularNews } from '../markup/markup';
 import { refs } from '../refs/refs';
+import { hideLoader } from '../loader/loader';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 let totalPage = 0;
 let currentPage = 0;
@@ -76,28 +78,29 @@ getPopular()
       renderPage(currentPage);
       getRightAmount();
       renderPopularNews(rightAmount);
-      activePage(e);
 
       if (currentPage > 0) refs.prevBtn.disabled = false;
       else refs.prevBtn.disabled = true;
 
-      if (currentPage > totalPage - 3) {
+      if (currentPage > totalPage - 2) {
         refs.nextBtn.disabled = true;
       } else refs.nextBtn.disabled = false;
     }
 
-    function activePage(e) {
-      const allBtns = document.querySelectorAll('.pg-item');
-      allBtns.forEach(btn => {
-        btn.classList.remove('active');
-        if (
-          e.target.getAttribute('data-page') === btn.getAttribute('data-page')
-        )
-          btn.classList.add('active');
-      });
+    refs.filterCategories.addEventListener('click', removeListner);
+
+    function removeListner() {
+      refs.pgContainer.removeEventListener('click', clickOnPage);
+      refs.nextBtn.removeEventListener('click', nextBtnClick);
+      refs.pgContainer.removeEventListener('click', clickOnPage);
+
+      refs.prevBtn.disabled = true;
+      refs.nextBtn.disabled = false;
     }
   })
-  .catch();
+
+  .catch(error => Notify.failure('Error: ' + error.message))
+  .finally(hideLoader);
 
 function renderPage(currentPage) {
   let marcup = '';
@@ -111,7 +114,6 @@ function renderPage(currentPage) {
     }
     if (currentPage >= rightAmount.length) {
       const allBtns = document.querySelectorAll('.pg-item');
-      console.log(allBtns);
       allBtns[allBtns.length - 1].classList.add('active');
       allBtns[allBtns.length - 2].classList.remove('active');
       return;
