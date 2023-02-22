@@ -15,10 +15,12 @@ let page = 2;
 let orderedNumber = 0;
 
 refs.form.addEventListener('submit', renderSearchNews);
-refs.filterCategories.addEventListener('click', renderNewsCategory);
 
 function saveValuesFromCategoryNews(articles) {
-  console.log(articles);
+  refs.newsList.innerHTML = '';
+  console.log(arrayNewsCard);
+  arrayNewsCard = [];
+
   articles.map(article => {
     arrayNewsCard.push({
       title: article.title,
@@ -104,28 +106,6 @@ function renderSearchNews(e) {
       // reset()
     });
 }
-function renderNewsCategory(e) {
-  console.log(e.target);
-  console.log(refs.filterOthers);
-  if (e.target.nodeName !== 'BUTTON' || e.target === refs.filterOthers) {
-    return;
-  }
-  const categoryName = e.target.dataset.category_name;
-
-  console.log(categoryName);
-
-  getDataByCategory(categoryName)
-    .then(articles => {
-      refs.newsList.innerHTML = '';
-      arrayNewsCard = [];
-
-      saveValuesFromCategoryNews(articles);
-      renderNewsList(arrayNewsCard);
-    })
-    .catch()
-    .finally(hideLoader());
-}
-
 function renderNewsList(arrayNewsCard) {
   const markup = arrayNewsCard.reduce((previousValue, article, index) => {
     orderedNumber += 1;
@@ -152,4 +132,6 @@ export {
   createMarkupWidgetWeather,
   orderedNumber,
   renderPopularNews,
+  arrayNewsCard,
+  saveValuesFromCategoryNews,
 };
