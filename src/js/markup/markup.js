@@ -136,8 +136,8 @@ function createMarkupWidgetWeather() {
     <div class="weather__item">
       <span class="weather__value"></span>
       <p class="weather__location">
-        <svg>
-          <use href="./images/sprite.svg#location"></use>
+        <svg class="weather__svg">
+          <use href="../images/sprite.svg#location"></use>
         </svg>
         <span class="weather__city"></span>
       </p>
@@ -148,7 +148,7 @@ function createMarkupWidgetWeather() {
     <p class="weather__day"></p>
     <p class="weather__year"></p>
   </div>
-  <a href="https://sinoptik.ua/" class="weather__link" target="_blank" rel="noreferrer noopener">weather for week</a>
+  <a href="https://sinoptik.ua/" class="weather__btn" target="_blank" rel="noreferrer noopener"><span class="weather__text">weather for week</span></a>
 </li>`;
 }
 
