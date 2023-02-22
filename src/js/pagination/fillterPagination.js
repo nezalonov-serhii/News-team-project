@@ -34,6 +34,7 @@ function renderNewsCategory(e) {
 
   getDataByCategory(categoryName)
     .then(news => {
+      currentPage = 0;
       totalPage = Math.ceil(news.length / newsPerPage);
 
       function getRightAmount() {
@@ -82,8 +83,6 @@ function renderNewsCategory(e) {
       refs.pgContainer.addEventListener('click', clickOnPage);
 
       function clickOnPage(e) {
-        refs.newsList.innerHTML = '';
-        arrayNewsCard = [];
         if (e.target.nodeName === 'UL' || e.target.classList.contains('active'))
           return;
 

@@ -63,8 +63,6 @@ function onInput(e) {
         });
 
         refs.nextBtn.addEventListener('click', e => {
-          refs.newsList.innerHTML = '';
-          arrayNewsCard = [];
           currentPage++;
 
           getRightAmount();
