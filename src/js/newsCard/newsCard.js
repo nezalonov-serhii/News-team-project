@@ -95,32 +95,49 @@ function linkReadMore(event) {
 
 //Додаємо в Readmore
 
-function addReadMore(readMore) {
+function addReadMore(btn) {
+  const data = localStorage.getItem('news');
+
+  let newLocalStorage = [];
+
+  if (data) {
+    newLocalStorage = JSON.parse(localStorage.getItem('news'));
+  }
+
+  const newsIndex = newLocalStorage.findIndex(
+    item => item.id === btn.closest('.news__article').dataset.id
+  );
+
+  if (newsIndex > -1) {
+    const evenDateNow = new Date();
+
+    newLocalStorage[newsIndex].read = true;
+    newLocalStorage[newsIndex].dayRead = evenDateNow
+      .toLocaleDateString([], options)
+      .replaceAll('.', '/');
+    localStorage.setItem(`news`, JSON.stringify(newLocalStorage));
+    return;
+  }
+
   const evenDateNow = new Date();
   const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
   const readDateNow = evenDateNow
     .toLocaleDateString([], options)
     .replaceAll('.', '/');
-  const read = {
-    id: readMore.parentNode.parentNode.dataset.id,
-    uri: readMore.nextElementSibling.textContent,
-    published_date: readMore.parentNode.firstElementChild.innerText,
-    media: readMore.parentNode.parentNode.childNodes[1].children[0].currentSrc,
-    title: readMore.parentNode.parentNode.childNodes[3].children[0].innerText,
-    abstract:
-      readMore.parentNode.parentNode.childNodes[3].children[1].innerText,
-    url: readMore.parentNode.children[1].href,
-    read: 'true',
-    section: readMore.parentNode.parentNode.childNodes[1].children[1].innerHTML,
+  const readNews = {
+    id: btn.parentNode.parentNode.dataset.id,
+    uri: btn.nextElementSibling.textContent,
+    published_date: btn.parentNode.firstElementChild.innerText,
+    media: btn.parentNode.parentNode.childNodes[1].children[0].currentSrc,
+    title: btn.parentNode.parentNode.childNodes[3].children[0].innerText,
+    abstract: btn.parentNode.parentNode.childNodes[3].children[1].innerText,
+    url: btn.parentNode.children[1].href,
+    read: true,
+    section: btn.parentNode.parentNode.childNodes[1].children[1].innerHTML,
     dayRead: readDateNow,
   };
-  for (let i = 0; i < readMoreId.length; i += 1) {
-    if (readMoreId[i].uri === read.uri) {
-      return;
-    }
-  }
-  readMoreId.push(read);
-  localStorage.setItem(`news`, JSON.stringify(readMoreId));
+  newLocalStorage.push(readNews);
+  localStorage.setItem(`news`, JSON.stringify(newLocalStorage));
 }
 
 //
