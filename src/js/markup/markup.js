@@ -164,4 +164,5 @@ export {
   renderPopularNews,
   saveValuesFromCategoryNews,
   saveValuesFromSearchNews,
+  arrayNewsCard,
 };

@@ -34,7 +34,7 @@ function onInput(e) {
     const date = refs.celendarDate.dataset.time.replaceAll('-', '');
     getSearchArticle(inputValue, date)
       .then(news => {
-        // renderNewsList(arrayNewsCard);
+        currentPage = 0;
 
         totalPage = Math.ceil(news.length / newsPerPage);
 
