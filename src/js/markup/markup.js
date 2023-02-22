@@ -8,7 +8,7 @@ import {
 } from '../api/news';
 import { createNewsCard } from '../markup/card';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
+import { fillWeather } from '../weather/weather';
 
 const error =
   'https://img.freepik.com/free-vector/404-error-with-cute-animal-concept-illustration_114360-1931.jpg';
@@ -41,7 +41,6 @@ function saveValuesFromSearchNews(articles) {
     return {
       id: article._id,
       media: `${
-
         article.multimedia?.[0]?.url
           ? `https://static01.nyt.com/${article.multimedia[0].url}`
           : error
@@ -103,14 +102,12 @@ function renderSearchNews(e) {
     .then(articles => {
       const cardArray = saveValuesFromSearchNews(articles);
       renderNewsList(cardArray);
-
     })
     .catch()
     .finally(data => {
       hideLoader();
     });
 }
-
 
 function renderNewsCategory(e) {
   console.log(e.target);
@@ -136,36 +133,23 @@ function renderNewsCategory(e) {
     .finally(hideLoader());
 }
 
-
-function renderNewsList(arrayNewsCard) {
-  const markup = arrayNewsCard.reduce((previousValue, article, index) => {
-    orderedNumber += 1;
-
-    if (index === 2) {
-      return (
-        createMarkupWidgetWeather() +
-        previousValue +
-        createNewsCard(article, orderedNumber)
-      );
-    }
-
-
-  }, '');
-
-  updateNewsList(markup);
-  orderedNumber = 0;
-}
-
-function updateNewsList(markup) {
+async function renderNewsList(arrayNewsCard) {
+  let markup = arrayNewsCard.map(item => createNewsCard(item)).join('');
+  markup += await fillWeather();
+  // updateNewsList(markup);
   refs.newsList.innerHTML = markup;
-  const deg = document.querySelector('.weather__degree');
-  const value = document.querySelector('.weather__value');
-  const city = document.querySelector('.weather__city');
-  const day = document.querySelector('.weather__day');
-  const year = document.querySelector('.weather__year');
-  const imgWeather = document.querySelector('.weather__image');
-  fillWeather(deg, value, city, day, year, imgWeather);
 }
+
+// function updateNewsList(markup) {
+//   refs.newsList.innerHTML = markup;
+//   const deg = document.querySelector('.weather__degree');
+//   const value = document.querySelector('.weather__value');
+//   const city = document.querySelector('.weather__city');
+//   const day = document.querySelector('.weather__day');
+//   const year = document.querySelector('.weather__year');
+//   const imgWeather = document.querySelector('.weather__image');
+//   fillWeather(deg, value, city, day, year, imgWeather);
+// }
 
 function resetNewsList() {
   refs.newsList.innerHTML = '';
