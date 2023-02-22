@@ -21,15 +21,16 @@ refs.filterCategories.addEventListener('click', renderNewsCategory);
 
 
 function saveValuesFromCategoryNews(articles) {
-  console.log(articles);
+ 
   articles.map(article => {
+  
     arrayNewsCard.push({
       title: article.title,
       media: `${
-        article.multimedia === null ? error : `${article.multimedia[3].url}`
+        article.multimedia === null ? error : `${article.multimedia[2].url}`
       }`,
       url: article.url,
-      published_date: article.published_date,
+      published_date: `${normolizeDate(article.published_date)}`,
       section: article.section,
       abstract: article.abstract,
       id: article.id,
@@ -40,18 +41,19 @@ function saveValuesFromCategoryNews(articles) {
 
 function saveValuesFromSearchNews(articles) {
   articles.map(article => {
+    
     arrayNewsCard.push({
       title: article.headline.main,
 
       media: `${
-        // article.multimedia[0] === undefined 
-        article.multimedia.length === 0
+        article.multimedia[0] === undefined 
+        // article.multimedia.length === 0
           ? error
           : `https://static01.nyt.com/${article.multimedia[0].url}`
       }`,
 
       url: article.url,
-      published_date: article.pub_date,
+      published_date: `${normolizeDate(article.pub_date)}`,
       section: article.section_name,
       abstract: article.abstract,
       id: article._id,
@@ -61,6 +63,7 @@ function saveValuesFromSearchNews(articles) {
 }
 function saveValuesFromPopularNews(articles) {
   articles.map(article => {
+    
     arrayNewsCard.push({
       title: article.title,
       media: `${
@@ -69,7 +72,7 @@ function saveValuesFromPopularNews(articles) {
           : article.media[0]['media-metadata'][2].url
       }`,
       url: article.url,
-      published_date: article.published_date,
+      published_date:article.published_date,
       section: article.section,
       abstract: article.abstract,
       id: article.id,
@@ -93,12 +96,12 @@ function renderSearchNews(e) {
   arrayNewsCard = [];
 
   const date = refs.celendarDate.dataset.time.replaceAll('-', '');
-  console.log(date);
+  // console.log(date);
 
   const inputSearchValue = refs.form.elements.inputSearch.value;
   getSearchArticle(inputSearchValue, page, date)
     .then(articles => {
-      // console.log(articles);
+      
       saveValuesFromSearchNews(articles);
       renderNewsList(arrayNewsCard);
     })
@@ -109,14 +112,13 @@ function renderSearchNews(e) {
     });
 }
 function renderNewsCategory(e) {
-  console.log(e.target);
-  console.log(refs.filterOthers);
+  
   if (e.target.nodeName !== 'BUTTON' || e.target === refs.filterOthers) {
     return;
   }
   const categoryName = e.target.dataset.category_name;
 
-  console.log(categoryName);
+  // console.log(categoryName);
 
   getDataByCategory(categoryName)
     .then(articles => {
@@ -188,3 +190,6 @@ export {
   orderedNumber,
   renderPopularNews,
 };
+function normolizeDate(date){
+return date.slice(0,10)
+}

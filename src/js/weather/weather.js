@@ -8,7 +8,7 @@ import{refs} from '../refs/refs'
 // const imgWeather = document.querySelector('.weather__image');
 
 const fillWeather = async (deg,value,city,day,year,imgWeather) => {
-  console.log(deg,value,city,day,year,imgWeather)
+ 
   const currentWeather = await getWeather('London');
   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const months = [
@@ -34,7 +34,7 @@ const fillWeather = async (deg,value,city,day,year,imgWeather) => {
   } ${date.getFullYear()}`;
   value.innerText = currentWeather.weather.type;
   imgWeather.src = `http://openweathermap.org/img/wn/${currentWeather.weather.icon}@4x.png`;
-  console.log(currentWeather);
+  // console.log(currentWeather);
 };
 // function fillWeather() {
 //   console.log(refs.deg)
