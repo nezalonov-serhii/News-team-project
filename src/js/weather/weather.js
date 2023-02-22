@@ -1,5 +1,5 @@
 import { getWeather } from '../api/weather';
-import{refs} from '../refs/refs'
+import { refs } from '../refs/refs';
 // const deg = document.querySelector('.weather__degree');
 // const value = document.querySelector('.weather__value');
 // const city = document.querySelector('.weather__city');
@@ -7,8 +7,7 @@ import{refs} from '../refs/refs'
 // const year = document.querySelector('.weather__year');
 // const imgWeather = document.querySelector('.weather__image');
 
-const fillWeather = async (deg,value,city,day,year,imgWeather) => {
- 
+const fillWeather = async (deg, value, city, day, year, imgWeather) => {
   const currentWeather = await getWeather('London');
   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const months = [
@@ -67,7 +66,5 @@ const fillWeather = async (deg,value,city,day,year,imgWeather) => {
 //   console.log(currentWeather);
 // };
 
-
-
 // fillWeather();
-export{fillWeather}
+export { fillWeather };

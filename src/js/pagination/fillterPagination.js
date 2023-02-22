@@ -6,6 +6,9 @@ import {
   renderNewsList,
   arrayNewsCard,
 } from '../markup/markup';
+import { nextBtnClick } from './popular';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 import { refs } from '../refs/refs';
 
 let totalPage = 0;
@@ -28,19 +31,6 @@ function renderNewsCategory(e) {
     return;
   }
 
-  refs.prevBtn.remove();
-  refs.nextBtn.remove();
-
-  const prevPage = `<button class="prev-page" disabled>
-      <a class="fas fa-angle-left"> <span class="s_prew">&#8249;</span> Prew </a>
-    </button>`;
-
-  const nextPage = `<button class="next-page">
-      <a class="fas fa-angle-right"> Next <span class="s_next">&#8250;<span></a>
-    </button>`;
-  refs.pgContainer.insertAdjacentElement('afterend', nextPage);
-  refs.pgContainer.insertAdjacentElement('afterbegin', prevPage);
-
   const categoryName = e.target.dataset.category_name;
 
   getDataByCategory(categoryName)
@@ -59,14 +49,13 @@ function renderNewsCategory(e) {
 
       renderPage(currentPage);
 
-      console.log(arrayNewsCard);
-      renderNewsList(arrayNewsCard);
+      renderNewsList(rightAmount);
 
       refs.prevBtn.addEventListener('click', e => {
         currentPage--;
 
         getRightAmount();
-        renderNewsList(arrayNewsCard);
+        renderNewsList(rightAmount);
 
         prevActive();
         if (currentPage < totalPage) refs.nextBtn.disabled = false;
@@ -76,7 +65,7 @@ function renderNewsCategory(e) {
         currentPage++;
 
         getRightAmount();
-        renderNewsList(arrayNewsCard);
+        renderNewsList(rightAmount);
         nextActive();
 
         if (currentPage > 0) refs.prevBtn.disabled = false;
@@ -103,8 +92,8 @@ function renderNewsCategory(e) {
 
         renderPage(currentPage);
         getRightAmount();
-        renderNewsList(arrayNewsCard);
-        activePage(e);
+        renderNewsList(rightAmount);
+        // activePage(e);
 
         if (currentPage > 0) refs.prevBtn.disabled = false;
         else refs.prevBtn.disabled = true;
@@ -125,20 +114,60 @@ function renderNewsCategory(e) {
         });
       }
     })
-    .catch()
+    .catch(error => Notify.failure('Error: ' + error.message))
     .finally(hideLoader);
 
   function renderPage(currentPage) {
     let marcup = '';
 
     if (window.matchMedia('(max-width: 768px)').matches) {
+      if (currentPage >= totalPage - 1) {
+        const allBtns = document.querySelectorAll('.pg-item');
+        allBtns[allBtns.length - 1].classList.add('active');
+        allBtns[allBtns.length - 2].classList.remove('active');
+        refs.nextBtn.disabled = true;
+        return;
+      }
+
       if (currentPage === 0) {
         refs.prevBtn.disabled = true;
       }
-      if (currentPage === rightAmount.length) {
-        refs.nextBtn.disabled = true;
+      if (currentPage < 3) {
+        for (let i = 0; i < 4; i += 1) {
+          if (i !== currentPage) {
+            marcup += `<li class="pg-item" data-page="${i}"><a>${
+              i + 1
+            }</a></li>`;
+          } else if (i < rightAmount.length) {
+            marcup += `<li class="pg-item active" data-page="${i}"><a>${
+              i + 1
+            }</a></li>`;
+          }
+        }
+      } else if (currentPage >= 3) {
+        for (let i = currentPage - 2; i <= currentPage + 1; i += 1) {
+          if (i !== currentPage) {
+            marcup += `<li class="pg-item" data-page="${i}"><a>${
+              i + 1
+            }</a></li>`;
+          } else {
+            marcup += `<li class="pg-item active" data-page="${i}"><a>${
+              i + 1
+            }</a></li>`;
+          }
+        }
       }
-      if (currentPage >= rightAmount.length) {
+      refs.pgContainer.innerHTML = marcup;
+    } else if (window.matchMedia('(min-width: 768px)').matches) {
+      if (currentPage === totalPage - 1) {
+        refs.nextBtn.disabled = true;
+        return;
+      }
+      if (currentPage === 0) {
+        refs.prevBtn.disabled = true;
+      }
+
+      if (currentPage >= totalPage) {
         const allBtns = document.querySelectorAll('.pg-item');
         console.log(allBtns);
         allBtns[allBtns.length - 1].classList.add('active');
@@ -157,57 +186,13 @@ function renderNewsCategory(e) {
             }</a></li>`;
           }
         }
-      } else if (currentPage === 3) {
+      } else if (currentPage >= 3) {
         for (let i = currentPage - 2; i <= currentPage + 1; i += 1) {
           if (i !== currentPage) {
             marcup += `<li class="pg-item" data-page="${i}"><a>${
               i + 1
             }</a></li>`;
-          } else if (i <= rightAmount.length - 1) {
-            marcup += `<li class="pg-item active" data-page="${i}"><a>${
-              i + 1
-            }</a></li>`;
-          }
-        }
-      }
-      refs.pgContainer.innerHTML = marcup;
-    } else if (window.matchMedia('(min-width: 768px)').matches) {
-      if (currentPage > rightAmount.length) {
-        refs.nextBtn.disabled = true;
-        return;
-      }
-      if (currentPage === 0) {
-        refs.prevBtn.disabled = true;
-      }
-      if (currentPage === totalPage - 1) {
-        refs.nextBtn.disabled = true;
-      }
-      if (currentPage >= rightAmount.length) {
-        const allBtns = document.querySelectorAll('.pg-item');
-        console.log(allBtns);
-        allBtns[allBtns.length - 1].classList.add('active');
-        allBtns[allBtns.length - 2].classList.remove('active');
-        return;
-      }
-      if (currentPage < 3) {
-        for (let i = 0; i < totalPage; i += 1) {
-          if (i !== currentPage) {
-            marcup += `<li class="pg-item" data-page="${i}"><a>${
-              i + 1
-            }</a></li>`;
-          } else if (i < rightAmount.length) {
-            marcup += `<li class="pg-item active" data-page="${i}"><a>${
-              i + 1
-            }</a></li>`;
-          }
-        }
-      } else if (currentPage === 3) {
-        for (let i = currentPage - 2; i <= currentPage + 1; i += 1) {
-          if (i !== currentPage) {
-            marcup += `<li class="pg-item" data-page="${i}"><a>${
-              i + 1
-            }</a></li>`;
-          } else if (i <= rightAmount.length - 1) {
+          } else {
             marcup += `<li class="pg-item active" data-page="${i}"><a>${
               i + 1
             }</a></li>`;
