@@ -157,6 +157,10 @@ function createMarkupWidgetWeather() {
 </li>`;
 }
 
+function normolizeDate(date) {
+  return date.slice(0, 10);
+}
+
 export {
   renderNewsList,
   updateNewList,
@@ -167,6 +171,3 @@ export {
   saveValuesFromCategoryNews,
   saveValuesFromSearchNews,
 };
-function normolizeDate(date) {
-  return date.slice(0, 10);
-}
