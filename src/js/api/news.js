@@ -31,7 +31,6 @@ async function getCategoryList() {
 
 async function getDataByCategory(value) {
   showLoader();
-  console.log(value);
   let normalazeValue = value.toLowerCase();
   let newValue = encodeURIComponent(normalazeValue);
 

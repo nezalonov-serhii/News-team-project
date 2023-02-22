@@ -1,5 +1,6 @@
 import { refs } from '../refs/refs';
 import { hideLoader } from '../loader/loader';
+import Sprite from '../../images/sprite.svg';
 
 import { createNewsCard, newsCardTextFormat } from '../newsCard/newsCard';
 import { fillWeather } from '../weather/weather';
@@ -106,11 +107,11 @@ function renderNewsList(arrayNewsCard) {
   const markup = arrayNewsCard.reduce((previousValue, article, index) => {
     orderedNumber += 1;
 
-    if (index === 2) {
+    if (index === 0) {
       return (
-        createMarkupWidgetWeather() +
         previousValue +
-        createNewsCard(article, orderedNumber)
+        createNewsCard(article, orderedNumber) +
+        createMarkupWidgetWeather()
       );
     }
     return createNewsCard(article, orderedNumber) + previousValue;
@@ -136,8 +137,9 @@ function createMarkupWidgetWeather() {
     <div class="weather__item">
       <span class="weather__value"></span>
       <p class="weather__location">
-        <svg class="weather__svg">
-          <use href="../images/sprite.svg#location"></use>
+
+        <svg>
+          <use href=${Sprite + '#location'}></use>
         </svg>
         <span class="weather__city"></span>
       </p>

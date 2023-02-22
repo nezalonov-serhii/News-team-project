@@ -7,6 +7,7 @@ import { refs } from '../refs/refs';
 // const year = document.querySelector('.weather__year');
 // const imgWeather = document.querySelector('.weather__image');
 const fillWeather = async (deg, value, city, day, year, imgWeather) => {
+
   // Отримання геолокації користувача
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(async position => {
@@ -43,6 +44,7 @@ const fillWeather = async (deg, value, city, day, year, imgWeather) => {
       console.log(error);
     });
   }
+
 };
 // const fillWeather = async (deg, value, city, day, year, imgWeather) => {
 //   const currentWeather = await getWeather('London');
