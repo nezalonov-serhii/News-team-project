@@ -8,6 +8,8 @@ import {
 } from '../markup/markup';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
+let arrayNewsCard = arrayNewsCard;
+
 const form = document.querySelector('.search');
 const input = document.querySelector('.input');
 

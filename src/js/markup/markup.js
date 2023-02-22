@@ -1,11 +1,6 @@
 import { refs } from '../refs/refs';
 import { hideLoader } from '../loader/loader';
-import {
-  getPopular,
-  getCategoryList,
-  getSearchArticle,
-  getDataByCategory,
-} from '../api/news';
+
 import { createNewsCard, newsCardTextFormat } from '../newsCard/newsCard';
 import { fillWeather } from '../weather/weather';
 // fillWeather()
