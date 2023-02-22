@@ -34,13 +34,16 @@ function renderNewsCategory(e) {
 
   getDataByCategory(categoryName)
     .then(news => {
-      console.log(news);
+      refs.newsList.innerHTML = '';
+      currentPage = 0;
+      refs.nextBtn.disabled = false;
+
       refs.filterCategories.addEventListener('click', removeListner);
 
       function removeListner() {
         refs.pgContainer.removeEventListener('click', clickOnPage);
         refs.nextBtn.removeEventListener('click', nextBtnClick);
-        refs.pgContainer.removeEventListener('click', prevBtnClick);
+        refs.prevBtn.removeEventListener('click', prevBtnClick);
 
         refs.prevBtn.disabled = true;
         refs.nextBtn.disabled = false;

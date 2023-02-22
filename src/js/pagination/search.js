@@ -27,7 +27,10 @@ if (window.matchMedia('(max-width: 767.98px)').matches) {
 }
 
 function onInput(e) {
-  console.log(arrayNewsCard);
+  refs.newsList.innerHTML = '';
+  currentPage = 0;
+  refs.nextBtn.disabled = false;
+
   e.preventDefault();
   let inputValue = input.value.trim();
   if (inputValue !== '') {
