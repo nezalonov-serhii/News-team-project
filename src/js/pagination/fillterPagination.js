@@ -27,6 +27,20 @@ function renderNewsCategory(e) {
   if (e.target.nodeName !== 'BUTTON' || e.target === refs.filterOthers) {
     return;
   }
+
+  refs.prevBtn.remove();
+  refs.nextBtn.remove();
+
+  const prevPage = `<button class="prev-page" disabled>
+      <a class="fas fa-angle-left"> <span class="s_prew">&#8249;</span> Prew </a>
+    </button>`;
+
+  const nextPage = `<button class="next-page">
+      <a class="fas fa-angle-right"> Next <span class="s_next">&#8250;<span></a>
+    </button>`;
+  refs.pgContainer.insertAdjacentElement('afterend', nextPage);
+  refs.pgContainer.insertAdjacentElement('afterbegin', prevPage);
+
   const categoryName = e.target.dataset.category_name;
 
   getDataByCategory(categoryName)
@@ -52,7 +66,7 @@ function renderNewsCategory(e) {
         currentPage--;
 
         getRightAmount();
-        renderPopularNews(arrayNewsCard);
+        renderNewsList(arrayNewsCard);
 
         prevActive();
         if (currentPage < totalPage) refs.nextBtn.disabled = false;
@@ -62,7 +76,7 @@ function renderNewsCategory(e) {
         currentPage++;
 
         getRightAmount();
-        renderPopularNews(rightAmount);
+        renderNewsList(arrayNewsCard);
         nextActive();
 
         if (currentPage > 0) refs.prevBtn.disabled = false;
@@ -89,7 +103,7 @@ function renderNewsCategory(e) {
 
         renderPage(currentPage);
         getRightAmount();
-        renderPopularNews(rightAmount);
+        renderNewsList(arrayNewsCard);
         activePage(e);
 
         if (currentPage > 0) refs.prevBtn.disabled = false;
@@ -158,10 +172,10 @@ function renderNewsCategory(e) {
       }
       refs.pgContainer.innerHTML = marcup;
     } else if (window.matchMedia('(min-width: 768px)').matches) {
-      // if (currentPage > rightAmount.length) {
-      //   refs.nextBtn.disabled = true;
-      //   return;
-      // }
+      if (currentPage > rightAmount.length) {
+        refs.nextBtn.disabled = true;
+        return;
+      }
       if (currentPage === 0) {
         refs.prevBtn.disabled = true;
       }
@@ -203,8 +217,6 @@ function renderNewsCategory(e) {
       refs.pgContainer.innerHTML = marcup;
     }
   }
-
-  renderNewsList(arrayNewsCard);
 }
 
 // getPopular()
