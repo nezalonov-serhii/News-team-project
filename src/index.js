@@ -11,7 +11,8 @@ import './js/weather/weather';
 
 import './js/search/search';
 import './js/calendar/calendar';
-import './js/pagination/pagination';
+import './js/pagination/popular';
+import './js/pagination/fillterPagination';
 
 import './js/loader/loader';
 import './js/darkMode/darkMode';

@@ -1,11 +1,7 @@
 import { getPopular, getSearchArticle } from '../api/news';
 import { hideLoader } from '../loader/loader';
-
-const form = document.querySelector('.search');
-const input = document.querySelector('.input');
-
-form.addEventListener('submit', onInput);
-
+import { refs } from '../refs/refs';
+refs;
 // getPopular()
 //   .then(data => {
 //     // console.log(data);
@@ -22,17 +18,17 @@ form.addEventListener('submit', onInput);
 //   .then(data => console.log(data))
 //   .catch(error => console.log(error));
 
+const form = document.querySelector('.search');
+const input = document.querySelector('.input');
+
+form.addEventListener('submit', onInput);
+
 function onInput(e) {
   e.preventDefault();
-  const inputValue = input.value.trim();
+  let inputValue = input.value.trim();
+  let date = refs.celendarDate.getAttribute('data-time');
+  console.log(date);
   if (inputValue === '') {
-    return;
+    console.log(getSearchArticle(inputValue, date));
   }
-
-  // form.reset();
-
-  // getSearchArticle(inputValue)
-  //   .then(data => console.log(data))
-  //   .catch(error => console.log(error))
-  //   .finally(hideLoader);
 }

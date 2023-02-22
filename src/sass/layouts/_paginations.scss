@@ -33,7 +33,7 @@
   }
 }
 .page-container a {
-  padding: 4px 12px;
+  padding: 4px 10px;
   font-family: Manrope;
   font-size: 14px;
   font-weight: 500;
@@ -182,9 +182,10 @@ button.next-page {
   text-align: left;
 }
 
-// .pagination-hidden {
-//   display: none;
-// }
+.pagination-opacity {
+  opacity: 0.5;
+  pointer-events: none;
+}
 
 a.fas {
   display: flex;

@@ -16,12 +16,15 @@ let page = 2;
 let orderedNumber = 0;
 
 refs.form.addEventListener('submit', renderSearchNews);
-refs.filterCategories.addEventListener('click', renderNewsCategory);
 
 
 
 function saveValuesFromCategoryNews(articles) {
- 
+
+  refs.newsList.innerHTML = '';
+  console.log(arrayNewsCard);
+  arrayNewsCard = [];
+
   articles.map(article => {
   
     arrayNewsCard.push({
@@ -111,26 +114,28 @@ function renderSearchNews(e) {
       // reset()
     });
 }
-function renderNewsCategory(e) {
+
+// function renderNewsCategory(e) {
   
-  if (e.target.nodeName !== 'BUTTON' || e.target === refs.filterOthers) {
-    return;
-  }
-  const categoryName = e.target.dataset.category_name;
+ // if (e.target.nodeName !== 'BUTTON' || e.target === refs.filterOthers) {
+ //   return;
+ // }
+ // const categoryName = e.target.dataset.category_name;
 
   // console.log(categoryName);
 
-  getDataByCategory(categoryName)
-    .then(articles => {
-      refs.newsList.innerHTML = '';
-      arrayNewsCard = [];
+ // getDataByCategory(categoryName)
+ //   .then(articles => {
+ //     refs.newsList.innerHTML = '';
+ //     arrayNewsCard = [];
 
-      saveValuesFromCategoryNews(articles);
-      renderNewsList(arrayNewsCard);
-    })
-    .catch()
-    .finally(hideLoader());
-}
+ //     saveValuesFromCategoryNews(articles);
+//      renderNewsList(arrayNewsCard);
+ //   })
+ // .catch()
+ //   .finally(hideLoader());
+//}
+
 
 function renderNewsList(arrayNewsCard) {
   const markup = arrayNewsCard.reduce((previousValue, article, index) => {
@@ -189,6 +194,8 @@ export {
   createMarkupWidgetWeather,
   orderedNumber,
   renderPopularNews,
+  arrayNewsCard,
+  saveValuesFromCategoryNews,
 };
 function normolizeDate(date){
 return date.slice(0,10)

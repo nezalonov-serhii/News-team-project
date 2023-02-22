@@ -10,6 +10,10 @@
 
   transform: translateX(100%);
   transition: transform 250ms ease-in-out;
+
+  @include tablet {
+      display: none;
+    }
 }
 
 .menu-container.is-open {
@@ -29,9 +33,6 @@
   letter-spacing: 0.02em;
   margin-top: 0;
   margin-bottom: 302px;
-  li {
-    padding-right: 12px;
-  }
 
   &__item {
     display: flex;
@@ -54,6 +55,7 @@
     margin: 0 -25px 18px -16px;
     padding-left: 16px;
     padding-right: 16px;
+
   }
 }
 .menu-both {
@@ -81,6 +83,7 @@
 .menu-icon__arrow {
   stroke: var(--white-color);
   fill: transparent;
+  margin-right: 25px;
 }
 
 .theme {
