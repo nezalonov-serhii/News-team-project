@@ -4,7 +4,7 @@
   "description": "",
   "homepage": "https://nezalonov-serhii.github.io/News-team-project",
   "scripts": {
-    "start": "parcel src/*.html --open",
+    "start": "parcel src/*.html --open --no-cache",
     "build": "parcel build src/*.html --public-url /News-team-project/"
   },
   "repository": {
