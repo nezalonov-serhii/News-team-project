@@ -143,7 +143,6 @@ function onInput(e) {
       }
 
       if (totalPage < 4) {
-        console.log('1');
         for (let i = 0; i < totalPage; i += 1) {
           if (i !== currentPage) {
             marcup += `<li class="pg-item" data-page="${i}"><a>${
@@ -156,7 +155,6 @@ function onInput(e) {
           }
         }
       } else if (currentPage < 2) {
-        console.log('2');
         for (let i = 0; i < totalPage; i += 1) {
           if (i !== currentPage) {
             marcup += `<li class="pg-item" data-page="${i}"><a>${
@@ -169,7 +167,6 @@ function onInput(e) {
           }
         }
       } else {
-        console.log('3');
         for (let i = currentPage - 2; i <= currentPage + 1; i += 1) {
           if (i !== currentPage) {
             marcup += `<li class="pg-item" data-page="${i}"><a>${

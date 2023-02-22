@@ -118,7 +118,6 @@ getPopular()
 
 function renderPage(currentPage) {
   let marcup = '';
-  console.log(currentPage >= totalPage - 2);
   if (currentPage >= totalPage - 1) {
     const allBtns = document.querySelectorAll('.pg-item');
     allBtns[allBtns.length - 1].classList.add('active');
@@ -131,7 +130,6 @@ function renderPage(currentPage) {
   }
 
   if (totalPage < 4) {
-    console.log('1');
     for (let i = 0; i < totalPage; i += 1) {
       if (i !== currentPage) {
         marcup += `<li class="pg-item" data-page="${i}"><a>${i + 1}</a></li>`;
@@ -142,7 +140,6 @@ function renderPage(currentPage) {
       }
     }
   } else if (currentPage < 2) {
-    console.log('2');
     for (let i = 0; i < 4; i += 1) {
       if (i !== currentPage) {
         marcup += `<li class="pg-item" data-page="${i}"><a>${i + 1}</a></li>`;
@@ -153,7 +150,6 @@ function renderPage(currentPage) {
       }
     }
   } else {
-    console.log('3');
     for (let i = currentPage - 2; i <= currentPage + 1; i += 1) {
       if (i !== currentPage) {
         marcup += `<li class="pg-item" data-page="${i}"><a>${i + 1}</a></li>`;

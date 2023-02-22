@@ -125,7 +125,6 @@ function renderNewsCategory(e) {
 
   function renderPage(currentPage) {
     let marcup = '';
-    console.log(currentPage >= totalPage - 2);
     if (currentPage >= totalPage - 1) {
       const allBtns = document.querySelectorAll('.pg-item');
       allBtns[allBtns.length - 1].classList.add('active');

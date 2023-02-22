@@ -25,15 +25,14 @@ const fillWeather = async (deg, value, city, day, year, imgWeather) => {
     'Dec',
   ];
   const date = new Date();
-  // deg.innerText = `${Math.round(currentWeather.temp)}°`;
-  // city.innerText = currentWeather.location;
-  // day.innerText = days[date.getDay()];
-  // year.innerText = `${date.getDate()} ${
-  //   months[date.getMonth()]
-  // } ${date.getFullYear()}`;
-  // value.innerText = currentWeather.weather.type;
-  // imgWeather.src = `https://openweathermap.org/img/wn/${currentWeather.weather.icon}@4x.png`;
-  // console.log(currentWeather);
+  deg.innerText = `${Math.round(currentWeather.temp)}°`;
+  city.innerText = currentWeather.location;
+  day.innerText = days[date.getDay()];
+  year.innerText = `${date.getDate()} ${
+    months[date.getMonth()]
+  } ${date.getFullYear()}`;
+  value.innerText = currentWeather.weather.type;
+  imgWeather.src = `https://openweathermap.org/img/wn/${currentWeather.weather.icon}@4x.png`;
 };
 // function fillWeather() {
 //   console.log(refs.deg)
