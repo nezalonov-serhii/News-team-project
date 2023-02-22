@@ -7,7 +7,6 @@ export function btnAddToFavorite(event) {
   const data = localStorage.getItem('news');
   let newLocalStorage = [];
 
-
   if (data) {
     newLocalStorage = JSON.parse(localStorage.getItem('news'));
   }
@@ -38,7 +37,6 @@ export function btnAddToFavorite(event) {
 
   addToFavoriteLocal(btn);
   // localStorage.setItem(`news`, JSON.stringify(newLocalStorage));
-
 }
 
 function addToFavoriteLocal(btn) {
@@ -48,7 +46,6 @@ function addToFavoriteLocal(btn) {
   if (data) {
     newLocalStorage = JSON.parse(localStorage.getItem('news'));
   }
-
 
   const newsIndex = newLocalStorage.findIndex(
     item => item.id === btn.closest('.news__article').dataset.id
@@ -78,7 +75,6 @@ function addToFavoriteLocal(btn) {
   };
 
   for (let i = 0; i < newLocalStorage.length; i += 1) {
-
     if (newLocalStorage[i].uri === news.uri) return;
   }
 
