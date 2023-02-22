@@ -32,7 +32,7 @@ const fillWeather = async (deg, value, city, day, year, imgWeather) => {
     months[date.getMonth()]
   } ${date.getFullYear()}`;
   value.innerText = currentWeather.weather.type;
-  imgWeather.src = `http://openweathermap.org/img/wn/${currentWeather.weather.icon}@4x.png`;
+  imgWeather.src = `https://openweathermap.org/img/wn/${currentWeather.weather.icon}@4x.png`;
   // console.log(currentWeather);
 };
 // function fillWeather() {

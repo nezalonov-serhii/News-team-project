@@ -1,11 +1,6 @@
 import { refs } from '../refs/refs';
 import { hideLoader } from '../loader/loader';
-import {
-  getPopular,
-  getCategoryList,
-  getSearchArticle,
-  getDataByCategory,
-} from '../api/news';
+
 import { createNewsCard, newsCardTextFormat } from '../newsCard/newsCard';
 import { fillWeather } from '../weather/weather';
 // fillWeather()
@@ -15,12 +10,10 @@ const error =
 let page = 2;
 let orderedNumber = 0;
 
-refs.form.addEventListener('submit', renderSearchNews);
-
 function saveValuesFromCategoryNews(articles) {
-  // refs.newsList.innerHTML = '';
+
   clearNewsList()
-  console.log(arrayNewsCard);
+
   arrayNewsCard = [];
 
   articles.map(article => {
@@ -40,6 +33,9 @@ function saveValuesFromCategoryNews(articles) {
 }
 
 function saveValuesFromSearchNews(articles) {
+  refs.newsList.innerHTML = '';
+  arrayNewsCard = [];
+
   articles.map(article => {
     arrayNewsCard.push({
       title: article.headline.main,
@@ -88,6 +84,7 @@ function renderPopularNews(articles) {
   renderNewsList(arrayNewsCard);
 }
 
+
 function renderSearchNews(e) {
   e.preventDefault();
 
@@ -110,6 +107,7 @@ function renderSearchNews(e) {
       // reset()
     });
 }
+
 
 // function renderNewsCategory(e) {
 
@@ -187,15 +185,10 @@ function createMarkupWidgetWeather() {
 </li>`;
 }
 
-export {
-  renderNewsList,
-  updateNewList,
-  createMarkupWidgetWeather,
-  orderedNumber,
-  renderPopularNews,
-  arrayNewsCard,
-  saveValuesFromCategoryNews,
-};
+function normolizeDate(date) {
+  return date.slice(0, 10);
+}
+
 function normolizeDate(date) {
   return date.slice(0, 10);
 }
@@ -235,3 +228,14 @@ function checkIndex(
 function clearNewsList(){
   refs.newsList.innerHTML = '';
 }
+
+export {
+  renderNewsList,
+  updateNewList,
+  createMarkupWidgetWeather,
+  orderedNumber,
+  renderPopularNews,
+  saveValuesFromCategoryNews,
+  saveValuesFromSearchNews,
+  arrayNewsCard,
+};

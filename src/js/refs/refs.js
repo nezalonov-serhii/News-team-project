@@ -29,6 +29,19 @@ const refs = {
   prevBtn: document.querySelector('.prev-page'),
   nextBtn: document.querySelector('.next-page'),
   pgContainer: document.querySelector('#pagination'),
+
+
+  //mobile
+  homePage: document.querySelector('#home'),
+  favouritePage: document.querySelector('#favourite'),
+  readPage: document.querySelector('#read'),
+  logoHomePage: document.querySelector('.logo'),
+  logoHomePageMenu: document.querySelector('#mob-logo'),
+  menuOpentBtn: document.querySelector('#btn-open'),
+  mobileMenu: document.querySelector('.js-menu-container'),
+  openMenuBtn: document.querySelector('.js-open-menu'),
+  closeMenuBtn: document.querySelector('.js-close-menu'),
+
   // weather
   // deg :document.querySelector('.weather__degree'),
   // value:document.querySelector('.weather__value'),
@@ -36,6 +49,7 @@ const refs = {
   // day :document.querySelector('.weather__day'),
   // year :document.querySelector('.weather__year'),
   // imgWeather:document.querySelector('.weather__image'),
+
 };
 
 export { refs };

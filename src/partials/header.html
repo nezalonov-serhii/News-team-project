@@ -16,39 +16,36 @@
             <use href="./images/sprite.svg#search-icon"></use>
           </svg>
         </button>
-        <input type="text" class="input" placeholder="Search" name ="inputSearch" />
+
+        <input type="text" class="input" placeholder="Search" name="inputSearch" required />
+        
       </form>
 
       <!-- прятать в мобильной версии а на десктопе показывать переключатель темы-->
       <div class="theme theme--descktop">
         <p class="theme-icon-text theme-icon-text-light theme__light">Light</p>
-        <svg
-          class="theme-icon theme-icon__light theme-icon-descktop"
-          width="21"
-          height="21"
-        >
+        <svg class="theme-icon theme-icon__light theme-icon-descktop" width="21" height="21">
           <use href="./images/sprite.svg#sun"></use>
         </svg>
         <label class="switch">
           <input type="checkbox" class="switch-checkbox" />
           <span class="slider round"></span>
         </label>
-        <svg
-          class="theme-icon theme-icon__dark theme-icon-descktop"
-          width="21"
-          height="21"
-        >
+        <svg class="theme-icon theme-icon__dark theme-icon-descktop" width="21" height="21">
           <use href="./images/sprite.svg#moon"></use>
         </svg>
         <p class="theme-icon-text theme-icon-text-dark theme__dark">Dark</p>
       </div>
 
       <!-- Кнопка открывания мобильного меню -->
+
       <button
         class="menu-toggle js-open-menu mobile-btn-open"
         aria-expanded="false"
         aria-controls="mobile-menu"
-      >
+        id="btn-open"
+
+
         <svg class="icon" width="24" height="24">
           <use href="./images/sprite.svg#mobile-menu"></use>
         </svg>

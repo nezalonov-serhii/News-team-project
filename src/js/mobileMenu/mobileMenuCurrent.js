@@ -1,39 +1,48 @@
-const homePage = document.querySelector('#home');
-const favouritePage = document.querySelector('#favourite');
-const readPage = document.querySelector('#read');
-const logoHomePage = document.querySelector('.logo');
-const logoHomePageMenu = document.querySelector('#mob-logo');
+import { refs } from '../refs/refs';
 
-const arr = [homePage, favouritePage, readPage];
+const arr = [refs.homePage, refs.favouritePage, refs.readPage];
+
 
 const currentPage = localStorage.getItem('currentPage') || 'home';
 
-// Set the initial current page based on the value retrieved from localStorage
 document.querySelector(`#${currentPage}`).classList.add('mobile-menu__current');
 
-homePage.addEventListener('click', changeCurrentPageLink);
-favouritePage.addEventListener('click', changeCurrentPageLink);
-readPage.addEventListener('click', changeCurrentPageLink);
-logoHomePage.addEventListener('click', changeCurrentPageLogo);
-logoHomePageMenu.addEventListener('click', changeCurrentPageLogo);
+refs.homePage.addEventListener('click', changeCurrentPageLink);
+refs.favouritePage.addEventListener('click', changeCurrentPageLink);
+refs.readPage.addEventListener('click', changeCurrentPageLink);
+refs.logoHomePage.addEventListener('click', changeCurrentPageLogo);
+refs.logoHomePageMenu.addEventListener('click', changeCurrentPageLogo);
 
+
+refs.menuOpentBtn.addEventListener("click", pageLoad);
 
 function changeCurrentPageLink(event) {
-
-console.log(event.currentTarget);
     arr.forEach((item) => {
         item.classList.remove('mobile-menu__current');
     })
-
     event.currentTarget.classList.add('mobile-menu__current');
- localStorage.setItem('currentPage', event.currentTarget.id);
+ localStorage.setItem('currentPage', event.currentTarget.id); 
+    
 };
 
-function changeCurrentPageLogo(event) {
+function changeCurrentPageLogo() {
     arr.forEach((item) => {
         item.classList.remove('mobile-menu__current');
     })
 
-    homePage.classList.add('mobile-menu__current');
-    localStorage.setItem('currentPage', homePage.id);
- }
+    refs.homePage.classList.add('mobile-menu__current');
+    localStorage.setItem('currentPage', refs.homePage.id);
+}
+ 
+function pageLoad() { 
+    const currentPageName = window.location.pathname;
+  if (currentPageName === '/index.html') {
+    localStorage.setItem('currentPage', refs.homePage.id);
+    }
+    else if(currentPageName === '/favorite.html'){
+    localStorage.setItem('currentPage', refs.favouritePage.id);      
+    }
+  else if(currentPageName === '/read.html'){
+      localStorage.setItem('currentPage', refs.readPage.id);
+    }
+}

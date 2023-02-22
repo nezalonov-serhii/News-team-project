@@ -34,7 +34,9 @@ getPopular()
 
     renderPopularNews(rightAmount);
 
-    refs.prevBtn.addEventListener('click', e => {
+    refs.prevBtn.addEventListener('click', prevBtnClick);
+
+    function prevBtnClick() {
       currentPage--;
 
       getRightAmount();
@@ -42,7 +44,7 @@ getPopular()
 
       prevActive();
       if (currentPage < totalPage) refs.nextBtn.disabled = false;
-    });
+    }
 
     refs.nextBtn.addEventListener('click', nextBtnClick);
 
@@ -87,16 +89,16 @@ getPopular()
       } else refs.nextBtn.disabled = false;
     }
 
-    refs.filterCategories.addEventListener('click', removeListner);
+    // refs.filterCategories.addEventListener('click', removeListner);
 
-    function removeListner() {
-      refs.pgContainer.removeEventListener('click', clickOnPage);
-      refs.nextBtn.removeEventListener('click', nextBtnClick);
-      refs.pgContainer.removeEventListener('click', clickOnPage);
+    // function removeListner() {
+    //   refs.pgContainer.removeEventListener('click', clickOnPage);
+    //   refs.nextBtn.removeEventListener('click', nextBtnClick);
+    //   refs.pgContainer.removeEventListener('click', prevBtnClick);
 
-      refs.prevBtn.disabled = true;
-      refs.nextBtn.disabled = false;
-    }
+    //   refs.prevBtn.disabled = true;
+    //   refs.nextBtn.disabled = false;
+    // }
   })
 
   .catch(error => Notify.failure('Error: ' + error.message))
