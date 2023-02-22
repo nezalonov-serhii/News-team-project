@@ -29,6 +29,13 @@ const refs = {
   prevBtn: document.querySelector('.prev-page'),
   nextBtn: document.querySelector('.next-page'),
   pgContainer: document.querySelector('#pagination'),
+  // weather
+  // deg :document.querySelector('.weather__degree'),
+  // value:document.querySelector('.weather__value'),
+  // city :document.querySelector('.weather__city'),
+  // day :document.querySelector('.weather__day'),
+  // year :document.querySelector('.weather__year'),
+  // imgWeather:document.querySelector('.weather__image'),
 };
 
 export { refs };
