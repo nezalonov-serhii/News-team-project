@@ -16,7 +16,9 @@
             <use href="./images/sprite.svg#search-icon"></use>
           </svg>
         </button>
+
         <input type="text" class="input" placeholder="Search" name="inputSearch" required />
+        
       </form>
 
       <!-- прятать в мобильной версии а на десктопе показывать переключатель темы-->
@@ -36,7 +38,14 @@
       </div>
 
       <!-- Кнопка открывания мобильного меню -->
-      <button class="menu-toggle js-open-menu mobile-btn-open" aria-expanded="false" aria-controls="mobile-menu">
+
+      <button
+        class="menu-toggle js-open-menu mobile-btn-open"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        id="btn-open"
+
+
         <svg class="icon" width="24" height="24">
           <use href="./images/sprite.svg#mobile-menu"></use>
         </svg>
