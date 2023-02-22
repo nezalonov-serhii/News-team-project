@@ -21,7 +21,7 @@ function saveValuesFromCategoryNews(articles) {
   console.log(articles);
   return articles.map(article => {
     return {
-      id: article.id,
+      id: article.slug_name,
       media: `${
         article.multimedia?.[3]?.url ? article.multimedia?.[3]?.url : error
       }`,
@@ -184,9 +184,10 @@ export {
   createMarkupWidgetWeather,
   orderedNumber,
   renderPopularNews,
-  arrayNewsCard,
   saveValuesFromCategoryNews,
+  renderNewsCategory,
 };
+
 function normolizeDate(date) {
   return date.slice(0, 10);
 }

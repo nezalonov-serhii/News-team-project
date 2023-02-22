@@ -4,7 +4,6 @@ import {
   renderPopularNews,
   saveValuesFromCategoryNews,
   renderNewsList,
-  arrayNewsCard,
 } from '../markup/markup';
 import { refs } from '../refs/refs';
 
@@ -13,7 +12,7 @@ let currentPage = 0;
 let newsPerPage = 0;
 let rightAmount = [];
 
-refs.filterCategories.addEventListener('click', renderNewsCategory);
+// refs.filterCategories.addEventListener('click', renderNewsCategory);
 
 if (window.matchMedia('(max-width: 767.98px)').matches) {
   newsPerPage = 4;
@@ -23,201 +22,85 @@ if (window.matchMedia('(max-width: 767.98px)').matches) {
   newsPerPage = 8;
 }
 
-function renderNewsCategory(e) {
-  if (e.target.nodeName !== 'BUTTON' || e.target === refs.filterOthers) {
-    return;
-  }
+let btnsAreExisted = false;
 
-  refs.prevBtn.remove();
-  refs.nextBtn.remove();
+// export function renderNewsCategory(categoryName, res) {
+//   const result = res;
 
-  const prevPage = `<button class="prev-page" disabled>
-      <a class="fas fa-angle-left"> <span class="s_prew">&#8249;</span> Prew </a>
-    </button>`;
+//   // if (!btnsAreExisted) {
+//   //   const prevPage = `<button class="prev-page" disabled>
+//   //     <a class="fas fa-angle-left"> <span class="s_prew">&#8249;</span> Prew </a>
+//   //   </button>`;
 
-  const nextPage = `<button class="next-page">
-      <a class="fas fa-angle-right"> Next <span class="s_next">&#8250;<span></a>
-    </button>`;
-  refs.pgContainer.insertAdjacentElement('afterend', nextPage);
-  refs.pgContainer.insertAdjacentElement('afterbegin', prevPage);
+//   //   const nextPage = `<button class="next-page">
+//   //     <a class="fas fa-angle-right"> Next <span class="s_next">&#8250;<span></a>
+//   //   </button>`;
+//   // }
 
-  const categoryName = e.target.dataset.category_name;
+//   refs.pgContainer.insertAdjacentHTML('afterend', nextPage);
+//   refs.pgContainer.insertAdjacentHTML('afterbegin', prevPage);
 
-  getDataByCategory(categoryName)
-    .then(news => {
-      totalPage = Math.ceil(news.length / newsPerPage);
+//   totalPage = Math.ceil(result.length / newsPerPage);
 
-      function getRightAmount() {
-        rightAmount = news.slice(
-          currentPage * newsPerPage,
-          currentPage * newsPerPage + newsPerPage
-        );
-      }
+//   function getRightAmount() {
+//     rightAmount = result.slice(
+//       currentPage * newsPerPage,
+//       currentPage * newsPerPage + newsPerPage
+//     );
+//   }
 
-      getRightAmount();
-      saveValuesFromCategoryNews(rightAmount);
+//   getRightAmount();
+//   saveValuesFromCategoryNews(rightAmount);
 
-      renderPage(currentPage);
+//   renderPage(currentPage);
 
-      console.log(arrayNewsCard);
-      renderNewsList(arrayNewsCard);
+//   const cardList = [];
+//   console.log(cardList);
+//   renderNewsList(cardList);
 
-      refs.prevBtn.addEventListener('click', e => {
-        currentPage--;
+//   refs.prevBtn
+//     .addEventListener('click', e => {
+//       currentPage--;
 
-        getRightAmount();
-        renderNewsList(arrayNewsCard);
+//       getRightAmount();
+//       renderNewsList(cardList);
 
-        prevActive();
-        if (currentPage < totalPage) refs.nextBtn.disabled = false;
-      });
+//       prevActive();
+//       if (currentPage < totalPage)
+//         document.querySelector('.next-page').disabled = false;
 
-      refs.nextBtn.addEventListener('click', e => {
-        currentPage++;
+//       document.querySelector('.next-page').addEventListener('click', e => {
+//         currentPage++;
 
-        getRightAmount();
-        renderNewsList(arrayNewsCard);
-        nextActive();
+//         getRightAmount();
+//         renderNewsList(cardList);
+//         nextActive();
 
-        if (currentPage > 0) refs.prevBtn.disabled = false;
-      });
+//         if (currentPage > 0)
+//           document.querySelector('.prev-page').disabled = false;
+//       });
 
-      function prevActive() {
-        renderPage(currentPage);
-      }
-      function nextActive() {
-        renderPage(currentPage);
-      }
+//       function prevActive() {
+//         renderPage(currentPage);
+//       }
+//       function nextActive() {
+//         renderPage(currentPage);
+//       }
 
-      // function nextActive() {
-      //   renderPage(totalPage, currentPage, news);
-      // }
-
-      refs.pgContainer.addEventListener('click', clickOnPage);
-
-      function clickOnPage(e) {
-        if (e.target.nodeName === 'UL' || e.target.classList.contains('active'))
-          return;
-
-        currentPage = +e.target.getAttribute('data-page');
-
-        renderPage(currentPage);
-        getRightAmount();
-        renderNewsList(arrayNewsCard);
-        activePage(e);
-
-        if (currentPage > 0) refs.prevBtn.disabled = false;
-        else refs.prevBtn.disabled = true;
-
-        if (currentPage > totalPage - 3) {
-          refs.nextBtn.disabled = true;
-        } else refs.nextBtn.disabled = false;
-      }
-
-      function activePage(e) {
-        const allBtns = document.querySelectorAll('.pg-item');
-        allBtns.forEach(btn => {
-          btn.classList.remove('active');
-          if (
-            e.target.getAttribute('data-page') === btn.getAttribute('data-page')
-          )
-            btn.classList.add('active');
-        });
-      }
-    })
-    .catch()
-    .finally(hideLoader);
-
-  function renderPage(currentPage) {
-    let marcup = '';
-
-    if (window.matchMedia('(max-width: 768px)').matches) {
-      if (currentPage === 0) {
-        refs.prevBtn.disabled = true;
-      }
-      if (currentPage === rightAmount.length) {
-        refs.nextBtn.disabled = true;
-      }
-      if (currentPage >= rightAmount.length) {
-        const allBtns = document.querySelectorAll('.pg-item');
-        console.log(allBtns);
-        allBtns[allBtns.length - 1].classList.add('active');
-        allBtns[allBtns.length - 2].classList.remove('active');
-        return;
-      }
-      if (currentPage < 3) {
-        for (let i = 0; i < 4; i += 1) {
-          if (i !== currentPage) {
-            marcup += `<li class="pg-item" data-page="${i}"><a>${
-              i + 1
-            }</a></li>`;
-          } else if (i < rightAmount.length) {
-            marcup += `<li class="pg-item active" data-page="${i}"><a>${
-              i + 1
-            }</a></li>`;
-          }
-        }
-      } else if (currentPage === 3) {
-        for (let i = currentPage - 2; i <= currentPage + 1; i += 1) {
-          if (i !== currentPage) {
-            marcup += `<li class="pg-item" data-page="${i}"><a>${
-              i + 1
-            }</a></li>`;
-          } else if (i <= rightAmount.length - 1) {
-            marcup += `<li class="pg-item active" data-page="${i}"><a>${
-              i + 1
-            }</a></li>`;
-          }
-        }
-      }
-      refs.pgContainer.innerHTML = marcup;
-    } else if (window.matchMedia('(min-width: 768px)').matches) {
-      if (currentPage > rightAmount.length) {
-        refs.nextBtn.disabled = true;
-        return;
-      }
-      if (currentPage === 0) {
-        refs.prevBtn.disabled = true;
-      }
-      if (currentPage === totalPage - 1) {
-        refs.nextBtn.disabled = true;
-      }
-      if (currentPage >= rightAmount.length) {
-        const allBtns = document.querySelectorAll('.pg-item');
-        console.log(allBtns);
-        allBtns[allBtns.length - 1].classList.add('active');
-        allBtns[allBtns.length - 2].classList.remove('active');
-        return;
-      }
-      if (currentPage < 3) {
-        for (let i = 0; i < totalPage; i += 1) {
-          if (i !== currentPage) {
-            marcup += `<li class="pg-item" data-page="${i}"><a>${
-              i + 1
-            }</a></li>`;
-          } else if (i < rightAmount.length) {
-            marcup += `<li class="pg-item active" data-page="${i}"><a>${
-              i + 1
-            }</a></li>`;
-          }
-        }
-      } else if (currentPage === 3) {
-        for (let i = currentPage - 2; i <= currentPage + 1; i += 1) {
-          if (i !== currentPage) {
-            marcup += `<li class="pg-item" data-page="${i}"><a>${
-              i + 1
-            }</a></li>`;
-          } else if (i <= rightAmount.length - 1) {
-            marcup += `<li class="pg-item active" data-page="${i}"><a>${
-              i + 1
-            }</a></li>`;
-          }
-        }
-      }
-      refs.pgContainer.innerHTML = marcup;
-    }
-  }
-}
+//       function activePage(e) {
+//         const allBtns = document.querySelectorAll('.pg-item');
+//         allBtns.forEach(btn => {
+//           btn.classList.remove('active');
+//           if (
+//             target.getAttribute('data-page') === btn.getAttribute('data-page')
+//           )
+//             btn.classList.add('active');
+//         });
+//       }
+//     })
+//     .catch()
+//     .finally(hideLoader);
+// }
 
 // getPopular()
 //   .then(news => {

@@ -32,27 +32,27 @@ getPopular()
 
     renderPopularNews(rightAmount);
 
-    refs.prevBtn.addEventListener('click', e => {
-      currentPage--;
+    // refs.prevBtn.addEventListener('click', e => {
+    //   currentPage--;
 
-      getRightAmount();
-      renderPopularNews(rightAmount);
+    //   getRightAmount();
+    //   renderPopularNews(rightAmount);
 
-      prevActive();
-      if (currentPage < totalPage) refs.nextBtn.disabled = false;
-    });
+    //   prevActive();
+    //   if (currentPage < totalPage) refs.nextBtn.disabled = false;
+    // });
 
-    refs.nextBtn.addEventListener('click', nextBtnClick);
+    // refs.nextBtn.addEventListener('click', nextBtnClick);
 
-    function nextBtnClick() {
-      currentPage++;
+    // function nextBtnClick() {
+    //   currentPage++;
 
-      getRightAmount();
-      renderPopularNews(rightAmount);
-      nextActive();
+    //   getRightAmount();
+    //   renderPopularNews(rightAmount);
+    //   nextActive();
 
-      if (currentPage > 0) refs.prevBtn.disabled = false;
-    }
+    //   if (currentPage > 0) refs.prevBtn.disabled = false;
+    // }
 
     function prevActive() {
       renderPage(currentPage);
@@ -65,7 +65,7 @@ getPopular()
     //   renderPage(totalPage, currentPage, news);
     // }
 
-    refs.pgContainer.addEventListener('click', clickOnPage);
+    // refs.pgContainer.addEventListener('click', clickOnPage);
 
     function clickOnPage(e) {
       if (e.target.nodeName === 'UL' || e.target.classList.contains('active'))
