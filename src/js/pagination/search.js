@@ -5,7 +5,6 @@ import {
   saveValuesFromSearchNews,
   renderNewsList,
   arrayNewsCard,
-  arrayNewsCard,
 } from '../markup/markup';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
