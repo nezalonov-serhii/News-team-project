@@ -32,59 +32,59 @@ getPopular()
 
     renderPopularNews(rightAmount);
 
-    // refs.prevBtn.addEventListener('click', e => {
-    //   currentPage--;
+    refs.prevBtn.addEventListener('click', e => {
+      currentPage--;
 
-    //   getRightAmount();
-    //   renderPopularNews(rightAmount);
+      getRightAmount();
+      renderPopularNews(rightAmount);
 
-    //   prevActive();
-    //   if (currentPage < totalPage) refs.nextBtn.disabled = false;
-    // });
+      prevActive();
+      if (currentPage < totalPage) refs.nextBtn.disabled = false;
+    });
 
-    // refs.nextBtn.addEventListener('click', nextBtnClick);
+    refs.nextBtn.addEventListener('click', nextBtnClick);
 
-    // function nextBtnClick() {
-    //   currentPage++;
+    function nextBtnClick() {
+      currentPage++;
 
-    //   getRightAmount();
-    //   renderPopularNews(rightAmount);
-    //   nextActive();
+      getRightAmount();
+      renderPopularNews(rightAmount);
+      nextActive();
 
-    //   if (currentPage > 0) refs.prevBtn.disabled = false;
-    // }
+      if (currentPage > 0) refs.prevBtn.disabled = false;
+    }
 
-    // function prevActive() {
-    //   renderPage(currentPage);
-    // }
-    // function nextActive() {
-    //   renderPage(currentPage);
-    // }
+    function prevActive() {
+      renderPage(currentPage);
+    }
+    function nextActive() {
+      renderPage(currentPage);
+    }
 
     // function nextActive() {
     //   renderPage(totalPage, currentPage, news);
     // }
 
-    // refs.pgContainer.addEventListener('click', clickOnPage);
+    refs.pgContainer.addEventListener('click', clickOnPage);
 
-    // function clickOnPage(e) {
-    //   if (e.target.nodeName === 'UL' || e.target.classList.contains('active'))
-    //     return;
+    function clickOnPage(e) {
+      if (e.target.nodeName === 'UL' || e.target.classList.contains('active'))
+        return;
 
-    //   currentPage = +e.target.getAttribute('data-page');
+      currentPage = +e.target.getAttribute('data-page');
 
-    //   renderPage(currentPage);
-    //   getRightAmount();
-    //   renderPopularNews(rightAmount);
-    //   activePage(e);
+      renderPage(currentPage);
+      getRightAmount();
+      renderPopularNews(rightAmount);
+      activePage(e);
 
-    //   if (currentPage > 0) refs.prevBtn.disabled = false;
-    //   else refs.prevBtn.disabled = true;
+      if (currentPage > 0) refs.prevBtn.disabled = false;
+      else refs.prevBtn.disabled = true;
 
-    //   if (currentPage > totalPage - 3) {
-    //     refs.nextBtn.disabled = true;
-    //   } else refs.nextBtn.disabled = false;
-    // }
+      if (currentPage > totalPage - 3) {
+        refs.nextBtn.disabled = true;
+      } else refs.nextBtn.disabled = false;
+    }
 
     function activePage(e) {
       const allBtns = document.querySelectorAll('.pg-item');
@@ -180,3 +180,5 @@ function renderPage(currentPage) {
     refs.pgContainer.innerHTML = marcup;
   }
 }
+
+export { clickOnPage };

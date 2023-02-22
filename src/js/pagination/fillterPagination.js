@@ -5,7 +5,6 @@ import {
   saveValuesFromCategoryNews,
   renderNewsList,
   arrayNewsCard,
-  clickOnPage,
 } from '../markup/markup';
 import { refs } from '../refs/refs';
 
@@ -28,9 +27,6 @@ function renderNewsCategory(e) {
   if (e.target.nodeName !== 'BUTTON' || e.target === refs.filterOthers) {
     return;
   }
-
-  refs.pgContainer.removeEventListener('click', clickOnPage);
-
   const categoryName = e.target.dataset.category_name;
 
   getDataByCategory(categoryName)
@@ -43,10 +39,13 @@ function renderNewsCategory(e) {
           currentPage * newsPerPage + newsPerPage
         );
       }
-      getRightAmount();
 
+      getRightAmount();
       saveValuesFromCategoryNews(rightAmount);
+
       renderPage(currentPage);
+
+      console.log(arrayNewsCard);
       renderNewsList(arrayNewsCard);
 
       refs.prevBtn.addEventListener('click', e => {
