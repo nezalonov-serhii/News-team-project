@@ -10,6 +10,8 @@ import { createNewsCard } from '../markup/card';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { fillWeather } from '../weather/weather';
 
+let arrayNewsCard = [];
+
 const error =
   'https://img.freepik.com/free-vector/404-error-with-cute-animal-concept-illustration_114360-1931.jpg';
 let page = 2;
@@ -178,6 +180,10 @@ function createMarkupWidgetWeather() {
 </li>`;
 }
 
+function normolizeDate(date) {
+  return date.slice(0, 10);
+}
+
 export {
   renderNewsList,
   updateNewsList,
@@ -186,8 +192,7 @@ export {
   renderPopularNews,
   saveValuesFromCategoryNews,
   renderNewsCategory,
+  arrayNewsCard,
 };
 
-function normolizeDate(date) {
-  return date.slice(0, 10);
-}
+
