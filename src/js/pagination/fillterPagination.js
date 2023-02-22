@@ -44,6 +44,7 @@ function renderNewsCategory(e) {
         refs.pgContainer.removeEventListener('click', clickOnPage);
         refs.nextBtn.removeEventListener('click', nextBtnClick);
         refs.prevBtn.removeEventListener('click', prevBtnClick);
+        refs.prevBtn.removeEventListener('click', prevBtnClick);
 
         refs.prevBtn.disabled = true;
         refs.nextBtn.disabled = false;
@@ -124,106 +125,49 @@ function renderNewsCategory(e) {
 
   function renderPage(currentPage) {
     let marcup = '';
-
-    if (window.matchMedia('(max-width: 768px)').matches) {
-      if (currentPage >= totalPage - 1) {
-        const allBtns = document.querySelectorAll('.pg-item');
-        allBtns[allBtns.length - 1].classList.add('active');
-        allBtns[allBtns.length - 2].classList.remove('active');
-        refs.nextBtn.disabled = true;
-        return;
-      }
-      if (currentPage === 0) {
-        refs.prevBtn.disabled = true;
-      }
-      if (totalPage < 4) {
-        for (let i = 0; i < totalPage; i += 1) {
-          if (i !== currentPage) {
-            marcup += `<li class="pg-item" data-page="${i}"><a>${
-              i + 1
-            }</a></li>`;
-          } else {
-            marcup += `<li class="pg-item active" data-page="${i}"><a>${
-              i + 1
-            }</a></li>`;
-          }
-        }
-      } else if (currentPage < 3) {
-        for (let i = 0; i < 4; i += 1) {
-          if (i !== currentPage) {
-            marcup += `<li class="pg-item" data-page="${i}"><a>${
-              i + 1
-            }</a></li>`;
-          } else if (i < rightAmount.length) {
-            marcup += `<li class="pg-item active" data-page="${i}"><a>${
-              i + 1
-            }</a></li>`;
-          }
-        }
-      } else if (currentPage >= 3) {
-        for (let i = currentPage - 2; i <= currentPage + 1; i += 1) {
-          if (i !== currentPage) {
-            marcup += `<li class="pg-item" data-page="${i}"><a>${
-              i + 1
-            }</a></li>`;
-          } else {
-            marcup += `<li class="pg-item active" data-page="${i}"><a>${
-              i + 1
-            }</a></li>`;
-          }
-        }
-      }
-      refs.pgContainer.innerHTML = marcup;
-    } else if (window.matchMedia('(min-width: 768px)').matches) {
-      if (currentPage === totalPage - 1) {
-        const allBtns = document.querySelectorAll('.pg-item');
-        allBtns[allBtns.length - 1].classList.add('active');
-        allBtns[allBtns.length - 2].classList.remove('active');
-        refs.nextBtn.disabled = true;
-        return;
-      }
-      if (currentPage === 0) {
-        refs.prevBtn.disabled = true;
-      }
-
-      if (totalPage < 4) {
-        for (let i = 0; i < totalPage; i += 1) {
-          if (i !== currentPage) {
-            marcup += `<li class="pg-item" data-page="${i}"><a>${
-              i + 1
-            }</a></li>`;
-          } else {
-            marcup += `<li class="pg-item active" data-page="${i}"><a>${
-              i + 1
-            }</a></li>`;
-          }
-        }
-      } else if (currentPage < 3) {
-        for (let i = 0; i < 4; i += 1) {
-          if (i !== currentPage) {
-            marcup += `<li class="pg-item" data-page="${i}"><a>${
-              i + 1
-            }</a></li>`;
-          } else if (i < rightAmount.length) {
-            marcup += `<li class="pg-item active" data-page="${i}"><a>${
-              i + 1
-            }</a></li>`;
-          }
-        }
-      } else if (currentPage >= 3) {
-        for (let i = currentPage - 2; i <= currentPage + 1; i += 1) {
-          if (i !== currentPage) {
-            marcup += `<li class="pg-item" data-page="${i}"><a>${
-              i + 1
-            }</a></li>`;
-          } else {
-            marcup += `<li class="pg-item active" data-page="${i}"><a>${
-              i + 1
-            }</a></li>`;
-          }
-        }
-      }
-      refs.pgContainer.innerHTML = marcup;
+    console.log(currentPage >= totalPage - 2);
+    if (currentPage >= totalPage - 1) {
+      const allBtns = document.querySelectorAll('.pg-item');
+      allBtns[allBtns.length - 1].classList.add('active');
+      allBtns[allBtns.length - 2].classList.remove('active');
+      refs.nextBtn.disabled = true;
+      return;
     }
+    if (currentPage === 0) {
+      refs.prevBtn.disabled = true;
+    }
+
+    if (totalPage < 4) {
+      for (let i = 0; i < totalPage; i += 1) {
+        if (i !== currentPage) {
+          marcup += `<li class="pg-item" data-page="${i}"><a>${i + 1}</a></li>`;
+        } else {
+          marcup += `<li class="pg-item active" data-page="${i}"><a>${
+            i + 1
+          }</a></li>`;
+        }
+      }
+    } else if (currentPage < 2) {
+      for (let i = 0; i < 4; i += 1) {
+        if (i !== currentPage) {
+          marcup += `<li class="pg-item" data-page="${i}"><a>${i + 1}</a></li>`;
+        } else if (i < rightAmount.length) {
+          marcup += `<li class="pg-item active" data-page="${i}"><a>${
+            i + 1
+          }</a></li>`;
+        }
+      }
+    } else {
+      for (let i = currentPage - 2; i <= currentPage + 1; i += 1) {
+        if (i !== currentPage) {
+          marcup += `<li class="pg-item" data-page="${i}"><a>${i + 1}</a></li>`;
+        } else {
+          marcup += `<li class="pg-item active" data-page="${i}"><a>${
+            i + 1
+          }</a></li>`;
+        }
+      }
+    }
+    refs.pgContainer.innerHTML = marcup;
   }
 }

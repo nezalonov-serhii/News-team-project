@@ -8,7 +8,6 @@ import {
 } from '../markup/markup';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-const form = document.querySelector('.search');
 const input = document.querySelector('.input');
 
 let totalPage = 0;
@@ -16,7 +15,7 @@ let currentPage = 0;
 let newsPerPage = 0;
 let rightAmount = [];
 
-form.addEventListener('submit', onInput);
+refs.form.addEventListener('submit', onInput);
 
 if (window.matchMedia('(max-width: 767.98px)').matches) {
   newsPerPage = 4;
@@ -27,11 +26,12 @@ if (window.matchMedia('(max-width: 767.98px)').matches) {
 }
 
 function onInput(e) {
-  refs.newsList.innerHTML = '';
+  e.preventDefault();
+
   currentPage = 0;
+  refs.newsList.innerHTML = '';
   refs.nextBtn.disabled = false;
 
-  e.preventDefault();
   let inputValue = input.value.trim();
   if (inputValue !== '') {
     const date = refs.celendarDate.dataset.time.replaceAll('-', '');
@@ -42,7 +42,7 @@ function onInput(e) {
         function removeListner() {
           refs.pgContainer.removeEventListener('click', clickOnPage);
           refs.nextBtn.removeEventListener('click', nextBtnClick);
-          refs.pgContainer.removeEventListener('click', prevBtnClick);
+          refs.prevBtn.removeEventListener('click', prevBtnClick);
 
           refs.prevBtn.disabled = true;
           refs.nextBtn.disabled = false;
@@ -64,7 +64,9 @@ function onInput(e) {
         renderPage(currentPage, totalPage);
         renderNewsList(arrayNewsCard);
 
-        refs.prevBtn.addEventListener('click', e => {
+        refs.prevBtn.addEventListener('click', prevBtnClick);
+
+        function prevBtnClick() {
           currentPage--;
 
           getRightAmount();
@@ -73,9 +75,11 @@ function onInput(e) {
 
           prevActive();
           if (currentPage < totalPage) refs.nextBtn.disabled = false;
-        });
+        }
 
-        refs.nextBtn.addEventListener('click', e => {
+        refs.nextBtn.addEventListener('click', nextBtnClick);
+
+        function nextBtnClick() {
           currentPage++;
 
           getRightAmount();
@@ -84,7 +88,7 @@ function onInput(e) {
           nextActive();
 
           if (currentPage > 0) refs.prevBtn.disabled = false;
-        });
+        }
 
         function prevActive() {
           renderPage(currentPage);
@@ -132,7 +136,7 @@ function onInput(e) {
         allBtns[allBtns.length - 1].classList.add('active');
         allBtns[allBtns.length - 2].classList.remove('active');
         refs.nextBtn.disabled = true;
-        return;
+        // return;
       }
       if (currentPage === 0) {
         refs.prevBtn.disabled = true;
@@ -182,3 +186,5 @@ function onInput(e) {
     }
   }
 }
+
+export { onInput };

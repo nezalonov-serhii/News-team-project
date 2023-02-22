@@ -70,11 +70,11 @@
   }
 }
 .location_weather {
-  order: 1;
+  order: 0;
   @include tablet {
-    order: 2;
+    order: 1;
   }
   @include desktop {
-    order: 3;
+    order: 2;
   }
 }

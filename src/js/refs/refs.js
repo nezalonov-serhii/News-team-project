@@ -29,7 +29,7 @@ const refs = {
   prevBtn: document.querySelector('.prev-page'),
   nextBtn: document.querySelector('.next-page'),
   pgContainer: document.querySelector('#pagination'),
-
+  form: document.querySelector('.search'),
 
   //mobile
   homePage: document.querySelector('#home'),
@@ -49,7 +49,6 @@ const refs = {
   // day :document.querySelector('.weather__day'),
   // year :document.querySelector('.weather__year'),
   // imgWeather:document.querySelector('.weather__image'),
-
 };
 
 export { refs };
