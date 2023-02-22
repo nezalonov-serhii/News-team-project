@@ -9,7 +9,7 @@ import {
 import { createNewsCard, newsCardTextFormat } from '../newsCard/newsCard';
 import { fillWeather } from '../weather/weather';
 // fillWeather()
-let arrayNewsCard = [];
+export let arrayNewsCard = [];
 const error =
   'https://img.freepik.com/free-vector/404-error-with-cute-animal-concept-illustration_114360-1931.jpg';
 let page = 2;
@@ -167,7 +167,6 @@ export {
   createMarkupWidgetWeather,
   orderedNumber,
   renderPopularNews,
-  arrayNewsCard,
   saveValuesFromCategoryNews,
   saveValuesFromSearchNews,
 };
