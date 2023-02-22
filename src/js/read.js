@@ -8,7 +8,8 @@ import './favorite/addToFavorite';
 import { refs } from './refs/refs';
 import Sprite from '../images/sprite.svg';
 import { createNewsCard } from './markup/card';
-import { btnAddToFavorite, addToFavoriteLocal } from './favorite/addToFavorite';
+import { btnAddToFavorite } from './favorite/addToFavorite';
+
 
 // import { btnAddToFavorite } from './newsCard/newsCard';
 
@@ -71,11 +72,11 @@ function addEventHandlers() {
 
   btns.forEach(btn => btn.addEventListener('click', onReadNewsBtnClick));
   newsLists.forEach(list => list.addEventListener('click', btnAddToFavorite));
-  // newsLists.forEach(list => list.addEventListener('click', addToFavoriteLocal));
+
+
 }
 
-//  addToFavoriteLocal();
-//  btnAddToFavorite();
+
 
 function onReadNewsBtnClick({ target }) {
   target.classList.toggle('isOpen');

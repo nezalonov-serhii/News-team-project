@@ -150,8 +150,6 @@ function renderNewsList(arrayNewsCard) {
     }
 
 
-    return createNewsCard(article) + previousValue;
-
   }, '');
 
   updateNewsList(markup);
