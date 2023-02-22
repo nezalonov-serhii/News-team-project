@@ -95,6 +95,7 @@ function linkReadMore(event) {
 
 //Додаємо в Readmore
 
+
 function addReadMore(btn) {
   const data = localStorage.getItem('news');
 
@@ -119,11 +120,13 @@ function addReadMore(btn) {
     return;
   }
 
+
   const evenDateNow = new Date();
   const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
   const readDateNow = evenDateNow
     .toLocaleDateString([], options)
     .replaceAll('.', '/');
+
   const readNews = {
     id: btn.parentNode.parentNode.dataset.id,
     uri: btn.nextElementSibling.textContent,
@@ -138,6 +141,7 @@ function addReadMore(btn) {
   };
   newLocalStorage.push(readNews);
   localStorage.setItem(`news`, JSON.stringify(newLocalStorage));
+
 }
 
 //

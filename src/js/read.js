@@ -10,6 +10,7 @@ import Sprite from '../images/sprite.svg';
 import { createNewsCard } from './markup/card';
 import { btnAddToFavorite } from './favorite/addToFavorite';
 
+
 // import { btnAddToFavorite } from './newsCard/newsCard';
 
 init();
@@ -72,7 +73,9 @@ function addEventHandlers() {
   btns.forEach(btn => btn.addEventListener('click', onReadNewsBtnClick));
   newsLists.forEach(list => list.addEventListener('click', btnAddToFavorite));
 
+
 }
+
 
 
 function onReadNewsBtnClick({ target }) {

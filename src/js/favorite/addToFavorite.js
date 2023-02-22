@@ -1,10 +1,12 @@
 export function btnAddToFavorite(event) {
   const btn = event.target.closest(`.item-news__add-to-favorite`);
+
   if (!btn) return;
   ///
 
   const data = localStorage.getItem('news');
   let newLocalStorage = [];
+
 
   if (data) {
     newLocalStorage = JSON.parse(localStorage.getItem('news'));
@@ -36,6 +38,7 @@ export function btnAddToFavorite(event) {
 
   addToFavoriteLocal(btn);
   // localStorage.setItem(`news`, JSON.stringify(newLocalStorage));
+
 }
 
 function addToFavoriteLocal(btn) {
@@ -45,6 +48,7 @@ function addToFavoriteLocal(btn) {
   if (data) {
     newLocalStorage = JSON.parse(localStorage.getItem('news'));
   }
+
 
   const newsIndex = newLocalStorage.findIndex(
     item => item.id === btn.closest('.news__article').dataset.id
@@ -58,6 +62,7 @@ function addToFavoriteLocal(btn) {
 
   const news = {
     id: btn.closest('.news__article').dataset.id,
+
     media: btn.parentNode.childNodes[1].attributes.src.nodeValue,
     section: btn.parentNode.childNodes[3].innerText,
     title: btn.parentNode.parentNode.childNodes[3].children[0].innerText,
@@ -65,12 +70,15 @@ function addToFavoriteLocal(btn) {
     published_date:
       btn.parentNode.parentNode.lastElementChild.children[0].innerText,
     url: btn.parentNode.parentNode.lastElementChild.children[1].href,
+
     favorite: true,
+
     uri: btn.parentNode.nextElementSibling.nextElementSibling.lastElementChild
       .textContent,
   };
 
   for (let i = 0; i < newLocalStorage.length; i += 1) {
+
     if (newLocalStorage[i].uri === news.uri) return;
   }
 
@@ -120,5 +128,6 @@ function addReadMore(btn) {
     dayRead: readDateNow,
   };
   newLocalStorage.push(readNews);
+
   localStorage.setItem(`news`, JSON.stringify(newLocalStorage));
 }
