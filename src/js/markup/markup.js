@@ -6,10 +6,10 @@ import {
   getSearchArticle,
   getDataByCategory,
 } from '../api/news';
-import { createNewsCard, newsCardTextFormat } from '../newsCard/newsCard';
-import { fillWeather } from '../weather/weather';
-// fillWeather()
-let arrayNewsCard = [];
+import { createNewsCard } from '../markup/card';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
+
 const error =
   'https://img.freepik.com/free-vector/404-error-with-cute-animal-concept-illustration_114360-1931.jpg';
 let page = 2;
@@ -18,116 +18,124 @@ let orderedNumber = 0;
 refs.form.addEventListener('submit', renderSearchNews);
 
 function saveValuesFromCategoryNews(articles) {
-  refs.newsList.innerHTML = '';
-  console.log(arrayNewsCard);
-  arrayNewsCard = [];
-
-  articles.map(article => {
-    arrayNewsCard.push({
-      title: article.title,
-      media: `${
-        article.multimedia === null ? error : `${article.multimedia[2].url}`
-      }`,
-      url: article.url,
-      published_date: `${normolizeDate(article.published_date)}`,
-      section: article.section,
-      abstract: article.abstract,
+  console.log(articles);
+  return articles.map(article => {
+    return {
       id: article.id,
+      media: `${
+        article.multimedia?.[3]?.url ? article.multimedia?.[3]?.url : error
+      }`,
+      title: article.title,
+      abstract: newsCardTextFormat(article.abstract),
+
+      section: article.section,
+      published_date: article.published_date,
+      url: article.url,
       uri: article.uri,
-    });
+    };
   });
 }
 
 function saveValuesFromSearchNews(articles) {
-  articles.map(article => {
-    arrayNewsCard.push({
+  return articles.map(article => {
+    return {
+      id: article._id,
+      media: `${
+
+        article.multimedia?.[0]?.url
+          ? `https://static01.nyt.com/${article.multimedia[0].url}`
+          : error
+      }`,
       title: article.headline.main,
 
-      media: `${
-        article.multimedia[0] === undefined
-          ? // article.multimedia.length === 0
-            error
-          : `https://static01.nyt.com/${article.multimedia[0].url}`
-      }`,
-
-      url: article.url,
-      published_date: `${normolizeDate(article.pub_date)}`,
       section: article.section_name,
-      abstract: article.abstract,
-      id: article._id,
+      abstract: newsCardTextFormat(article.abstract),
+      published_date: article.pub_date,
+      url: article.url,
       uri: article.uri,
-    });
+    };
   });
 }
+
 function saveValuesFromPopularNews(articles) {
-  articles.map(article => {
-    arrayNewsCard.push({
-      title: article.title,
-      media: `${
-        article.media[0] === undefined
-          ? error
-          : article.media[0]['media-metadata'][2].url
-      }`,
-      url: article.url,
-      published_date: article.published_date,
-      section: article.section,
-      abstract: article.abstract,
+  return articles.map(article => {
+    return {
       id: article.id,
+      media: `${
+        article.media?.[0]?.['media-metadata']?.[2]?.url
+          ? article.media?.[0]?.['media-metadata']?.[2]?.url
+          : error
+      }`,
+      title: article.title,
+      section: article.section,
+      abstract: newsCardTextFormat(article.abstract),
+      published_date: article.published_date,
+      url: article.url,
       uri: article.uri,
-    });
+    };
   });
+}
+
+function newsCardTextFormat(element) {
+  let textFormat = element;
+  if (textFormat.length > 80) {
+    textFormat = element.slice(0, 80) + '...';
+  }
+  return textFormat;
 }
 
 function renderPopularNews(articles) {
-  refs.newsList.innerHTML = '';
-  arrayNewsCard = [];
+  const cardArray = saveValuesFromPopularNews(articles);
 
-  saveValuesFromPopularNews(articles);
-  renderNewsList(arrayNewsCard);
+  resetNewsList();
+  renderNewsList(cardArray);
 }
 
 function renderSearchNews(e) {
   e.preventDefault();
-
-  refs.newsList.innerHTML = '';
-  arrayNewsCard = [];
+  resetNewsList();
 
   const date = refs.celendarDate.dataset.time.replaceAll('-', '');
-  // console.log(date);
 
   const inputSearchValue = refs.form.elements.inputSearch.value;
-  getSearchArticle(inputSearchValue, date)
+
+  getSearchArticle(inputSearchValue, page, date)
     .then(articles => {
-      saveValuesFromSearchNews(articles);
-      renderNewsList(arrayNewsCard);
+      const cardArray = saveValuesFromSearchNews(articles);
+      renderNewsList(cardArray);
+
     })
     .catch()
     .finally(data => {
       hideLoader();
-      // reset()
     });
 }
 
-// function renderNewsCategory(e) {
 
-// if (e.target.nodeName !== 'BUTTON' || e.target === refs.filterOthers) {
-//   return;
-// }
-// const categoryName = e.target.dataset.category_name;
+function renderNewsCategory(e) {
+  console.log(e.target);
+  console.log(refs.filterOthers);
+  if (e.target.nodeName !== 'BUTTON' || e.target === refs.filterOthers) {
+    return;
+  }
+  const categoryName = e.target.dataset.category_name;
 
-// console.log(categoryName);
+  getDataByCategory(categoryName)
+    .then(articles => {
+      refs.newsList.innerHTML = '';
+      const cardArray = saveValuesFromCategoryNews(articles);
 
-// getDataByCategory(categoryName)
-//   .then(articles => {
-//     refs.newsList.innerHTML = '';
-//     arrayNewsCard = [];
+      if (cardArray.length < 1) {
+        Notify.failure('Error: No news found');
+        return;
+      }
 
-//     saveValuesFromCategoryNews(articles);
-//      renderNewsList(arrayNewsCard);
-//   })
-// .catch()
-//   .finally(hideLoader());
-//}
+      renderNewsList(cardArray);
+    })
+    .catch()
+    .finally(hideLoader());
+}
+
 
 function renderNewsList(arrayNewsCard) {
   const markup = arrayNewsCard.reduce((previousValue, article, index) => {
@@ -140,8 +148,12 @@ function renderNewsList(arrayNewsCard) {
         createNewsCard(article, orderedNumber)
       );
     }
-    return createNewsCard(article, orderedNumber) + previousValue;
+
+
+    return createNewsCard(article) + previousValue;
+
   }, '');
+
   updateNewsList(markup);
   orderedNumber = 0;
 }
@@ -156,6 +168,11 @@ function updateNewsList(markup) {
   const imgWeather = document.querySelector('.weather__image');
   fillWeather(deg, value, city, day, year, imgWeather);
 }
+
+function resetNewsList() {
+  refs.newsList.innerHTML = '';
+}
+
 function createMarkupWidgetWeather() {
   return `<li id="weather" class="weather news__item location_weather">
 <div class="weather__position">
@@ -181,7 +198,7 @@ function createMarkupWidgetWeather() {
 
 export {
   renderNewsList,
-  updateNewList,
+  updateNewsList,
   createMarkupWidgetWeather,
   orderedNumber,
   renderPopularNews,

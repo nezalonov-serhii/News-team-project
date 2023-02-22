@@ -18,3 +18,4 @@ import './js/loader/loader';
 import './js/darkMode/darkMode';
 
 import './js/currentPage/currentPage';
+import './js/favorite/addToFavorite';
