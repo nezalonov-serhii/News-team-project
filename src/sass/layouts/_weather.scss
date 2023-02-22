@@ -25,7 +25,7 @@
 
   &__position {
     display: flex;
-    align-items: center;
+   
     margin-bottom: 20px;
     justify-content: center;
 
@@ -56,17 +56,85 @@
       margin-left: 8px;
     }
   }
-
-  svg {
+&__svg {
     width: 18px;
     height: 18px;
-    color: var(--white-color);
+    fill: var(--white-color);
     margin-right: 5px;
+    
 
     @media screen and(min-width: $pre_tablet) {
       width: 27px;
       height: 27px;
     }
+    use{
+      fill:currentColor
+    }
+  }
+  &__btn{
+   
+    background: rgba(254, 254, 255, 0.3);
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 400;
+    display: block;
+    line-height: calc(19/16);
+    margin: auto;
+    padding: 8px 14px;
+    @media screen and(min-width: $pre_tablet) {
+      width: 177px;
+      font-size: 20px;
+      line-height: calc(23/20);
+      padding: 10px 12px;
+    }
+  }
+  &__text{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #FFFFFF;
+@media screen and(min-width: $pre_tablet) {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 23px;
+}
+  }
+
+  &__value {
+    
+width: 99px;
+height: 42px;
+left: 119px;
+top: 0px;
+font-family: 'Roboto';
+text-transform: capitalize;
+font-style: normal;
+font-weight: 400;
+font-size: 24px;
+line-height: 28px;
+    
+    @media screen and(min-width: $pre_tablet) {
+      font-size: 36px;
+line-height: 42px;
+    }
+  }
+  &__date{
+    text-align: center;
+    font-size: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 33px;
+    margin-bottom: 20px;
+    @media screen and(min-width: $pre_tablet) {
+      font-size: 36px;
+      margin-bottom: 28px;
+      line-height: calc(42/36);
+    }
+
   }
 }
 .location_weather {
@@ -78,3 +146,23 @@
     order: 2;
   }
 }
+.weather__location{
+  height: 34px;
+  padding: 8px;
+  font-size: 14px;
+  margin-top: 9px;
+  // position: absolute;
+display: flex;
+align-items: center;
+background: rgba(254, 254, 255, 0.3);
+border-radius: 10px;
+line-height: calc(14/16);
+@media screen and(min-width: $pre_tablet) {
+  font-size: 20px;
+  margin-top: 35px;
+  height: 42px;
+  padding-right: 17px;
+  line-height: calc(23/20)
+}
+}
+

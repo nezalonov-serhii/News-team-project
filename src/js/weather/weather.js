@@ -6,34 +6,75 @@ import { refs } from '../refs/refs';
 // const day = document.querySelector('.weather__day');
 // const year = document.querySelector('.weather__year');
 // const imgWeather = document.querySelector('.weather__image');
-
 const fillWeather = async (deg, value, city, day, year, imgWeather) => {
-  const currentWeather = await getWeather('London');
-  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  const months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
-  const date = new Date();
-  deg.innerText = `${Math.round(currentWeather.temp)}°`;
-  city.innerText = currentWeather.location;
-  day.innerText = days[date.getDay()];
-  year.innerText = `${date.getDate()} ${
-    months[date.getMonth()]
-  } ${date.getFullYear()}`;
-  value.innerText = currentWeather.weather.type;
-  imgWeather.src = `https://openweathermap.org/img/wn/${currentWeather.weather.icon}@4x.png`;
+
+  // Отримання геолокації користувача
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(async position => {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+      // Отримання погодних даних за координатами
+      const currentWeather = await getWeather(lat, lon);
+      // Решта коду залишається незмінним
+      const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+      const months = [
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec',
+      ];
+      const date = new Date();
+      deg.innerText = `${Math.round(currentWeather.temp)}°`;
+      city.innerText = currentWeather.location;
+      day.innerText = days[date.getDay()];
+      year.innerText = `${date.getDate()} ${
+        months[date.getMonth()]
+      } ${date.getFullYear()}`;
+      value.innerText = currentWeather.weather.type;
+      imgWeather.src = `https://openweathermap.org/img/wn/${currentWeather.weather.icon}@4x.png`;
+    }, error => {
+      console.log(error);
+    });
+  }
+
 };
+// const fillWeather = async (deg, value, city, day, year, imgWeather) => {
+//   const currentWeather = await getWeather('London');
+//   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+//   const months = [
+//     'Jan',
+//     'Feb',
+//     'Mar',
+//     'Apr',
+//     'May',
+//     'Jun',
+//     'Jul',
+//     'Aug',
+//     'Sep',
+//     'Oct',
+//     'Nov',
+//     'Dec',
+//   ];
+//   const date = new Date();
+//   deg.innerText = `${Math.round(currentWeather.temp)}°`;
+//   city.innerText = currentWeather.location;
+//   day.innerText = days[date.getDay()];
+//   year.innerText = `${date.getDate()} ${
+//     months[date.getMonth()]
+//   } ${date.getFullYear()}`;
+//   value.innerText = currentWeather.weather.type;
+//   imgWeather.src = `https://openweathermap.org/img/wn/${currentWeather.weather.icon}@4x.png`;
+//   // console.log(currentWeather);
+// };
+
 // function fillWeather() {
 //   console.log(refs.deg)
 //   const currentWeather = getWeather('London');
@@ -67,3 +108,4 @@ const fillWeather = async (deg, value, city, day, year, imgWeather) => {
 
 // fillWeather();
 export { fillWeather };
+
