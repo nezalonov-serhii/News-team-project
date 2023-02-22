@@ -1,24 +1,24 @@
 import { refs } from '../refs/refs';
 
 // console.log(refs.body);
-const changeThemeBtns = document.querySelectorAll('.switch-checkbox');
+const changeThemeBtn = document.querySelector('.switch-checkbox');
 const bodyTheme = document.querySelector('body');
 const themeDarkEl = document.querySelector('.theme__dark');
 const themeLightEl = document.querySelector('.theme__light');
 
-[...changeThemeBtns].map(btn => btn.addEventListener('click', changeTheme));
+changeThemeBtn.addEventListener('click', changeTheme);
 
 function changeTheme() {
   bodyTheme.classList.toggle('darkMode');
   themeDarkEl.classList.toggle('opacityForDark');
   themeLightEl.classList.toggle('opacityForDark');
-  // localStorage.setItem('theme', 'dark');
+  
   if (localStorage.getItem('theme') !== 'dark') {
     localStorage.setItem('theme', 'dark');
   } else {
     localStorage.removeItem('theme');
   }
-  // addDarkClassToHTML();
+  
 }
 
 function addDarkClassToHTML() {
@@ -27,10 +27,10 @@ function addDarkClassToHTML() {
       bodyTheme.classList.add('darkMode');
       changeThemeBtn.checked = true;
     }
-    // else {
-    //   bodyTheme.classList.remove('theme-dark');
-    // }
+    
   } catch (err) {}
 }
 
 addDarkClassToHTML();
+
+
