@@ -8,8 +8,6 @@ import {
 } from '../markup/markup';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-let arrayNewsCard = arrayNewsCard;
-
 const form = document.querySelector('.search');
 const input = document.querySelector('.input');
 
@@ -29,6 +27,7 @@ if (window.matchMedia('(max-width: 767.98px)').matches) {
 }
 
 function onInput(e) {
+  console.log(arrayNewsCard);
   e.preventDefault();
   let inputValue = input.value.trim();
   if (inputValue !== '') {
