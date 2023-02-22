@@ -9,7 +9,7 @@ import './js/newsCard/newsCard';
 import './js/api/weather';
 import './js/weather/weather';
 
-import './js/search/search';
+import './js/pagination/search';
 import './js/calendar/calendar';
 import './js/pagination/popular';
 import './js/pagination/fillterPagination';

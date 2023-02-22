@@ -1,11 +1,7 @@
-import { getPopular, getDataByCategory } from '../api/news';
+import { getDataByCategory } from '../api/news';
 import { hideLoader } from '../loader/loader';
-import {
-  renderPopularNews,
-  saveValuesFromCategoryNews,
-  renderNewsList,
-} from '../markup/markup';
-import { nextBtnClick } from './popular';
+import { saveValuesFromCategoryNews, renderNewsList } from '../markup/markup';
+
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import { refs } from '../refs/refs';
