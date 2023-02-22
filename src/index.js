@@ -2,6 +2,7 @@ import './js/refs/refs';
 import './js/mobileMenu/mobileMenu';
 import './js/mobileMenu/mobileMenuCurrent';
 
+import './js/markup/markup';
 import './js/popularRender/popularRender';
 
 import './js/newsFilter/filter';
