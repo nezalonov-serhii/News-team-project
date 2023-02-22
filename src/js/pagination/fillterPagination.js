@@ -34,7 +34,19 @@ function renderNewsCategory(e) {
 
   getDataByCategory(categoryName)
     .then(news => {
-      currentPage = 0;
+      console.log(news);
+      refs.filterCategories.addEventListener('click', removeListner);
+
+      function removeListner() {
+        refs.pgContainer.removeEventListener('click', clickOnPage);
+        refs.nextBtn.removeEventListener('click', nextBtnClick);
+        refs.pgContainer.removeEventListener('click', prevBtnClick);
+
+        refs.prevBtn.disabled = true;
+        refs.nextBtn.disabled = false;
+        currentPage = 0;
+      }
+
       totalPage = Math.ceil(news.length / newsPerPage);
 
       function getRightAmount() {
@@ -51,7 +63,9 @@ function renderNewsCategory(e) {
 
       renderNewsList(arrayNewsCard);
 
-      refs.prevBtn.addEventListener('click', e => {
+      refs.prevBtn.addEventListener('click', prevBtnClick);
+
+      function prevBtnClick() {
         currentPage--;
 
         getRightAmount();
@@ -60,18 +74,19 @@ function renderNewsCategory(e) {
 
         prevActive();
         if (currentPage < totalPage) refs.nextBtn.disabled = false;
-      });
+      }
 
-      refs.nextBtn.addEventListener('click', e => {
+      refs.nextBtn.addEventListener('click', nextBtnClick);
+
+      function nextBtnClick() {
         currentPage++;
 
         getRightAmount();
         saveValuesFromCategoryNews(rightAmount);
         renderNewsList(arrayNewsCard);
         nextActive();
-
         if (currentPage > 0) refs.prevBtn.disabled = false;
-      });
+      }
 
       function prevActive() {
         renderPage(currentPage);
@@ -108,18 +123,29 @@ function renderNewsCategory(e) {
     let marcup = '';
 
     if (window.matchMedia('(max-width: 768px)').matches) {
-      if (currentPage >= totalPage - 2) {
+      if (currentPage >= totalPage - 1) {
         const allBtns = document.querySelectorAll('.pg-item');
         allBtns[allBtns.length - 1].classList.add('active');
         allBtns[allBtns.length - 2].classList.remove('active');
         refs.nextBtn.disabled = true;
         return;
       }
-
       if (currentPage === 0) {
         refs.prevBtn.disabled = true;
       }
-      if (currentPage < 3) {
+      if (totalPage < 4) {
+        for (let i = 0; i < totalPage; i += 1) {
+          if (i !== currentPage) {
+            marcup += `<li class="pg-item" data-page="${i}"><a>${
+              i + 1
+            }</a></li>`;
+          } else {
+            marcup += `<li class="pg-item active" data-page="${i}"><a>${
+              i + 1
+            }</a></li>`;
+          }
+        }
+      } else if (currentPage < 3) {
         for (let i = 0; i < 4; i += 1) {
           if (i !== currentPage) {
             marcup += `<li class="pg-item" data-page="${i}"><a>${
@@ -147,6 +173,9 @@ function renderNewsCategory(e) {
       refs.pgContainer.innerHTML = marcup;
     } else if (window.matchMedia('(min-width: 768px)').matches) {
       if (currentPage === totalPage - 1) {
+        const allBtns = document.querySelectorAll('.pg-item');
+        allBtns[allBtns.length - 1].classList.add('active');
+        allBtns[allBtns.length - 2].classList.remove('active');
         refs.nextBtn.disabled = true;
         return;
       }
@@ -154,14 +183,19 @@ function renderNewsCategory(e) {
         refs.prevBtn.disabled = true;
       }
 
-      if (currentPage >= totalPage) {
-        const allBtns = document.querySelectorAll('.pg-item');
-        console.log(allBtns);
-        allBtns[allBtns.length - 1].classList.add('active');
-        allBtns[allBtns.length - 2].classList.remove('active');
-        return;
-      }
-      if (currentPage < 3) {
+      if (totalPage < 4) {
+        for (let i = 0; i < totalPage; i += 1) {
+          if (i !== currentPage) {
+            marcup += `<li class="pg-item" data-page="${i}"><a>${
+              i + 1
+            }</a></li>`;
+          } else {
+            marcup += `<li class="pg-item active" data-page="${i}"><a>${
+              i + 1
+            }</a></li>`;
+          }
+        }
+      } else if (currentPage < 3) {
         for (let i = 0; i < 4; i += 1) {
           if (i !== currentPage) {
             marcup += `<li class="pg-item" data-page="${i}"><a>${
