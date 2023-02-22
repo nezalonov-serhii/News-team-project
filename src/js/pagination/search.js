@@ -1,11 +1,7 @@
 import { getSearchArticle } from '../api/news';
 import { hideLoader } from '../loader/loader';
 import { refs } from '../refs/refs';
-import {
-  saveValuesFromSearchNews,
-  renderNewsList,
-  arrayNewsCard,
-} from '../markup/markup';
+import { saveValuesFromSearchNews, renderNewsList } from '../markup/markup';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const form = document.querySelector('.search');
