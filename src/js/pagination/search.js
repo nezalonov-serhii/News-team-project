@@ -30,8 +30,6 @@ function onInput(e) {
   e.preventDefault();
   let inputValue = input.value.trim();
   if (inputValue !== '') {
-    refs.newsList.innerHTML = '';
-    arrayNewsCard = [];
     const date = refs.celendarDate.dataset.time.replaceAll('-', '');
     getSearchArticle(inputValue, date)
       .then(news => {
@@ -53,8 +51,6 @@ function onInput(e) {
         renderNewsList(arrayNewsCard);
 
         refs.prevBtn.addEventListener('click', e => {
-          refs.newsList.innerHTML = '';
-          arrayNewsCard = [];
           currentPage--;
 
           getRightAmount();
@@ -92,9 +88,6 @@ function onInput(e) {
         refs.pgContainer.addEventListener('click', clickOnPage);
 
         function clickOnPage(e) {
-          refs.newsList.innerHTML = '';
-          arrayNewsCard = [];
-
           if (
             e.target.nodeName === 'UL' ||
             e.target.classList.contains('active')
