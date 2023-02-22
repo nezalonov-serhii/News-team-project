@@ -1,5 +1,6 @@
 import { refs } from '../refs/refs';
 import { hideLoader } from '../loader/loader';
+import Sprite from '../../images/sprite.svg';
 
 import { createNewsCard, newsCardTextFormat } from '../newsCard/newsCard';
 import { fillWeather } from '../weather/weather';
@@ -137,7 +138,7 @@ function createMarkupWidgetWeather() {
       <span class="weather__value"></span>
       <p class="weather__location">
         <svg>
-          <use href="./images/sprite.svg#location"></use>
+          <use href=${Sprite + '#location'}></use>
         </svg>
         <span class="weather__city"></span>
       </p>
