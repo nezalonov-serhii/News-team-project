@@ -55,7 +55,9 @@ async function getSearchArticle(value, date) {
 
   if (date !== '') {
     dateUrl = `&begin_date=${date}&end_date=${date}`;
-  } else date = '';
+  }
+
+  console.log(dateUrl);
 
   const articleFetch = await fetch(
     `${BASE_URL}/search/v2/articlesearch.json?q=${value}&${KEY}${dateUrl}`
