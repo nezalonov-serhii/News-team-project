@@ -93,25 +93,13 @@ function renderNewsCategory(e) {
         renderPage(currentPage);
         getRightAmount();
         renderNewsList(rightAmount);
-        // activePage(e);
 
         if (currentPage > 0) refs.prevBtn.disabled = false;
         else refs.prevBtn.disabled = true;
 
-        if (currentPage > totalPage - 3) {
+        if (currentPage > totalPage - 2) {
           refs.nextBtn.disabled = true;
         } else refs.nextBtn.disabled = false;
-      }
-
-      function activePage(e) {
-        const allBtns = document.querySelectorAll('.pg-item');
-        allBtns.forEach(btn => {
-          btn.classList.remove('active');
-          if (
-            e.target.getAttribute('data-page') === btn.getAttribute('data-page')
-          )
-            btn.classList.add('active');
-        });
       }
     })
     .catch(error => Notify.failure('Error: ' + error.message))
