@@ -49,11 +49,11 @@ newsList.addEventListener('click', linkReadMore);
 //Перевірка чи є Favorite в  LocalStorage
 
 function isLocalEmpty() {
-  if (JSON.parse(localStorage.getItem('newsSection')) === null) {
+  if (JSON.parse(localStorage.getItem('news')) === null) {
     newLocalStorage = [];
     return;
   }
-  newLocalStorage = JSON.parse(localStorage.getItem('newsSection'));
+  newLocalStorage = JSON.parse(localStorage.getItem('news'));
 }
 isLocalEmpty();
 
@@ -62,10 +62,10 @@ let readMoreId = [];
 isLocalReadEmpty();
 
 function isLocalReadEmpty() {
-  if (JSON.parse(localStorage.getItem('readMoreLocal')) === null) {
+  if (JSON.parse(localStorage.getItem('news')) === null) {
     return;
   }
-  readMoreId = JSON.parse(localStorage.getItem('readMoreLocal'));
+  readMoreId = JSON.parse(localStorage.getItem('news'));
 }
 
 //Кнопка Readmore
@@ -102,6 +102,7 @@ function addReadMore(readMore) {
     .toLocaleDateString([], options)
     .replaceAll('.', '/');
   const read = {
+    id: readMore.parentNode.parentNode.dataset.id,
     uri: readMore.nextElementSibling.textContent,
     published_date: readMore.parentNode.firstElementChild.innerText,
     media: readMore.parentNode.parentNode.childNodes[1].children[0].currentSrc,
@@ -119,7 +120,7 @@ function addReadMore(readMore) {
     }
   }
   readMoreId.push(read);
-  localStorage.setItem(`readMoreLocal`, JSON.stringify(readMoreId));
+  localStorage.setItem(`news`, JSON.stringify(readMoreId));
 }
 
 //
