@@ -2,21 +2,6 @@ import { getPopular, getSearchArticle } from '../api/news';
 import { hideLoader } from '../loader/loader';
 import { refs } from '../refs/refs';
 refs;
-// getPopular()
-//   .then(data => {
-//     // console.log(data);
-//   })
-//   .catch(error => console.log(error));
-
-// getCategoryList()
-//   .then(data => console.log(data))
-//   .catch(error => {
-//     console.log(error);
-//   });
-
-// getDataByCategory('Crosswords & Games')
-//   .then(data => console.log(data))
-//   .catch(error => console.log(error));
 
 const form = document.querySelector('.search');
 const input = document.querySelector('.input');
