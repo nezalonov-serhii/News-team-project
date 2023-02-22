@@ -47,24 +47,20 @@ async function getDataByCategory(value) {
   throw new Error(data.statusText);
 }
 
-async function getSearchArticle(value, page = 0, date = '') {
+async function getSearchArticle(value, date) {
   showLoader();
   let dateUrl = '';
-  // dateForUrl = ` &begin_date=${date}&end_date=${date}`;
-  // &page=26
-
   if (date !== '') {
     dateUrl = `&begin_date=${date}&end_date=${date}`;
   }
 
   const articleFetch = await fetch(
-    `${BASE_URL}/search/v2/articlesearch.json?q=${value}&page=${page}&${KEY}${dateUrl}`
+    `${BASE_URL}/search/v2/articlesearch.json?q=${value}&${KEY}${dateUrl}`
   );
 
-  https: if (articleFetch.ok) {
+  if (articleFetch.ok) {
     const articles = await articleFetch.json();
 
-    // console.log(articles.response);
     return articles.response.docs;
   }
 

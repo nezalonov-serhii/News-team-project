@@ -1,5 +1,8 @@
 .weather {
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   border-radius: 4px;
 
   background-color: var(--accent-color);
@@ -64,5 +67,14 @@
       width: 27px;
       height: 27px;
     }
+  }
+}
+.location_weather {
+  order: 1;
+  @include tablet {
+    order: 2;
+  }
+  @include desktop {
+    order: 3;
   }
 }
