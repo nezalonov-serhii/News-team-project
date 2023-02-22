@@ -11,7 +11,9 @@ let page = 2;
 let orderedNumber = 0;
 
 function saveValuesFromCategoryNews(articles) {
-  refs.newsList.innerHTML = '';
+
+  clearNewsList()
+
   arrayNewsCard = [];
 
   articles.map(article => {
@@ -74,12 +76,38 @@ function saveValuesFromPopularNews(articles) {
 }
 
 function renderPopularNews(articles) {
-  refs.newsList.innerHTML = '';
+  // refs.newsList.innerHTML = '';
+  clearNewsList()
   arrayNewsCard = [];
 
   saveValuesFromPopularNews(articles);
   renderNewsList(arrayNewsCard);
 }
+
+
+function renderSearchNews(e) {
+  e.preventDefault();
+
+  // refs.newsList.innerHTML = '';
+  clearNewsList()
+  arrayNewsCard = [];
+
+  const date = refs.celendarDate.dataset.time.replaceAll('-', '');
+  // console.log(date);
+
+  const inputSearchValue = refs.form.elements.inputSearch.value;
+  getSearchArticle(inputSearchValue, date)
+    .then(articles => {
+      saveValuesFromSearchNews(articles);
+      renderNewsList(arrayNewsCard);
+    })
+    .catch()
+    .finally(data => {
+      hideLoader();
+      // reset()
+    });
+}
+
 
 // function renderNewsCategory(e) {
 
@@ -103,31 +131,36 @@ function renderPopularNews(articles) {
 //}
 
 function renderNewsList(arrayNewsCard) {
+ 
   const markup = arrayNewsCard.reduce((previousValue, article, index) => {
     orderedNumber += 1;
+    return checkIndex(
+      arrayNewsCard,
+      previousValue,
+      article,
+      index,
+      orderedNumber
+    );
 
-    if (index === 2) {
-      return (
-        createMarkupWidgetWeather() +
-        previousValue +
-        createNewsCard(article, orderedNumber)
-      );
-    }
-    return createNewsCard(article, orderedNumber) + previousValue;
+   
   }, '');
   updateNewsList(markup);
+//  const dataOfWeather = updateNewsList(markup);
+ 
   orderedNumber = 0;
 }
 
+const mainNewsList = refs.newsList
+
 function updateNewsList(markup) {
-  refs.newsList.innerHTML = markup;
-  const deg = document.querySelector('.weather__degree');
-  const value = document.querySelector('.weather__value');
-  const city = document.querySelector('.weather__city');
-  const day = document.querySelector('.weather__day');
-  const year = document.querySelector('.weather__year');
-  const imgWeather = document.querySelector('.weather__image');
-  fillWeather(deg, value, city, day, year, imgWeather);
+  mainNewsList.innerHTML = markup;
+  const deg = mainNewsList.querySelector('.weather__degree');
+  const value = mainNewsList.querySelector('.weather__value');
+  const city = mainNewsList.querySelector('.weather__city');
+  const day = mainNewsList.querySelector('.weather__day');
+  const year =mainNewsList.querySelector('.weather__year');
+  const imgWeather = mainNewsList.querySelector('.weather__image');
+  fillWeather(deg, value, city, day, year, imgWeather)
 }
 function createMarkupWidgetWeather() {
   return `<li id="weather" class="weather news__item location_weather">
@@ -154,6 +187,46 @@ function createMarkupWidgetWeather() {
 
 function normolizeDate(date) {
   return date.slice(0, 10);
+}
+
+function normolizeDate(date) {
+  return date.slice(0, 10);
+}
+function checkIndex(
+  arrayNewsCard,
+  previousValue,
+  article,
+  index,
+  orderedNumber
+) {
+  // if(arrayNewsCard.length === 0) {
+  //   return
+  // }
+  if (index === 2) {
+    console.log(index);
+
+    return (
+      createMarkupWidgetWeather() +
+      previousValue +
+      createNewsCard(article, orderedNumber)
+    );
+  } else if (arrayNewsCard.length === 2 && index === 1) {
+    return (
+      createMarkupWidgetWeather() +
+      previousValue +
+      createNewsCard(article, orderedNumber)
+    );
+  } else if (arrayNewsCard.length === 1) {
+    return (
+      createMarkupWidgetWeather() +
+      previousValue +
+      createNewsCard(article, orderedNumber)
+    );
+  }
+  return createNewsCard(article, orderedNumber) + previousValue;
+}
+function clearNewsList(){
+  refs.newsList.innerHTML = '';
 }
 
 export {
