@@ -103,10 +103,7 @@
   }
 
   &__value {
-    width: 99px;
-    height: 42px;
-    left: 119px;
-    top: 0px;
+    margin-bottom: 5px;
     font-family: 'Roboto';
     text-transform: capitalize;
     font-style: normal;
@@ -146,7 +143,6 @@
   height: 34px;
   padding: 8px;
   font-size: 14px;
-  margin-top: 9px;
   // position: absolute;
   display: flex;
   align-items: center;
@@ -155,7 +151,6 @@
   line-height: calc(14 / 16);
   @media screen and(min-width: $pre_tablet) {
     font-size: 20px;
-    margin-top: 35px;
     height: 42px;
     padding-right: 17px;
     line-height: calc(23 / 20);
