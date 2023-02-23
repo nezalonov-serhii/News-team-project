@@ -200,7 +200,7 @@ button.parentNode.nextElementSibling.nextElementSibling.lastElementChild
 if (favorites.some(item => item.uri === uri)) {
 button.classList.add('hidden-span');
 }
-});
+}) ;
 
 
 
