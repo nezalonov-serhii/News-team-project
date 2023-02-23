@@ -1,5 +1,6 @@
 import { refs } from '../refs/refs';
 import { errorSearch } from '../errorSearch';
+import Sprite from '../../images/sprite.svg';
 
 console.log(refs.favorite);
 

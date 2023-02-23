@@ -32,9 +32,10 @@ function renderReadNews() {
   }
 
   const uniqDates = Array.from(new Set(dates));
-  const sortedDates = uniqDates.sort((a, b) => b.localeCompare(a));
+  const filteredDate = uniqDates.filter(date => date !== undefined);
+  const sortedDates = filteredDate.sort((a, b) => b.localeCompare(a));
 
-  for (let i = 0; i < uniqDates.length; i += 1) {
+  for (let i = 0; i < sortedDates.length; i += 1) {
     const filteredNews = readNews.filter(
       item => item.dayRead === sortedDates[i]
     );

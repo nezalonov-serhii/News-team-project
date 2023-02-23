@@ -12,7 +12,9 @@ export function btnAddToFavorite(event) {
   }
 
   const newsIndex = newLocalStorage.findIndex(
-    item => item.id === btn.closest('.news__article').dataset.id
+    item =>
+      item.id === btn.closest('.news__article').dataset.id ||
+      item.id === btn.closest('.news__article').id
   );
 
   btn.classList.toggle('hidden-span');
