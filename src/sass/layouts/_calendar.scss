@@ -20,7 +20,7 @@
 }
 .choseDataButton {
   width: 151px;
-  height: 30px;
+  height: 34px;
   background-color: var(--main-white);
   color: var(--incative-text);
   border: 1px solid #111321;
@@ -30,7 +30,6 @@
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
-  line-height: 21px;
   transition: background-color 250ms ease-in-out;
 
   @include tablet {
@@ -117,7 +116,7 @@
 .calendar-icon {
   position: absolute;
   pointer-events: none;
-  top: 8px;
+  top: 10px;
   left: 10px;
   color: var(--blue);
   transition: transform 250ms ease-in-out;
@@ -130,7 +129,7 @@
 .dropdown-icon {
   position: absolute;
   pointer-events: none;
-  top: 8px;
+  top: 10px;
   right: 10px;
   color: var(--incative-text);
   rotate: 0;
@@ -183,8 +182,8 @@
 }
 
 .calendar-dates-day {
-  width: 25px;
-  height: 25px;
+  width: 26px;
+  height: 26px;
 }
 
 .calendar-dates-day:hover {
@@ -259,9 +258,10 @@
 .yearListButtons {
   margin-bottom: 10px;
   width: 70px;
+  border-radius: 10px;
 }
 
-.yearListButtons:hover {
+.yearListButtons:hover{
   color: var(--main-background);
   background-color: var(--blue);
   cursor: pointer;
