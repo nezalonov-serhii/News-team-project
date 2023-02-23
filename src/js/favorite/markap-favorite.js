@@ -3,7 +3,7 @@ import { errorSearch } from '../errorSearch';
 
 console.log(refs.favorite);
 
-const savedNews = localStorage.getItem('newsSection');
+const savedNews = localStorage.getItem('news');
 const parsedNews = JSON.parse(savedNews);
 
 // if (parsedNews.length === 0) {
@@ -73,10 +73,10 @@ function btnFavoriteRemove(e) {
   const id = e.target.closest('.news__article').dataset.id;
   const indexElLocalStorege = parsedNews.findIndex(e => e.id === id);
 
-  localStorage.removeItem('newsSection');
+  localStorage.removeItem('news');
   parsedNews.splice(indexElLocalStorege, 1);
 
-  localStorage.setItem(`newsSection`, JSON.stringify(parsedNews));
+  localStorage.setItem(`news`, JSON.stringify(parsedNews));
 
   refs.favoriteLists.innerHTML = '';
 

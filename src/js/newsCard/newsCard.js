@@ -107,11 +107,11 @@ newsList.addEventListener('click', linkReadMore);
 //Перевірка чи є Favorite в  LocalStorage
 
 function isLocalEmpty() {
-  if (JSON.parse(localStorage.getItem('newsSection')) === null) {
+  if (JSON.parse(localStorage.getItem('news')) === null) {
     newLocalStorage = [];
     return;
   }
-  newLocalStorage = JSON.parse(localStorage.getItem('newsSection'));
+  newLocalStorage = JSON.parse(localStorage.getItem('news'));
 }
 isLocalEmpty();
 
@@ -120,10 +120,10 @@ let readMoreId = [];
 isLocalReadEmpty();
 
 function isLocalReadEmpty() {
-  if (JSON.parse(localStorage.getItem('readMoreLocal')) === null) {
+  if (JSON.parse(localStorage.getItem('news')) === null) {
     return;
   }
-  readMoreId = JSON.parse(localStorage.getItem('readMoreLocal'));
+  readMoreId = JSON.parse(localStorage.getItem('news'));
 }
 
 //Кнопка Readmore
@@ -175,7 +175,7 @@ function btnAddToFavorite(event) {
       newLocalStorage.splice(i, 1);
     }
   }
-  localStorage.setItem(`newsSection`, JSON.stringify(newLocalStorage));
+  localStorage.setItem(`news`, JSON.stringify(newLocalStorage));
 }
 
 // Додаємо в локальне сховище дані через кнопку
@@ -199,7 +199,7 @@ function addToFavoriteLocal(btn) {
   }
 
   newLocalStorage.push(newsSection);
-  localStorage.setItem(`newsSection`, JSON.stringify(newLocalStorage));
+  localStorage.setItem(`news`, JSON.stringify(newLocalStorage));
 }
 
 //Додаємо в Readmore
@@ -211,6 +211,9 @@ function addReadMore(readMore) {
     .toLocaleDateString([], options)
     .replaceAll('.', '/');
   const read = {
+    id:
+      readMore.closest('.news__article').dataset.id ||
+      readMore.closest('.news__article').id,
     uri: readMore.nextElementSibling.textContent,
     date: readMore.parentNode.firstElementChild.innerText,
     img: readMore.parentNode.parentNode.childNodes[1].children[0].currentSrc,
@@ -229,7 +232,7 @@ function addReadMore(readMore) {
     }
   }
   readMoreId.push(read);
-  localStorage.setItem(`readMoreLocal`, JSON.stringify(readMoreId));
+  localStorage.setItem(`news`, JSON.stringify(readMoreId));
 }
 
 //
