@@ -1,18 +1,16 @@
 import { refs } from '../refs/refs';
 import { hideLoader } from '../loader/loader';
 import Sprite from '../../images/sprite.svg';
-
 import { createNewsCard, newsCardTextFormat } from '../newsCard/newsCard';
 import { fillWeather } from '../weather/weather';
-// fillWeather()
-let arrayNewsCard = [];
+
 const error =
   'https://img.freepik.com/free-vector/404-error-with-cute-animal-concept-illustration_114360-1931.jpg';
-let page = 2;
+
 let orderedNumber = 0;
 
 function saveValuesFromCategoryNews(articles) {
-  refs.newsList.innerHTML = '';
+  clearNewsList();
 
   const arrNews = articles.map(article => {
     return {
@@ -32,7 +30,7 @@ function saveValuesFromCategoryNews(articles) {
 }
 
 function saveValuesFromSearchNews(articles) {
-  refs.newsList.innerHTML = '';
+  clearNewsList();
 
   const arrNews = articles.map(article => {
     return {
@@ -40,8 +38,7 @@ function saveValuesFromSearchNews(articles) {
 
       media: `${
         article.multimedia[0] === undefined
-          ? // article.multimedia.length === 0
-            error
+          ? error
           : `https://static01.nyt.com/${article.multimedia[0].url}`
       }`,
 
@@ -56,7 +53,7 @@ function saveValuesFromSearchNews(articles) {
   renderNewsList(arrNews);
 }
 function saveValuesFromPopularNews(articles) {
-  refs.newsList.innerHTML = '';
+  clearNewsList();
 
   const arrNews = articles.map(article => {
     return {
@@ -78,27 +75,6 @@ function saveValuesFromPopularNews(articles) {
   renderNewsList(arrNews);
 }
 
-// function renderNewsCategory(e) {
-
-// if (e.target.nodeName !== 'BUTTON' || e.target === refs.filterOthers) {
-//   return;
-// }
-// const categoryName = e.target.dataset.category_name;
-
-// console.log(categoryName);
-
-// getDataByCategory(categoryName)
-//   .then(articles => {
-//     refs.newsList.innerHTML = '';
-//     arrayNewsCard = [];
-
-//     saveValuesFromCategoryNews(articles);
-//      renderNewsList(arrayNewsCard);
-//   })
-// .catch()
-//   .finally(hideLoader());
-//}
-
 function renderNewsList(arrayNewsCard) {
   const markup = arrayNewsCard.reduce((previousValue, article, index) => {
     orderedNumber += 1;
@@ -112,7 +88,8 @@ function renderNewsList(arrayNewsCard) {
     }
     return createNewsCard(article, orderedNumber) + previousValue;
   }, '');
-  updateNewsList(markup);
+  const widgetWeather = updateNewsList(markup);
+  fillWeather(widgetWeather);
   orderedNumber = 0;
 }
 
@@ -141,7 +118,7 @@ function createMarkupWidgetWeather() {
       </p>
     </div>
   </div>
-  <img class="weather__image" />
+  <img class="weather__image" alt="weather status"/>
   <div class="weather__date">
     <p class="weather__day"></p>
     <p class="weather__year"></p>
@@ -154,6 +131,25 @@ function normolizeDate(date) {
   return date.slice(0, 10);
 }
 
+function clearNewsList() {
+  refs.newsList.innerHTML = '';
+}
+
+const mainNewsList = refs.newsList;
+
+function updateNewsList(markup) {
+  mainNewsList.innerHTML = markup;
+  const valueOfWeather = {
+    deg: mainNewsList.querySelector('.weather__degree'),
+    value: mainNewsList.querySelector('.weather__value'),
+    city: mainNewsList.querySelector('.weather__city'),
+    day: mainNewsList.querySelector('.weather__day'),
+    year: mainNewsList.querySelector('.weather__year'),
+    imgWeather: mainNewsList.querySelector('.weather__image'),
+  };
+  return valueOfWeather;
+}
+
 export {
   renderNewsList,
   updateNewList,
@@ -162,5 +158,4 @@ export {
   saveValuesFromCategoryNews,
   saveValuesFromSearchNews,
   saveValuesFromPopularNews,
-  arrayNewsCard,
 };

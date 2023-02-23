@@ -1,11 +1,9 @@
 import { getSearchArticle } from '../api/news';
 import { hideLoader } from '../loader/loader';
 import { refs } from '../refs/refs';
-import {
-  saveValuesFromSearchNews,
-  renderNewsList,
-  arrayNewsCard,
-} from '../markup/markup';
+import { saveValuesFromSearchNews } from '../markup/markup';
+import { scrollTop } from './function';
+
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const input = document.querySelector('.input');
@@ -61,6 +59,8 @@ function onInput(e) {
           getRightAmount();
           saveValuesFromSearchNews(rightAmount);
           renderPage(currentPage, totalPage);
+          scrollTop();
+
           if (currentPage < totalPage) refs.nextBtn.disabled = false;
         }
 
@@ -70,6 +70,7 @@ function onInput(e) {
           getRightAmount();
           saveValuesFromSearchNews(rightAmount);
           renderPage(currentPage, totalPage);
+          scrollTop();
 
           if (currentPage > 0) refs.prevBtn.disabled = false;
         }
@@ -85,6 +86,7 @@ function onInput(e) {
           getRightAmount();
           saveValuesFromSearchNews(rightAmount);
           renderPage(currentPage, totalPage);
+          scrollTop();
 
           if (currentPage > 0) refs.prevBtn.disabled = false;
           else refs.prevBtn.disabled = true;

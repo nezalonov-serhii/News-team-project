@@ -2,6 +2,8 @@ import { getPopular } from '../api/news';
 import { saveValuesFromPopularNews } from '../markup/markup';
 import { refs } from '../refs/refs';
 import { hideLoader } from '../loader/loader';
+import { scrollTop } from './function';
+
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 let totalPage = 0;
@@ -43,6 +45,7 @@ getPopular()
       getRightAmount();
       renderPage(currentPage);
       saveValuesFromPopularNews(rightAmount);
+      scrollTop();
 
       if (currentPage < totalPage) refs.nextBtn.disabled = false;
     }
@@ -53,6 +56,7 @@ getPopular()
       getRightAmount();
       renderPage(currentPage);
       saveValuesFromPopularNews(rightAmount);
+      scrollTop();
 
       if (currentPage > 0) refs.prevBtn.disabled = false;
     }
@@ -66,6 +70,7 @@ getPopular()
       renderPage(currentPage);
       getRightAmount();
       saveValuesFromPopularNews(rightAmount);
+      scrollTop();
 
       if (currentPage > 0) refs.prevBtn.disabled = false;
       else refs.prevBtn.disabled = true;

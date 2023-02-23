@@ -1,10 +1,7 @@
 import { getDataByCategory } from '../api/news';
 import { hideLoader } from '../loader/loader';
-import {
-  saveValuesFromCategoryNews,
-  renderNewsList,
-  arrayNewsCard,
-} from '../markup/markup';
+import { saveValuesFromCategoryNews } from '../markup/markup';
+import { scrollTop } from './function';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
@@ -61,8 +58,9 @@ function renderNewsCategory(e) {
 
         getRightAmount();
         saveValuesFromCategoryNews(rightAmount);
-
         renderPage(currentPage);
+        scrollTop();
+
         if (currentPage < totalPage) refs.nextBtn.disabled = false;
       }
 
@@ -72,6 +70,8 @@ function renderNewsCategory(e) {
         getRightAmount();
         saveValuesFromCategoryNews(rightAmount);
         renderPage(currentPage);
+        scrollTop();
+
         if (currentPage > 0) refs.prevBtn.disabled = false;
       }
 
@@ -84,6 +84,7 @@ function renderNewsCategory(e) {
         renderPage(currentPage);
         getRightAmount();
         saveValuesFromCategoryNews(rightAmount);
+        scrollTop();
 
         if (currentPage > 0) refs.prevBtn.disabled = false;
         else refs.prevBtn.disabled = true;
@@ -107,12 +108,13 @@ function renderNewsCategory(e) {
 
   function renderPage(currentPage) {
     let marcup = '';
+
     if (currentPage >= totalPage - 1) {
       const allBtns = document.querySelectorAll('.pg-item');
       allBtns[allBtns.length - 1].classList.add('active');
       allBtns[allBtns.length - 2].classList.remove('active');
       refs.nextBtn.disabled = true;
-      return;
+      // return;
     }
     if (currentPage === 0) {
       refs.prevBtn.disabled = true;
