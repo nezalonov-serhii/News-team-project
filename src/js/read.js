@@ -82,6 +82,8 @@ function addEventHandlers() {
   refs.readNewsContainer.addEventListener('click', btnAddToFavorite);
 }
 
+  
+
 function onReadNewsBtnClick({ target }) {
   target.classList.toggle('isOpen');
 }

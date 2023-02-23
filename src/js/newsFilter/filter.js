@@ -74,7 +74,7 @@ async function selectNewCategory(newCategory) {
     prevCategory && prevCategory.classList.remove('isSelected');
     newCategory.classList.add('isSelected');
 
-    const result = await getDataByCategory(newCategory.dataset.category_name);
+    // const result = await getDataByCategory(newCategory.dataset.category_name);
   } catch (error) {
     Notify.failure('Error: ' + error.message);
   } finally {
