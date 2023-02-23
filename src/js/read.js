@@ -35,17 +35,20 @@ function renderReadNews() {
 
   const uniqDates = Array.from(new Set(dates));
   const filteredDate = uniqDates.filter(date => date !== undefined);
+
   const sortedDates = filteredDate.sort((a, b) => b.localeCompare(a));
+  console.log(sortedDates);
 
   for (let i = 0; i < sortedDates.length; i += 1) {
     const filteredNews = readNews.filter(
       item => item.dayRead === sortedDates[i]
     );
+
     const cardMarkup = filteredNews.map(item => createNewsCard(item)).join('');
 
     markup += `<div class="read-news__list">
       <button class="read-news__btn js-read-news-btn">
-        <span>${uniqDates[i]}</span>
+        <span>${sortedDates[i]}</span>
         <svg><use href="${Sprite + '#arrow-down'}"></use></svg>
       </button>
       <ul class="news__lists">
