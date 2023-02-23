@@ -23,7 +23,7 @@
     width: 415px;
   }
 }
-.page-container a {
+.page-container button {
   padding: 4px 10px;
   font-family: Manrope;
   font-size: 14px;
@@ -40,14 +40,12 @@
   border-radius: 2px;
 }
 
-.page-container button {
-  cursor: pointer;
-  background-color: transparent;
-  border: none;
-}
 button.prev-page,
 button.next-page {
-  width: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   font-family: Manrope;
   font-size: 14px;
   font-weight: 500;
@@ -57,134 +55,61 @@ button.next-page {
   border: 1px solid var(--accent-color);
   border-radius: 2px;
 }
+
+button.prev-page:disabled,
+button.next-page:disabled {
+  opacity: 0.4;
+}
 button.prev-page {
   margin-right: 6px;
 }
 button.next-page {
   margin-left: 6px;
 }
-.page-container button:disabled a {
-  color: var(--text-color);
-  font-family: Manrope;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 19px;
-  letter-spacing: 0em;
-  text-align: left;
-}
 
-#pagination {
+.pagination-wrap {
   display: flex;
   align-items: center;
+  gap: 6px;
 }
-#pagination li {
-  list-style: none;
+
+.pg-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  overflow: hidden;
-  margin: 0 4px;
-}
-#pagination .pg-item.active {
-  background-color: var(--accent-color);
-}
-#pagination .pg-item.active a {
-  color: var(--white-color);
-}
-#pagination .pg-item a {
-  text-decoration: none;
-  padding: 4px auto;
-  display: inline-block;
-  font-family: Manrope;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 19px;
-  letter-spacing: 0em;
-  text-align: left;
-  pointer-events: none;
-  color: var(--text-color);
-}
-#pagination .pg-item:hover {
-  background-color: var(--accent-color);
-}
-#pagination .pg-item:hover a {
-  color: var(--white-color);
-  background-color: var(--accent-color);
+
+  width: 31px;
+  height: 31px;
 }
 
-.settings {
-  padding-top: 3rem;
-  display: flex;
-  align-items: flex-start;
-}
-.settings .form-input {
-  margin-bottom: 1rem;
-}
-.settings .form-input:not(:last-child) {
-  margin-right: 10px;
-}
-.settings .form-input > label {
-  margin-bottom: 10px;
-}
-.settings .form-input label {
-  font-family: Manrope;
-  font-size: 14px;
+.pagination-wrap .pg-item.active {
+  background-color: var(--accent-color);
+  color: var(--white-color);
+
   font-weight: 500;
-  line-height: 19px;
-  letter-spacing: 0em;
-  text-align: left;
-  display: block;
-}
-.settings .form-input > input {
-  width: 100%;
-}
-.settings .form-input input {
-  font-size: 18px;
-  outline: none;
-  padding: 10px 17px;
-  border: 1px solid #b6b6b6;
-}
-.settings .wrapper-form-check {
-  display: flex;
-}
-.settings .wrapper-form-check .form-check {
-  display: flex;
-  line-height: 1;
-  align-items: center;
-}
-.settings .wrapper-form-check .form-check:not(:last-child) {
-  margin-right: 10px;
-}
-.settings .wrapper-form-check label {
-  margin-left: 10px;
-}
-@media (max-width: 992px) {
-  .settings {
-    flex-direction: column;
+  font-size: 14px;
+  line-height: 1.4;
+
+  @media screen and (min-width: 768px) {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.4;
   }
 }
 
-.s_prew {
-  display: flex;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 19px;
-  letter-spacing: 0em;
-  text-align: left;
+.span_prew {
+  font-size: 20px;
+  margin-right: 5px;
+}
+.span_next {
+  font-size: 20px;
+  margin-left: 5px;
 }
 
-.pagination-opacity {
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-a.fas {
+.fas {
   display: flex;
+  align-items: center;
+  justify-content: center;
   height: 28px;
 }
-
-// тут можна використати той же дата атрибут:
-// при рендері перевіряємо скільки кнопок залишається
-//  між активною та першою, тобто беремо дата атрибут
-//  активної кнопки та віднімаємо від нього дата атрибут першої.
-//   якщо вийде число більше 1,
-//   то після першої кнопки вставляємо умовний спан з крапками,
-//    і після нього рендеримо активну кнопку

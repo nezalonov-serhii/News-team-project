@@ -67,4 +67,13 @@ body.darkMode {
   .mobile-menu__current .menu-icon__arrow {
     stroke: var(--text-color);
   }
+
+  .pagination button {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+  }
+  .pg-item {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+  }
 }

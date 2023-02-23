@@ -111,31 +111,25 @@ function renderPage(currentPage) {
   if (totalPage < 4) {
     for (let i = 0; i < totalPage; i += 1) {
       if (i !== currentPage) {
-        marcup += `<li class="pg-item" data-page="${i}"><a>${i + 1}</a></li>`;
+        marcup += `<li class="pg-item" data-page="${i}">${i + 1}</li>`;
       } else {
-        marcup += `<li class="pg-item active" data-page="${i}"><a>${
-          i + 1
-        }</a></li>`;
+        marcup += `<li class="pg-item active" data-page="${i}">${i + 1}</li>`;
       }
     }
   } else if (currentPage < 2) {
     for (let i = 0; i < 4; i += 1) {
       if (i !== currentPage) {
-        marcup += `<li class="pg-item" data-page="${i}"><a>${i + 1}</a></li>`;
+        marcup += `<li class="pg-item" data-page="${i}">${i + 1}</li>`;
       } else if (i < rightAmount.length) {
-        marcup += `<li class="pg-item active" data-page="${i}"><a>${
-          i + 1
-        }</a></li>`;
+        marcup += `<li class="pg-item active" data-page="${i}">${i + 1}</li>`;
       }
     }
   } else {
     for (let i = currentPage - 2; i <= currentPage + 1; i += 1) {
       if (i !== currentPage) {
-        marcup += `<li class="pg-item" data-page="${i}"><a>${i + 1}</a></li>`;
+        marcup += `<li class="pg-item" data-page="${i}">${i + 1}</li>`;
       } else {
-        marcup += `<li class="pg-item active" data-page="${i}"><a>${
-          i + 1
-        }</a></li>`;
+        marcup += `<li class="pg-item active" data-page="${i}">${i + 1}</li>`;
       }
     }
   }
