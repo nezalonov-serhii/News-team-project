@@ -1,11 +1,7 @@
 import { refs } from '../refs/refs';
 import { hideLoader } from '../loader/loader';
-import {
-  getPopular,
-  getCategoryList,
-  getSearchArticle,
-  getDataByCategory,
-} from '../api/news';
+import Sprite from '../../images/sprite.svg';
+
 import { createNewsCard, newsCardTextFormat } from '../newsCard/newsCard';
 import { fillWeather } from '../weather/weather';
 // fillWeather()
@@ -111,11 +107,11 @@ function renderNewsList(arrayNewsCard) {
   const markup = arrayNewsCard.reduce((previousValue, article, index) => {
     orderedNumber += 1;
 
-    if (index === 2) {
+    if (index === 0) {
       return (
-        createMarkupWidgetWeather() +
         previousValue +
-        createNewsCard(article, orderedNumber)
+        createNewsCard(article, orderedNumber) +
+        createMarkupWidgetWeather()
       );
     }
     return createNewsCard(article, orderedNumber) + previousValue;
@@ -141,8 +137,9 @@ function createMarkupWidgetWeather() {
     <div class="weather__item">
       <span class="weather__value"></span>
       <p class="weather__location">
+
         <svg>
-          <use href="./images/sprite.svg#location"></use>
+          <use href=${Sprite + '#location'}></use>
         </svg>
         <span class="weather__city"></span>
       </p>
@@ -153,8 +150,12 @@ function createMarkupWidgetWeather() {
     <p class="weather__day"></p>
     <p class="weather__year"></p>
   </div>
-  <a href="https://sinoptik.ua/" class="weather__link" target="_blank" rel="noreferrer noopener">weather for week</a>
+  <a href="https://sinoptik.ua/" class="weather__btn" target="_blank" rel="noreferrer noopener"><span class="weather__text">weather for week</span></a>
 </li>`;
+}
+
+function normolizeDate(date) {
+  return date.slice(0, 10);
 }
 
 export {
@@ -163,10 +164,7 @@ export {
   createMarkupWidgetWeather,
   orderedNumber,
   renderPopularNews,
-  arrayNewsCard,
   saveValuesFromCategoryNews,
   saveValuesFromSearchNews,
+  arrayNewsCard,
 };
-function normolizeDate(date) {
-  return date.slice(0, 10);
-}
