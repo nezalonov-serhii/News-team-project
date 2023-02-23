@@ -9,15 +9,20 @@ console.log(refs.favorite);
 const savedNews = localStorage.getItem('news');
 const parsedNews = JSON.parse(savedNews);
 
+if (!parsedNews) {
+  errorSearch();
+  return;
+}
+const filteredNews = parsedNews.filter(news => news.favorite === true);
 // if (parsedNews.length === 0) {
 //   refs.errorSearch.classList.remove('is-hidden');
 // } else {
 //   refs.errorSearch.classList.add('is-hidden');
 // }
 
-errorSearch();
+// errorSearch();
 
-parsedNews.map(el => {
+filteredNews.map(el => {
   addMarkup(refs.favoriteLists, createNewsCard(el));
 });
 
