@@ -1,8 +1,10 @@
 import { refs } from '../refs/refs';
 import { hideLoader } from '../loader/loader';
 import Sprite from '../../images/sprite.svg';
-import { createNewsCard, newsCardTextFormat } from '../newsCard/newsCard';
+import { newsCardTextFormat } from '../newsCard/newsCard';
 import { fillWeather } from '../weather/weather';
+
+import { createNewsCard } from '../markup/card';
 
 const error =
   'https://img.freepik.com/free-vector/404-error-with-cute-animal-concept-illustration_114360-1931.jpg';
