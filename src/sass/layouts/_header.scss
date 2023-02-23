@@ -137,6 +137,8 @@
   }
 
   input {
+    display: block;
+    padding-left: 10px;
     font-size: 12px;
     line-height: 24px;
     letter-spacing: 0.02em;
@@ -164,12 +166,19 @@
       border-radius: 20px;
 
       input {
-        width: 125px;
+        width: 120px;
         padding: 8px 0;
       }
 
       .search__btn {
         padding: 6px 16px 5px 12px;
+      }
+    }
+  }
+  @media screen and (max-width: 380px) {
+    &:hover {
+      input {
+        width: 90px;
       }
     }
   }
