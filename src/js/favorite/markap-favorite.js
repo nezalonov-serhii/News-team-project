@@ -2,6 +2,8 @@ import { refs } from '../refs/refs';
 import { errorSearch } from '../errorSearch';
 import Sprite from '../../images/sprite.svg';
 
+import { btnAddToFavorite } from '../favorite/addToFavorite';
+
 console.log(refs.favorite);
 
 const savedNews = localStorage.getItem('news');
@@ -79,7 +81,7 @@ function addMarkup(element, constMarkup) {
   element.insertAdjacentHTML('beforeend', constMarkup);
 }
 
-refs.favoriteLists.addEventListener('click', btnFavoriteRemove);
+refs.favoriteLists.addEventListener('click', btnAddToFavorite);
 
 // function btnFavoriteRemove(e) {
 //   if (e.target.nodeName !== 'BUTTON' && e.target.nodeName !== 'path') return;

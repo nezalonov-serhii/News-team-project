@@ -2,6 +2,8 @@ import { getPopular } from '../api/news.js';
 import { hideLoader } from '../loader/loader';
 import { orderedNumber } from '../markup/markup.js';
 
+import { btnAddToFavorite } from '../favorite/addToFavorite';
+
 import Sprite from '../../images/sprite.svg';
 
 const newsList = document.querySelector('.news__lists');
@@ -150,60 +152,6 @@ function linkReadMore(event) {
 }
 
 //Кнопка улюблене
-
-function btnAddToFavorite(event) {
-  const btn = event.target.closest(`.item-news__add-to-favorite`);
-  // const Readmorestatus = btn.parentNode.children[2]
-  // console.log(Readmorestatus);
-  // Readmorestatus.classList.add('hidden');
-
-  if (!btn) return;
-  isLocalEmpty();
-  let uri =
-    btn.parentNode.nextElementSibling.nextElementSibling.lastElementChild
-      .textContent;
-  console.log(uri);
-  if (!btn.classList.contains('hidden-span')) {
-    btn.classList.add('hidden-span');
-
-    addToFavoriteLocal(btn);
-    return;
-  }
-  btn.classList.remove('hidden-span');
-  for (let i = 0; i < newLocalStorage.length; i += 1) {
-    if (newLocalStorage[i].uri === uri) {
-      newLocalStorage.splice(i, 1);
-    }
-  }
-  localStorage.setItem(`news`, JSON.stringify(newLocalStorage));
-}
-
-// Додаємо в локальне сховище дані через кнопку
-
-function addToFavoriteLocal(btn) {
-  const newsSection = {
-    id: btn.parentNode.parentNode.id,
-    img: btn.parentNode.childNodes[1].attributes.src.nodeValue,
-    category: btn.parentNode.childNodes[3].innerText,
-    title: btn.parentNode.parentNode.childNodes[3].children[0].innerText,
-    description: btn.parentNode.parentNode.childNodes[3].children[1].innerText,
-    date: btn.parentNode.parentNode.lastElementChild.children[0].innerText,
-    link: btn.parentNode.parentNode.lastElementChild.children[1].attributes[1]
-      .value,
-    favorite: true,
-    read: false,
-    uri: btn.parentNode.nextElementSibling.nextElementSibling.lastElementChild
-      .textContent,
-  };
-  for (let i = 0; i < newLocalStorage.length; i += 1) {
-    if (newLocalStorage[i].uri === newsSection.uri) return;
-  }
-
-  newLocalStorage.push(newsSection);
-  localStorage.setItem(`news`, JSON.stringify(newLocalStorage));
-}
-
-//Додаємо в Readmore
 
 function addReadMore(readMore) {
   const evenDateNow = new Date();
