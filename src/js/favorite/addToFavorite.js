@@ -1,3 +1,5 @@
+import { newsCardTextFormat } from '../markup/card';
+
 export function btnAddToFavorite(event) {
   const btn = event.target.closest(`.item-news__add-to-favorite`);
 
@@ -26,25 +28,12 @@ export function btnAddToFavorite(event) {
     return;
   }
 
-  // let uri =
-  //   btn.parentNode.nextElementSibling.nextElementSibling.lastElementChild
-  //     .textContent;
-
-  // for (let i = 0; i < newLocalStorage.length; i += 1) {
-  //   if (newLocalStorage[i].uri === uri) {
-  //     newLocalStorage.splice(i, 1);
-  //   }
-  // }
-
   addToFavoriteLocalStorage(btn);
-  // localStorage.setItem(`news`, JSON.stringify(newLocalStorage));
 }
 
 export function addToFavoriteLocalStorage(btn) {
   const data = localStorage.getItem('news');
   let newLocalStorage = [];
-
-
 
   if (data) {
     newLocalStorage = JSON.parse(localStorage.getItem('news'));
@@ -55,7 +44,6 @@ export function addToFavoriteLocalStorage(btn) {
       item.id === btn.closest('.news__article').dataset.id ||
       item.id === btn.closest('.news__article').id
   );
-
 
   if (newsIndex > -1) {
     newLocalStorage[newsIndex].favorite = !newLocalStorage[newsIndex].favorite;
@@ -71,7 +59,9 @@ export function addToFavoriteLocalStorage(btn) {
     media: btn.parentNode.childNodes[1].attributes.src.nodeValue,
     section: btn.parentNode.childNodes[3].innerText,
     title: btn.parentNode.parentNode.childNodes[3].children[0].innerText,
-    abstract: btn.parentNode.parentNode.childNodes[3].children[1].innerText,
+    abstract: newsCardTextFormat(
+      btn.parentNode.parentNode.childNodes[3].children[1].innerText
+    ),
     published_date:
       btn.parentNode.parentNode.lastElementChild.children[0].innerText,
     url: btn.parentNode.parentNode.lastElementChild.children[1].href,

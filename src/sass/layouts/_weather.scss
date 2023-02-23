@@ -49,6 +49,7 @@
 
   &__item {
     display: flex;
+    align-items: center;
     flex-direction: column;
     margin-left: 11px;
 
@@ -102,9 +103,11 @@
     }
   }
 
+  &__city {
+    margin: 0 auto;
+  }
+
   &__value {
-    width: 99px;
-    height: 42px;
     left: 119px;
     top: 0px;
     font-family: 'Roboto';
@@ -145,13 +148,11 @@
     line-height: calc(14 / 16);
     @media screen and(min-width: $pre_tablet) {
       font-size: 20px;
-      margin-top: 42px;
       height: 42px;
       padding-right: 17px;
       line-height: calc(23 / 20);
     }
   }
- 
 }
 .location_weather {
   order: 0;

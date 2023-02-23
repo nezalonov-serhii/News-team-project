@@ -80,7 +80,6 @@ function addEventHandlers() {
   );
 
   refs.readNewsContainer.addEventListener('click', btnAddToFavorite);
-  // newsLists.forEach(list => list.addEventListener('click', btnAddToFavorite));
 }
 
 function onReadNewsBtnClick({ target }) {

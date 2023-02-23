@@ -60,7 +60,7 @@ export function createNewsCard(
               </div>
               <div class="new__text-wrapper">
               <h2 class=" news__title">${title}</h2>
-              <p class="news__description">${abstract}</p>
+              <p class="news__description">${newsCardTextFormat(abstract)}</p>
               </div>
               <div class="news__info">
                   <span class="news__date">${published_date}</span>
@@ -80,4 +80,12 @@ function getDataFromLocalStorage(key) {
     refs.errorSearch.classList.remove('is-hidden');
     refs.readNewsContainer.classList.add('is-hidden');
   }
+}
+
+export function newsCardTextFormat(element) {
+  let textFormat = element;
+  if (textFormat.length > 80) {
+    textFormat = element.slice(0, 80) + '...';
+  }
+  return textFormat;
 }

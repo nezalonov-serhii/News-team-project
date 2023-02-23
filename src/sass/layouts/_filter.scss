@@ -4,6 +4,7 @@
 
 .filter__container {
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 
@@ -105,7 +106,7 @@
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
- 
+
   transform: translateY(-10%) scaleY(0);
   transform-origin: top;
   transition: transform 250ms ease-in-out, opacity 250ms ease-in-out,

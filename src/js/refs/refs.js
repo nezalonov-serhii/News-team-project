@@ -29,6 +29,7 @@ const refs = {
   prevBtn: document.querySelector('.prev-page'),
   nextBtn: document.querySelector('.next-page'),
   pgContainer: document.querySelector('#pagination'),
+  pgHidden: document.querySelector('.pagination-hidden'),
   form: document.querySelector('.search'),
 
   //mobile
