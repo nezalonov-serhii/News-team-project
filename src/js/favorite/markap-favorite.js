@@ -81,23 +81,23 @@ function addMarkup(element, constMarkup) {
 
 refs.favoriteLists.addEventListener('click', btnFavoriteRemove);
 
-function btnFavoriteRemove(e) {
-  if (e.target.nodeName !== 'BUTTON' && e.target.nodeName !== 'path') return;
+// function btnFavoriteRemove(e) {
+//   if (e.target.nodeName !== 'BUTTON' && e.target.nodeName !== 'path') return;
 
-  const id = e.target.closest('.news__article').dataset.id;
-  const indexElLocalStorege = parsedNews.findIndex(e => e.id === id);
+//   const id = e.target.closest('.news__article').dataset.id;
+//   const indexElLocalStorege = parsedNews.findIndex(e => e.id === id);
 
-  localStorage.removeItem('news');
-  parsedNews.splice(indexElLocalStorege, 1);
+//   localStorage.removeItem('news');
+//   parsedNews.splice(indexElLocalStorege, 1);
 
-  localStorage.setItem(`news`, JSON.stringify(parsedNews));
+//   localStorage.setItem(`news`, JSON.stringify(parsedNews));
 
-  refs.favoriteLists.innerHTML = '';
+//   refs.favoriteLists.innerHTML = '';
 
-  console.log(parsedNews);
-  errorSearch();
+//   console.log(parsedNews);
+//   errorSearch();
 
-  parsedNews.map(el => {
-    addMarkup(refs.favoriteLists, createNewsCard(el));
-  });
-}
+//   parsedNews.map(el => {
+//     addMarkup(refs.favoriteLists, createNewsCard(el));
+//   });
+// }
