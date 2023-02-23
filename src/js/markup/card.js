@@ -1,19 +1,24 @@
 import Sprite from '../../images/sprite.svg';
 
-export function createNewsCard({
-  id,
-  media,
-  section,
-  abstract,
-  title,
-  published_date,
-  url,
-  uri,
-  favorite,
-  read,
-}) {
+export function createNewsCard(
+  {
+    id,
+    media,
+    section,
+    abstract,
+    title,
+    published_date,
+    url,
+    uri,
+    favorite,
+    read,
+  },
+  orderedNumber
+) {
   return `
-    <li class="news__item ${read ? 'opacity' : ''}">
+    <li class="news__item ${read ? 'opacity' : ''}" style = "order:${
+    orderedNumber ? orderedNumber : 0
+  }">
         <article class="news__article" data-id="${id}">
               <div class="news__wrapper" >
                   <img class="news__img" src="${media}" alt="">
