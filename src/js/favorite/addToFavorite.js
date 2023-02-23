@@ -40,7 +40,7 @@ export function btnAddToFavorite(event) {
   // localStorage.setItem(`news`, JSON.stringify(newLocalStorage));
 }
 
-function addToFavoriteLocal(btn) {
+export function addToFavoriteLocal(btn) {
   const data = localStorage.getItem('news');
   let newLocalStorage = [];
 
