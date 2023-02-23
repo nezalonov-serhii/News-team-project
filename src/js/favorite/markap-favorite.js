@@ -3,6 +3,8 @@ import { errorSearch } from '../errorSearch';
 import Sprite from '../../images/sprite.svg';
 
 import { btnAddToFavorite } from '../favorite/addToFavorite';
+import { addReadMore } from '../btns/readMore';
+import { addReadMore, linkReadMore } from '../btns/readMore';
 
 const savedNews = localStorage.getItem('news');
 const parsedNews = JSON.parse(savedNews);
@@ -24,6 +26,9 @@ if (filteredNews.length < 1) {
 filteredNews.map(el => {
   addMarkup(refs.favoriteLists, createNewsCard(el));
 });
+
+refs.favoriteLists.addEventListener('click', btnAddToFavorite);
+refs.favorite.addEventListener('click', linkReadMore);
 
 function createNewsCard({
   id,
@@ -80,5 +85,3 @@ function createNewsCard({
 function addMarkup(element, constMarkup) {
   element.insertAdjacentHTML('beforeend', constMarkup);
 }
-
-refs.favoriteLists.addEventListener('click', btnAddToFavorite);
