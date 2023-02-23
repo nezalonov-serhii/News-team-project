@@ -20,6 +20,7 @@
 }
 .choseDataButton {
   width: 151px;
+
   height: 33px;
   background-color: var(--main-white);
   color: var(--incative-text);
@@ -30,7 +31,6 @@
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
-  line-height: 21px;
   transition: background-color 250ms ease-in-out;
 
   @include tablet {
@@ -183,8 +183,8 @@
 }
 
 .calendar-dates-day {
-  width: 25px;
-  height: 25px;
+  width: 26px;
+  height: 26px;
 }
 
 .calendar-dates-day:hover {
@@ -259,9 +259,10 @@
 .yearListButtons {
   margin-bottom: 10px;
   width: 70px;
+  border-radius: 10px;
 }
 
-.yearListButtons:hover {
+.yearListButtons:hover{
   color: var(--main-background);
   background-color: var(--blue);
   cursor: pointer;
