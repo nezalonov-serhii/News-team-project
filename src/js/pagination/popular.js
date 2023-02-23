@@ -102,7 +102,7 @@ function renderPage(currentPage) {
     allBtns[allBtns.length - 1].classList.add('active');
     allBtns[allBtns.length - 2].classList.remove('active');
     refs.nextBtn.disabled = true;
-    // return;
+    return;
   }
   if (currentPage === 0) {
     refs.prevBtn.disabled = true;
