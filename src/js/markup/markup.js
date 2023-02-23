@@ -13,10 +13,9 @@ let orderedNumber = 0;
 
 function saveValuesFromCategoryNews(articles) {
   refs.newsList.innerHTML = '';
-  arrayNewsCard = [];
 
-  articles.map(article => {
-    arrayNewsCard.push({
+  const arrNews = articles.map(article => {
+    return {
       title: article.title,
       media: `${
         article.multimedia === null ? error : `${article.multimedia[2].url}`
@@ -27,16 +26,16 @@ function saveValuesFromCategoryNews(articles) {
       abstract: article.abstract,
       id: article.id,
       uri: article.uri,
-    });
+    };
   });
+  renderNewsList(arrNews);
 }
 
 function saveValuesFromSearchNews(articles) {
   refs.newsList.innerHTML = '';
-  arrayNewsCard = [];
 
-  articles.map(article => {
-    arrayNewsCard.push({
+  const arrNews = articles.map(article => {
+    return {
       title: article.headline.main,
 
       media: `${
@@ -52,12 +51,15 @@ function saveValuesFromSearchNews(articles) {
       abstract: article.abstract,
       id: article._id,
       uri: article.uri,
-    });
+    };
   });
+  renderNewsList(arrNews);
 }
 function saveValuesFromPopularNews(articles) {
-  articles.map(article => {
-    arrayNewsCard.push({
+  refs.newsList.innerHTML = '';
+
+  const arrNews = articles.map(article => {
+    return {
       title: article.title,
       media: `${
         article.media[0] === undefined
@@ -70,16 +72,10 @@ function saveValuesFromPopularNews(articles) {
       abstract: article.abstract,
       id: article.id,
       uri: article.uri,
-    });
+    };
   });
-}
 
-function renderPopularNews(articles) {
-  refs.newsList.innerHTML = '';
-  arrayNewsCard = [];
-
-  saveValuesFromPopularNews(articles);
-  renderNewsList(arrayNewsCard);
+  renderNewsList(arrNews);
 }
 
 // function renderNewsCategory(e) {
@@ -163,8 +159,8 @@ export {
   updateNewList,
   createMarkupWidgetWeather,
   orderedNumber,
-  renderPopularNews,
   saveValuesFromCategoryNews,
   saveValuesFromSearchNews,
+  saveValuesFromPopularNews,
   arrayNewsCard,
 };

@@ -1,5 +1,5 @@
 import { getPopular } from '../api/news';
-import { renderPopularNews } from '../markup/markup';
+import { saveValuesFromPopularNews } from '../markup/markup';
 import { refs } from '../refs/refs';
 import { hideLoader } from '../loader/loader';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
@@ -21,17 +21,10 @@ getPopular()
   .then(news => {
     totalPage = Math.ceil(news.length / newsPerPage);
 
-    refs.filterCategories.addEventListener('click', removeListner);
-
-    function removeListner() {
-      refs.pgContainer.removeEventListener('click', clickOnPage);
-      refs.nextBtn.removeEventListener('click', nextBtnClick);
-      refs.prevBtn.removeEventListener('click', prevBtnClick);
-
-      refs.prevBtn.disabled = true;
-      refs.nextBtn.disabled = false;
-      currentPage = 0;
-    }
+    refs.filterCategories.addEventListener('click', resetPagination);
+    refs.prevBtn.addEventListener('click', prevBtnClick);
+    refs.nextBtn.addEventListener('click', nextBtnClick);
+    refs.pgContainer.addEventListener('click', clickOnPage);
 
     function getRightAmount() {
       rightAmount = news.slice(
@@ -41,47 +34,28 @@ getPopular()
     }
 
     getRightAmount();
-
     renderPage(currentPage);
-
-    renderPopularNews(rightAmount);
-
-    refs.prevBtn.addEventListener('click', prevBtnClick);
+    saveValuesFromPopularNews(rightAmount);
 
     function prevBtnClick() {
       currentPage--;
 
       getRightAmount();
-      renderPopularNews(rightAmount);
+      renderPage(currentPage);
+      saveValuesFromPopularNews(rightAmount);
 
-      prevActive();
       if (currentPage < totalPage) refs.nextBtn.disabled = false;
     }
-
-    refs.nextBtn.addEventListener('click', nextBtnClick);
 
     function nextBtnClick() {
       currentPage++;
 
       getRightAmount();
-      renderPopularNews(rightAmount);
-      nextActive();
+      renderPage(currentPage);
+      saveValuesFromPopularNews(rightAmount);
 
       if (currentPage > 0) refs.prevBtn.disabled = false;
     }
-
-    function prevActive() {
-      renderPage(currentPage);
-    }
-    function nextActive() {
-      renderPage(currentPage);
-    }
-
-    // function nextActive() {
-    //   renderPage(totalPage, currentPage, news);
-    // }
-
-    refs.pgContainer.addEventListener('click', clickOnPage);
 
     function clickOnPage(e) {
       if (e.target.nodeName === 'UL' || e.target.classList.contains('active'))
@@ -91,26 +65,25 @@ getPopular()
 
       renderPage(currentPage);
       getRightAmount();
-      renderPopularNews(rightAmount);
+      saveValuesFromPopularNews(rightAmount);
 
       if (currentPage > 0) refs.prevBtn.disabled = false;
       else refs.prevBtn.disabled = true;
 
       if (currentPage > totalPage - 2) {
-        refs.nextBtn.disabled = false;
+        refs.nextBtn.disabled = true;
       } else refs.nextBtn.disabled = false;
     }
 
-    // refs.filterCategories.addEventListener('click', removeListner);
+    function resetPagination() {
+      refs.pgContainer.removeEventListener('click', clickOnPage);
+      refs.nextBtn.removeEventListener('click', nextBtnClick);
+      refs.prevBtn.removeEventListener('click', prevBtnClick);
 
-    // function removeListner() {
-    //   refs.pgContainer.removeEventListener('click', clickOnPage);
-    //   refs.nextBtn.removeEventListener('click', nextBtnClick);
-    //   refs.pgContainer.removeEventListener('click', prevBtnClick);
-
-    //   refs.prevBtn.disabled = true;
-    //   refs.nextBtn.disabled = false;
-    // }
+      refs.prevBtn.disabled = true;
+      refs.nextBtn.disabled = false;
+      currentPage = 0;
+    }
   })
 
   .catch(error => Notify.failure('Error: ' + error.message))
@@ -118,12 +91,13 @@ getPopular()
 
 function renderPage(currentPage) {
   let marcup = '';
+
   if (currentPage >= totalPage - 1) {
     const allBtns = document.querySelectorAll('.pg-item');
     allBtns[allBtns.length - 1].classList.add('active');
     allBtns[allBtns.length - 2].classList.remove('active');
     refs.nextBtn.disabled = true;
-    return;
+    // return;
   }
   if (currentPage === 0) {
     refs.prevBtn.disabled = true;
@@ -140,7 +114,7 @@ function renderPage(currentPage) {
       }
     }
   } else if (currentPage < 2) {
-    for (let i = 0; i < 4; i += 1) {
+    for (let i = 0; i < totalPage; i += 1) {
       if (i !== currentPage) {
         marcup += `<li class="pg-item" data-page="${i}"><a>${i + 1}</a></li>`;
       } else if (i < rightAmount.length) {
@@ -162,5 +136,3 @@ function renderPage(currentPage) {
   }
   refs.pgContainer.innerHTML = marcup;
 }
-
-export { clickOnPage };

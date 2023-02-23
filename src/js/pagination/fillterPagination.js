@@ -39,17 +39,9 @@ function renderNewsCategory(e) {
       refs.nextBtn.disabled = false;
 
       refs.filterCategories.addEventListener('click', removeListner);
-
-      function removeListner() {
-        refs.pgContainer.removeEventListener('click', clickOnPage);
-        refs.nextBtn.removeEventListener('click', nextBtnClick);
-        refs.prevBtn.removeEventListener('click', prevBtnClick);
-        refs.prevBtn.removeEventListener('click', prevBtnClick);
-
-        refs.prevBtn.disabled = true;
-        refs.nextBtn.disabled = false;
-        currentPage = 0;
-      }
+      refs.pgContainer.addEventListener('click', clickOnPage);
+      refs.prevBtn.addEventListener('click', prevBtnClick);
+      refs.nextBtn.addEventListener('click', nextBtnClick);
 
       totalPage = Math.ceil(news.length / newsPerPage);
 
@@ -62,44 +54,26 @@ function renderNewsCategory(e) {
 
       getRightAmount();
       saveValuesFromCategoryNews(rightAmount);
-
       renderPage(currentPage);
-
-      renderNewsList(arrayNewsCard);
-
-      refs.prevBtn.addEventListener('click', prevBtnClick);
 
       function prevBtnClick() {
         currentPage--;
 
         getRightAmount();
         saveValuesFromCategoryNews(rightAmount);
-        renderNewsList(arrayNewsCard);
 
-        prevActive();
+        renderPage(currentPage);
         if (currentPage < totalPage) refs.nextBtn.disabled = false;
       }
-
-      refs.nextBtn.addEventListener('click', nextBtnClick);
 
       function nextBtnClick() {
         currentPage++;
 
         getRightAmount();
         saveValuesFromCategoryNews(rightAmount);
-        renderNewsList(arrayNewsCard);
-        nextActive();
+        renderPage(currentPage);
         if (currentPage > 0) refs.prevBtn.disabled = false;
       }
-
-      function prevActive() {
-        renderPage(currentPage);
-      }
-      function nextActive() {
-        renderPage(currentPage);
-      }
-
-      refs.pgContainer.addEventListener('click', clickOnPage);
 
       function clickOnPage(e) {
         if (e.target.nodeName === 'UL' || e.target.classList.contains('active'))
@@ -110,7 +84,6 @@ function renderNewsCategory(e) {
         renderPage(currentPage);
         getRightAmount();
         saveValuesFromCategoryNews(rightAmount);
-        renderNewsList(arrayNewsCard);
 
         if (currentPage > 0) refs.prevBtn.disabled = false;
         else refs.prevBtn.disabled = true;
@@ -118,6 +91,15 @@ function renderNewsCategory(e) {
         if (currentPage > totalPage - 2) {
           refs.nextBtn.disabled = true;
         } else refs.nextBtn.disabled = false;
+      }
+      function removeListner() {
+        refs.pgContainer.removeEventListener('click', clickOnPage);
+        refs.nextBtn.removeEventListener('click', nextBtnClick);
+        refs.prevBtn.removeEventListener('click', prevBtnClick);
+
+        refs.prevBtn.disabled = true;
+        refs.nextBtn.disabled = false;
+        currentPage = 0;
       }
     })
     .catch(error => Notify.failure('Error: ' + error.message))

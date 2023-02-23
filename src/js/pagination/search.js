@@ -37,17 +37,10 @@ function onInput(e) {
     const date = refs.celendarDate.dataset.time.replaceAll('-', '');
     getSearchArticle(inputValue, date)
       .then(news => {
-        refs.filterCategories.addEventListener('click', removeListner);
-
-        function removeListner() {
-          refs.pgContainer.removeEventListener('click', clickOnPage);
-          refs.nextBtn.removeEventListener('click', nextBtnClick);
-          refs.prevBtn.removeEventListener('click', prevBtnClick);
-
-          refs.prevBtn.disabled = true;
-          refs.nextBtn.disabled = false;
-          currentPage = 0;
-        }
+        refs.form.addEventListener('submit', resetPagination);
+        refs.prevBtn.addEventListener('click', prevBtnClick);
+        refs.nextBtn.addEventListener('click', nextBtnClick);
+        refs.pgContainer.addEventListener('click', clickOnPage);
 
         totalPage = Math.ceil(news.length / newsPerPage);
 
@@ -60,49 +53,26 @@ function onInput(e) {
 
         getRightAmount();
         saveValuesFromSearchNews(rightAmount);
-
         renderPage(currentPage, totalPage);
-        renderNewsList(arrayNewsCard);
-
-        refs.prevBtn.addEventListener('click', prevBtnClick);
 
         function prevBtnClick() {
           currentPage--;
 
           getRightAmount();
           saveValuesFromSearchNews(rightAmount);
-          renderNewsList(arrayNewsCard);
-
-          prevActive();
+          renderPage(currentPage, totalPage);
           if (currentPage < totalPage) refs.nextBtn.disabled = false;
         }
-
-        refs.nextBtn.addEventListener('click', nextBtnClick);
 
         function nextBtnClick() {
           currentPage++;
 
           getRightAmount();
           saveValuesFromSearchNews(rightAmount);
-          renderNewsList(arrayNewsCard);
-          nextActive();
+          renderPage(currentPage, totalPage);
 
           if (currentPage > 0) refs.prevBtn.disabled = false;
         }
-
-        function prevActive() {
-          renderPage(currentPage);
-        }
-        function nextActive() {
-          renderPage(currentPage);
-        }
-
-        // function nextActive() {
-        //   renderPage(totalPage, currentPage, news);
-        // }
-
-        refs.pgContainer.addEventListener('click', clickOnPage);
-
         function clickOnPage(e) {
           if (
             e.target.nodeName === 'UL' ||
@@ -114,19 +84,29 @@ function onInput(e) {
 
           getRightAmount();
           saveValuesFromSearchNews(rightAmount);
-          renderNewsList(arrayNewsCard);
-          renderPage(currentPage);
+          renderPage(currentPage, totalPage);
 
           if (currentPage > 0) refs.prevBtn.disabled = false;
           else refs.prevBtn.disabled = true;
 
-          if (currentPage > totalPage) {
+          if (currentPage > totalPage - 2) {
             refs.nextBtn.disabled = true;
           } else refs.nextBtn.disabled = false;
         }
+        function resetPagination() {
+          refs.pgContainer.removeEventListener('click', clickOnPage);
+          refs.nextBtn.removeEventListener('click', nextBtnClick);
+          refs.prevBtn.removeEventListener('click', prevBtnClick);
+
+          refs.prevBtn.disabled = true;
+          refs.nextBtn.disabled = false;
+        }
       })
       .catch(error => Notify.failure('Error: ' + error.message))
-      .finally(hideLoader);
+      .finally(fin => {
+        e.target.reset();
+        hideLoader();
+      });
 
     function renderPage(currentPage) {
       let marcup = '';
@@ -183,5 +163,3 @@ function onInput(e) {
     }
   }
 }
-
-export { onInput };
