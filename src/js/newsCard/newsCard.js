@@ -190,7 +190,8 @@ function addToFavoriteLocal(btn) {
     date: btn.parentNode.parentNode.lastElementChild.children[0].innerText,
     link: btn.parentNode.parentNode.lastElementChild.children[1].attributes[1]
       .value,
-    favorite: 'true',
+    favorite: true,
+    read: false,
     uri: btn.parentNode.nextElementSibling.nextElementSibling.lastElementChild
       .textContent,
   };
@@ -221,7 +222,8 @@ function addReadMore(readMore) {
     description:
       readMore.parentNode.parentNode.childNodes[3].children[1].innerText,
     link: readMore.parentNode.children[1].href,
-    read: 'true',
+    read: true,
+    favorite: false,
     category:
       readMore.parentNode.parentNode.childNodes[1].children[1].innerHTML,
     dayRead: readDateNow,

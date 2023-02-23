@@ -104,10 +104,11 @@ function createNewsCard({
   description,
   uri,
   read,
+  favorite,
 }) {
-  const newsArray = getDataFromLocalStorage('news');
-  const news = newsArray.find(item => item.id === id);
-  const isFavorite = news ? true : false;
+  // const newsArray = getDataFromLocalStorage('news');
+  // const news = newsArray.find(item => item.id === id);
+  // const isFavorite = news ? true : false;
 
   return `
       <li class="news__item ${read ? 'opacity' : ''}">
@@ -124,7 +125,7 @@ function createNewsCard({
                         </svg>
                        </span>                   
                         <button type="button" class="item-news__add-to-favorite ${
-                          isFavorite ? 'hidden-span' : ''
+                          favorite ? 'hidden-span' : ''
                         }">
                           Add to favorite
                             <svg class="item-news__block-icon active-news-icon" width="16" height="16" viewBox="0 0 37 32">
@@ -190,7 +191,8 @@ function addToFavoriteLocal(btn) {
     date: btn.parentNode.parentNode.lastElementChild.children[0].innerText,
     link: btn.parentNode.parentNode.lastElementChild.children[1].attributes[1]
       .value,
-    favorite: 'true',
+    favorite: true,
+    read: false,
     uri: btn.parentNode.nextElementSibling.nextElementSibling.lastElementChild
       .textContent,
   };
