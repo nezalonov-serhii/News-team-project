@@ -44,7 +44,7 @@ export function addToFavoriteLocalStorage(btn) {
   const data = localStorage.getItem('news');
   let newLocalStorage = [];
 
-  console.log('addToFavoriteLocalStorage');
+
 
   if (data) {
     newLocalStorage = JSON.parse(localStorage.getItem('news'));
@@ -56,7 +56,6 @@ export function addToFavoriteLocalStorage(btn) {
       item.id === btn.closest('.news__article').id
   );
 
-  console.log(newsIndex);
 
   if (newsIndex > -1) {
     newLocalStorage[newsIndex].favorite = !newLocalStorage[newsIndex].favorite;

@@ -1,6 +1,6 @@
 import { refs } from '../refs/refs';
 
-// console.log(refs.body);
+
 const changeThemeBtn = document.querySelector('.switch-checkbox');
 const bodyTheme = document.querySelector('body');
 const themeDarkEl = document.querySelector('.theme__dark');

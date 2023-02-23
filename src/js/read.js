@@ -6,7 +6,7 @@ import './darkMode/darkMode';
 import { refs } from './refs/refs';
 import Sprite from '../images/sprite.svg';
 
-import {createNewsCard} from './markup/card'
+import { createNewsCard } from './markup/card';
 
 import {
   addToFavoriteLocalStorage,
@@ -29,7 +29,7 @@ function renderReadNews() {
     return;
   }
   const filteredNews = parsedNews.filter(news => news.read === true);
-  console.log(filteredNews);
+
   if (filteredNews.length < 1) {
     showErrorSearch();
     return;
@@ -45,7 +45,6 @@ function renderReadNews() {
   const filteredDate = uniqDates.filter(date => date !== undefined);
 
   const sortedDates = filteredDate.sort((a, b) => b.localeCompare(a));
-  console.log(sortedDates);
 
   for (let i = 0; i < sortedDates.length; i += 1) {
     const filteredNews = parsedNews.filter(
@@ -97,7 +96,6 @@ function getDataFromLocalStorage(key) {
     refs.readNewsContainer.classList.add('is-hidden');
   }
 }
-
 
 function showErrorSearch() {
   refs.errorSearch.classList.remove('is-hidden');
