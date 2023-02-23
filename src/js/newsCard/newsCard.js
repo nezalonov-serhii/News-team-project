@@ -8,24 +8,8 @@ import { btnAddToFavorite } from '../favorite/addToFavorite';
 import Sprite from '../../images/sprite.svg';
 
 const newsList = document.querySelector('.news__lists');
-// console.log(newsList);
 
 const newsCard = document.querySelector('.news__item');
-// console.log(newsCard);
-
-// const readMoreBtn = document.querySelector("a");
-// console.log(readMoreBtn)
-
-//Створюється одна карточка
-
-// getPopular()
-//   .then(data => {
-//     addMarkup(newsList, createNewsCard(data[0]));
-//   })
-//   .catch()
-//   .finally(data => hideLoader());
-
-//Функція створення однієї карточки
 
 function createNewsCard({
   title,
@@ -123,8 +107,6 @@ function linkReadMore(event) {
   const readMore = event.target.closest(`.news__link-more`);
   if (!readMore) return;
 
-  // console.log(readMore.nextElementSibling);
-
   readMore.parentNode.parentNode.parentNode.classList.add('opacity');
   addReadMore(readMore);
   // Have read
@@ -132,7 +114,6 @@ function linkReadMore(event) {
   console.log(btn);
 
   const Readmorestatus = btn.parentNode.children[0].children[0].children[2];
-  // const Readmorestatus = btn.children[0].children[2];
   console.log(Readmorestatus);
 
   Readmorestatus.classList.remove('hidden');

@@ -1,7 +1,5 @@
 import { refs } from '../refs/refs';
-import { hideLoader } from '../loader/loader';
 import Sprite from '../../images/sprite.svg';
-import { newsCardTextFormat } from '../newsCard/newsCard';
 import { fillWeather } from '../weather/weather';
 
 import { createNewsCard } from '../markup/card';

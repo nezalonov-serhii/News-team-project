@@ -21,15 +21,6 @@ if (filteredNews.length < 1) {
   refs.favorite.classList.add('is-hidden');
   return;
 }
-
-// if (parsedNews.length === 0) {
-//   refs.errorSearch.classList.remove('is-hidden');
-// } else {
-//   refs.errorSearch.classList.add('is-hidden');
-// }
-
-// errorSearch();
-
 filteredNews.map(el => {
   addMarkup(refs.favoriteLists, createNewsCard(el));
 });
@@ -46,10 +37,6 @@ function createNewsCard({
   read,
   favorite,
 }) {
-  // const newsArray = getDataFromLocalStorage('news');
-  // const news = newsArray.find(item => item.id === id);
-  // const isFavorite = news ? true : false;
-
   return `
       <li class="news__item ${read ? 'opacity' : ''}">
         <article class="news__article" id="${id}">

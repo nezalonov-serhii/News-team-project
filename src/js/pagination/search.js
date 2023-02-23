@@ -35,6 +35,14 @@ function onInput(e) {
     const date = refs.celendarDate.dataset.time.replaceAll('-', '');
     getSearchArticle(inputValue, date)
       .then(news => {
+        console.log(news[0] === undefined);
+
+        refs.errorSearch.classList.add('is-hidden');
+        if (news[0] === undefined) {
+          refs.errorSearch.classList.remove('is-hidden');
+          throw new Error('Not found');
+        }
+
         refs.filterCategories.addEventListener('click', resetPagination);
         refs.form.addEventListener('submit', resetPagination);
         refs.prevBtn.addEventListener('click', prevBtnClick);
@@ -105,7 +113,9 @@ function onInput(e) {
           refs.nextBtn.disabled = false;
         }
       })
-      .catch(error => Notify.failure('Error: ' + error.message))
+      .catch(error => {
+        Notify.failure('Error: ' + error.message);
+      })
       .finally(fin => {
         e.target.reset();
         hideLoader();
