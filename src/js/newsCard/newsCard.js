@@ -1,6 +1,7 @@
 import { getPopular } from '../api/news.js';
 import { hideLoader } from '../loader/loader';
 import { orderedNumber } from '../markup/markup.js';
+import { newsCardTextFormat } from '../markup/card';
 
 import { btnAddToFavorite } from '../favorite/addToFavorite';
 
@@ -85,14 +86,6 @@ function addMarkupAfter(element, constMarkup) {
 
 //Add ... 80 elements Перевірка довжини тексту
 
-function newsCardTextFormat(element) {
-  let textFormat = element;
-  if (textFormat.length > 80) {
-    textFormat = element.slice(0, 80) + '...';
-  }
-  return textFormat;
-}
-
 //Клік мишкою на улюблене
 
 newsList.addEventListener('click', btnAddToFavorite);
@@ -162,8 +155,9 @@ function addReadMore(readMore) {
     published_date: readMore.parentNode.firstElementChild.innerText,
     media: readMore.parentNode.parentNode.childNodes[1].children[0].currentSrc,
     title: readMore.parentNode.parentNode.childNodes[3].children[0].innerText,
-    abstract:
-      readMore.parentNode.parentNode.childNodes[3].children[1].innerText,
+    abstract: newsCardTextFormat(
+      readMore.parentNode.parentNode.childNodes[3].children[1].innerText
+    ),
     url: readMore.parentNode.children[1].href,
     read: true,
     favorite: false,
@@ -190,4 +184,4 @@ function makeReadNewsMarkup(news) {
       `;
 }
 
-export { createNewsCard, newsCardTextFormat };
+export { createNewsCard };
