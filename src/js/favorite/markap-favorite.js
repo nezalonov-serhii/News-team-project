@@ -4,8 +4,6 @@ import Sprite from '../../images/sprite.svg';
 
 import { btnAddToFavorite } from '../favorite/addToFavorite';
 
-console.log(refs.favorite);
-
 const savedNews = localStorage.getItem('news');
 const parsedNews = JSON.parse(savedNews);
 
@@ -97,24 +95,3 @@ function addMarkup(element, constMarkup) {
 }
 
 refs.favoriteLists.addEventListener('click', btnAddToFavorite);
-
-// function btnFavoriteRemove(e) {
-//   if (e.target.nodeName !== 'BUTTON' && e.target.nodeName !== 'path') return;
-
-//   const id = e.target.closest('.news__article').dataset.id;
-//   const indexElLocalStorege = parsedNews.findIndex(e => e.id === id);
-
-//   localStorage.removeItem('news');
-//   parsedNews.splice(indexElLocalStorege, 1);
-
-//   localStorage.setItem(`news`, JSON.stringify(parsedNews));
-
-//   refs.favoriteLists.innerHTML = '';
-
-//   console.log(parsedNews);
-//   errorSearch();
-
-//   parsedNews.map(el => {
-//     addMarkup(refs.favoriteLists, createNewsCard(el));
-//   });
-// }

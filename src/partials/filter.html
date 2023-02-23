@@ -1,45 +1,11 @@
 <section class="filter">
   <div class="container filter__container">
     <div class="filter__wrap js-category-wrapper">
-      <ul class="filter__main-categories main-categories js-main-categories">
-        <!-- <li class="main-categories__item">
-          <button class="main-categories__btn" type="button">Lorem</button>
-        </li>
-        <li class="main-categories__item">
-          <button class="main-categories__btn" type="button">Eius</button>
-        </li>
-        <li class="main-categories__item">
-          <button class="main-categories__btn" type="button">Repell</button>
-        </li>
-        <li class="main-categories__item">
-          <button class="main-categories__btn" type="button">Ipsam</button>
-        </li>
-        <li class="main-categories__item">
-          <button class="main-categories__btn" type="button">Velit</button>
-        </li> -->
-      </ul>
+      <ul
+        class="filter__main-categories main-categories js-main-categories"
+      ></ul>
       <div class="filter__others">
-        <ul class="dropdown-list js-dropdown-list">
-          <!-- <li class="dropdown-list__item">
-            <button class="dropdown-list__btn" type="button">
-             Lorem, ipsum
-            </button>
-          </li>
-          <li class="dropdown-list__item">
-            <button class="dropdown-list__btn" type="button">Lorem</button>
-          </li>
-          <li class="dropdown-list__item">
-            <button class="dropdown-list__btn" type="button">Lorem</button>
-          </li>
-          <li class="dropdown-list__item">
-            <button class="dropdown-list__btn" type="button">
-              Lorem, ipsum
-            </button>
-          </li>
-          <li class="dropdown-list__item">
-            <button class="dropdown-list__btn" type="button">Lorem</button>
-          </li> -->
-        </ul>
+        <ul class="dropdown-list js-dropdown-list"></ul>
         <button class="dropdown-btn js-btn-show-others" id="filter-others">
           <span class="dropdown-btn__text"></span>
           <svg class="dropdown-btn__icon" width="14" height="14">
@@ -52,10 +18,12 @@
     <div class="calendar-form">
       <p class="calendar-form__text">Search date news</p>
 
-
       <div class="calendarPicker">
-
-        <button class="choseDataButton" id="choseDataButton" data-time=""></button>
+        <button
+          class="choseDataButton"
+          id="choseDataButton"
+          data-time=""
+        ></button>
         <svg class="calendar-icon" width="14" height="14">
           <use href="./images/sprite.svg#calendar"></use>
         </svg>
@@ -67,16 +35,17 @@
           <div class="calendar" id="calendar">
             <div class="calendar-header">
               <div class="header-left-block">
-                <span class="mounth-year-display" id="mounth-year-display"></span>
+                <span
+                  class="mounth-year-display"
+                  id="mounth-year-display"
+                ></span>
                 <button class="year-change" id="next-year">
                   <svg width="12" height="12">
                     <use href="./images/sprite.svg#arrow-down"></use>
                   </svg>
                 </button>
                 <div>
-                  <ul class="year-list">
-
-                  </ul>
+                  <div class="year-list"></div>
                 </div>
               </div>
               <div class="mounth-picker" id="mounth-picker">
@@ -94,12 +63,9 @@
             </div>
 
             <div class="calendar-body">
-              <div class="calendar-week-days">
-              </div>
-              <div class="calendar-days">
-              </div>
-              <div class="calendar-footer">
-              </div>
+              <div class="calendar-week-days"></div>
+              <div class="calendar-days"></div>
+              <div class="calendar-footer"></div>
             </div>
           </div>
         </div>

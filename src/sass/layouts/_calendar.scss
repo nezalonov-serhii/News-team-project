@@ -218,10 +218,11 @@
   rotate: -90deg;
 }
 
-.year-list {
+.year-list[data-simplebar] {
   visibility: hidden;
   opacity: 0;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   flex-direction: column;
   position: absolute;
@@ -229,17 +230,30 @@
   right: 175px;
   margin-top: 20px;
   border-radius: 5px;
-  padding: 10px 0px;
+  padding: 10px 5px;
   background-color: var(--main-background);
   position: absolute;
   height: 240px;
   overflow: auto;
-  width: max-content;
 }
 
-.year-list--active {
+.year-list--active[data-simplebar] {
   visibility: visible;
   opacity: 1;
+
+  .simplebar-scrollbar::before {
+    width: 5px;
+    background-color: var(--accent-color);
+  }
+
+  .simplebar-scrollbar.simplebar-visible::before {
+    opacity: 0.7;
+  }
+}
+
+.simplebar-content {
+  display: flex;
+  flex-direction: column;
 }
 
 .yearListButtons {
