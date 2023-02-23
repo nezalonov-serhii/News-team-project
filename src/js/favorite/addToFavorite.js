@@ -7,19 +7,21 @@ export function btnAddToFavorite(event) {
   const data = localStorage.getItem('news');
   let newLocalStorage = [];
 
-
   if (data) {
     newLocalStorage = JSON.parse(localStorage.getItem('news'));
   }
 
   const newsIndex = newLocalStorage.findIndex(
-    item => item.id === btn.closest('.news__article').dataset.id
+    item =>
+      item.id === btn.closest('.news__article').dataset.id ||
+      item.id === btn.closest('.news__article').id
   );
+
+  btn.classList.toggle('hidden-span');
 
   if (newsIndex > -1) {
     newLocalStorage[newsIndex].favorite = !newLocalStorage[newsIndex].favorite;
     localStorage.setItem(`news`, JSON.stringify(newLocalStorage));
-    btn.classList.toggle('hidden-span');
 
     return;
   }
@@ -27,8 +29,6 @@ export function btnAddToFavorite(event) {
   let uri =
     btn.parentNode.nextElementSibling.nextElementSibling.lastElementChild
       .textContent;
-
-  btn.classList.add('hidden-span');
 
   // for (let i = 0; i < newLocalStorage.length; i += 1) {
   //   if (newLocalStorage[i].uri === uri) {
@@ -38,7 +38,6 @@ export function btnAddToFavorite(event) {
 
   addToFavoriteLocal(btn);
   // localStorage.setItem(`news`, JSON.stringify(newLocalStorage));
-
 }
 
 function addToFavoriteLocal(btn) {
@@ -49,19 +48,22 @@ function addToFavoriteLocal(btn) {
     newLocalStorage = JSON.parse(localStorage.getItem('news'));
   }
 
-
   const newsIndex = newLocalStorage.findIndex(
-    item => item.id === btn.closest('.news__article').dataset.id
+    item =>
+      item.id === btn.closest('.news__article').dataset.id ||
+      btn.closest('.news__article').id
   );
 
   if (newsIndex > -1) {
-    newLocalStorage[newsIndex].favorite = true;
+    newLocalStorage[newsIndex].favorite = !newLocalStorage[newsIndex].favorite;
     localStorage.setItem(`news`, JSON.stringify(newLocalStorage));
     return;
   }
 
   const news = {
-    id: btn.closest('.news__article').dataset.id,
+    id:
+      btn.closest('.news__article').dataset.id ||
+      btn.closest('.news__article').id,
 
     media: btn.parentNode.childNodes[1].attributes.src.nodeValue,
     section: btn.parentNode.childNodes[3].innerText,
@@ -70,7 +72,7 @@ function addToFavoriteLocal(btn) {
     published_date:
       btn.parentNode.parentNode.lastElementChild.children[0].innerText,
     url: btn.parentNode.parentNode.lastElementChild.children[1].href,
-
+    read: false,
     favorite: true,
 
     uri: btn.parentNode.nextElementSibling.nextElementSibling.lastElementChild
@@ -78,7 +80,6 @@ function addToFavoriteLocal(btn) {
   };
 
   for (let i = 0; i < newLocalStorage.length; i += 1) {
-
     if (newLocalStorage[i].uri === news.uri) return;
   }
 
@@ -124,6 +125,7 @@ function addReadMore(btn) {
     abstract: btn.parentNode.parentNode.childNodes[3].children[1].innerText,
     url: btn.parentNode.children[1].href,
     read: true,
+    favorite: false,
     section: btn.parentNode.parentNode.childNodes[1].children[1].innerHTML,
     dayRead: readDateNow,
   };

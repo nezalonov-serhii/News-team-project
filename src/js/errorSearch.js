@@ -1,7 +1,7 @@
 import { refs } from './refs/refs';
 
 export function errorSearch() {
-  const savedNews = localStorage.getItem('newsSection');
+  const savedNews = localStorage.getItem('news');
   const parsedNews = JSON.parse(savedNews);
 
   if (parsedNews.length === 0) {
