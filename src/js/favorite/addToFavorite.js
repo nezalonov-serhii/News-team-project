@@ -1,3 +1,5 @@
+import { newsCardTextFormat } from '../markup/card'
+
 export function btnAddToFavorite(event) {
   const btn = event.target.closest(`.item-news__add-to-favorite`);
 
@@ -71,7 +73,9 @@ export function addToFavoriteLocalStorage(btn) {
     media: btn.parentNode.childNodes[1].attributes.src.nodeValue,
     section: btn.parentNode.childNodes[3].innerText,
     title: btn.parentNode.parentNode.childNodes[3].children[0].innerText,
-    abstract: btn.parentNode.parentNode.childNodes[3].children[1].innerText,
+    abstract: newsCardTextFormat(
+      btn.parentNode.parentNode.childNodes[3].children[1].innerText
+    ),
     published_date:
       btn.parentNode.parentNode.lastElementChild.children[0].innerText,
     url: btn.parentNode.parentNode.lastElementChild.children[1].href,
