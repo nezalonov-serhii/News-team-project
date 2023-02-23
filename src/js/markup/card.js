@@ -82,7 +82,7 @@ function getDataFromLocalStorage(key) {
   }
 }
 
-function newsCardTextFormat(element) {
+export function newsCardTextFormat(element) {
   let textFormat = element;
   if (textFormat.length > 80) {
     textFormat = element.slice(0, 80) + '...';

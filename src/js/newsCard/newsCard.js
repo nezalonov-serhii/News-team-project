@@ -175,13 +175,4 @@ function addReadMore(readMore) {
 
 //
 
-function makeReadNewsMarkup(news) {
-  return `
-  <div class="read-news__list">
-    <button class="read-news__btn js-read-news-btn">
-      <span>20/02/2021</span>
-      <svg><use href="${Sprite + '#arrow-down'}"></use></svg></button></div>
-      `;
-}
-
 export { createNewsCard };
