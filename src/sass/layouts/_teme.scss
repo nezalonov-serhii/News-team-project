@@ -23,6 +23,10 @@ body.darkMode {
         border: 1px solid var(--text-color);
       }
     }
+
+    & input {
+      color: var(--white-color);
+    }
   }
 
   .search__btn[type='submit'] {

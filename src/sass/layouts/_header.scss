@@ -137,26 +137,13 @@
   }
 
   input {
-    font-family: 'Poppins';
     font-size: 12px;
     line-height: 24px;
     letter-spacing: 0.02em;
-    opacity: 0.4;
     border: none;
     background: none;
     outline: none;
     color: var(--primary-text-color);
-
-    // &:focus {
-    //     color: var(--text-color)
-    // }
-
-    // &:autofill,
-    // &:autofill:hover,
-    // &:autofill:focus,
-    // &:autofill:active {
-    //     transition: background-color 9999s, color 9999s;
-    // }
 
     @media screen and (max-width: $pre_tablet) {
       padding: 0;
@@ -217,12 +204,6 @@
   @media screen and (max-width: $pre_desktop) {
     display: block;
   }
-
-  // @media screen and (max-width: $pre_tablet) {
-  //     box-sizing: border-box;
-  //         display: flex;
-
-  //     }
 }
 
 // Переключатель тем
@@ -235,9 +216,6 @@
   }
 
   @media screen and (min-width: $pre_tablet) {
-    // flex-direction: row;
-    // justify-content: center;
-    // align-items: center;
   }
 
   @media screen and (max-width: $mobile) {
@@ -247,7 +225,6 @@
     z-index: 6;
     bottom: 18px;
     opacity: 100%;
-    // pointer-events: all;
     visibility: inherit;
   }
 
@@ -297,7 +274,6 @@
 }
 
 .theme__dark {
-  // display: none;
   font-family: 'Poppins';
   font-size: 18px;
   line-height: 24px;
@@ -306,9 +282,6 @@
 
   order: 2;
   flex-grow: 0;
-  // @media screen and (min-width: $pre_tablet) {
-  //         display: none;
-  //     }
 }
 
 .theme__light {
@@ -321,12 +294,6 @@
   flex: none;
   order: 0;
   flex-grow: 0;
-  //     @media screen and (min-width: $pre_tablet) {
-  //             display: none;
-  //         }
-  //          @media screen and (min-width: $pre_mobile) {
-  //     display: none;
-  // }
 }
 
 .mobile-btn-open {
