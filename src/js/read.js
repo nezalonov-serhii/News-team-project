@@ -98,12 +98,12 @@ function createNewsCard({
 
                         <p class="news__category">${category}</p>
 
-                        <button type="button" class="item-news__add-to-favorite">
+                        <button id=remove  type="button" class="item-news__add-to-favorite">
                           <span class="item-news__add-to-favorite-btn">Add to favorite
                             <svg class="item-news__block-icon active-news-icon" width="16" height="16" viewBox="0 0 37 32">
                                     <path style="stroke: var(--color1, #4440f7)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.2857" d="M10.666 2.286c-4.207 0-7.619 3.377-7.619 7.543 0 3.363 1.333 11.345 14.458 19.413 0.235 0.143 0.505 0.219 0.78 0.219s0.545-0.076 0.78-0.219c13.125-8.069 14.458-16.050 14.458-19.413 0-4.166-3.412-7.543-7.619-7.543s-7.619 4.571-7.619 4.571-3.412-4.571-7.619-4.571z"></path>
                                     </svg></span>
-                                    <span class="item-news__remove-to-favorite-btn">Remove from favorite
+                                    <span class="item-news__remove-to-favorite-btn" >Remove from favorite
                                     <svg class="item-news__block-icon active-news-icon" width="16" height="16" viewBox="0 0 37 32">
                                     <path style="stroke: var(--color1, #4440f7)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.2857" d="M10.666 2.286c-4.207 0-7.619 3.377-7.619 7.543 0 3.363 1.333 11.345 14.458 19.413 0.235 0.143 0.505 0.219 0.78 0.219s0.545-0.076 0.78-0.219c13.125-8.069 14.458-16.050 14.458-19.413 0-4.166-3.412-7.543-7.619-7.543s-7.619 4.571-7.619 4.571-3.412-4.571-7.619-4.571z"></path>
                                     </svg></span>
@@ -177,3 +177,35 @@ function addToFavoriteLocal(btn) {
   newLocalStorage.push(newsSection);
   localStorage.setItem(`newsSection`, JSON.stringify(newLocalStorage));
 }
+
+
+
+
+
+// Створюємо масив "favorites" за допомогою методу "filter", в якому зберігаємо об'єкти з масиву "newsSection",
+// у яких властивість "favorite" має значення "true".
+const favorites = JSON.parse(localStorage.getItem('newsSection')).filter(
+item => item.favorite === 'true'
+);
+
+// Знаходимо всі кнопки з класом "item-news__add-to-favorite" та зберігаємо їх у змінну "addButtons".
+const addButtons = document.querySelectorAll('.item-news__add-to-favorite');
+
+// Для кожної кнопки перевіряємо, чи є відповідна стаття у списку улюблених, який зберігається у масиві "favorites".
+// Якщо така стаття існує, то додаємо до кнопки клас "hidden-span", який приховує кнопку.
+addButtons.forEach(button => {
+const uri =
+button.parentNode.nextElementSibling.nextElementSibling.lastElementChild
+.textContent;
+if (favorites.some(item => item.uri === uri)) {
+button.classList.add('hidden-span');
+}
+});
+
+
+
+
+
+ 
+
+ 
