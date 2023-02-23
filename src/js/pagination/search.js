@@ -37,9 +37,11 @@ function onInput(e) {
       .then(news => {
         console.log(news[0] === undefined);
 
+        refs.pgHidden.classList.remove('is-hidden');
         refs.errorSearch.classList.add('is-hidden');
         if (news[0] === undefined) {
           refs.errorSearch.classList.remove('is-hidden');
+          refs.pgHidden.classList.add('is-hidden');
           throw new Error('Not found');
         }
 
