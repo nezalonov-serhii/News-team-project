@@ -13,8 +13,8 @@ export function btnAddToFavorite(event) {
 
   const newsIndex = newLocalStorage.findIndex(
     item =>
-      item.id === btn.closest('.news__article').dataset.id ||
-      item.id === btn.closest('.news__article').id
+      item.id === btn.closest('.news__article').id ||
+      item.id === btn.closest('.news__article').dataset.id
   );
 
   btn.classList.toggle('hidden-span');
@@ -26,9 +26,9 @@ export function btnAddToFavorite(event) {
     return;
   }
 
-  let uri =
-    btn.parentNode.nextElementSibling.nextElementSibling.lastElementChild
-      .textContent;
+  // let uri =
+  //   btn.parentNode.nextElementSibling.nextElementSibling.lastElementChild
+  //     .textContent;
 
   // for (let i = 0; i < newLocalStorage.length; i += 1) {
   //   if (newLocalStorage[i].uri === uri) {
@@ -36,14 +36,15 @@ export function btnAddToFavorite(event) {
   //   }
   // }
 
-  addToFavoriteLocal(btn);
+  addToFavoriteLocalStorage(btn);
   // localStorage.setItem(`news`, JSON.stringify(newLocalStorage));
 }
 
-export function addToFavoriteLocal(btn) {
+export function addToFavoriteLocalStorage(btn) {
   const data = localStorage.getItem('news');
   let newLocalStorage = [];
 
+  console.log(13);
   if (data) {
     newLocalStorage = JSON.parse(localStorage.getItem('news'));
   }
