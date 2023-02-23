@@ -44,7 +44,8 @@ export function addToFavoriteLocalStorage(btn) {
   const data = localStorage.getItem('news');
   let newLocalStorage = [];
 
-  console.log(13);
+  console.log('addToFavoriteLocalStorage');
+
   if (data) {
     newLocalStorage = JSON.parse(localStorage.getItem('news'));
   }
@@ -52,8 +53,10 @@ export function addToFavoriteLocalStorage(btn) {
   const newsIndex = newLocalStorage.findIndex(
     item =>
       item.id === btn.closest('.news__article').dataset.id ||
-      btn.closest('.news__article').id
+      item.id === btn.closest('.news__article').id
   );
+
+  console.log(newsIndex);
 
   if (newsIndex > -1) {
     newLocalStorage[newsIndex].favorite = !newLocalStorage[newsIndex].favorite;
@@ -98,7 +101,9 @@ function addReadMore(btn) {
   }
 
   const newsIndex = newLocalStorage.findIndex(
-    item => item.id === btn.closest('.news__article').dataset.id
+    item =>
+      item.id === btn.closest('.news__article').dataset.id ||
+      item.id === btn.closest('.news__article').id
   );
 
   if (newsIndex > -1) {

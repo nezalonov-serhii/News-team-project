@@ -20,14 +20,20 @@ function init() {
 function renderReadNews() {
   let markup = '';
 
-  const readNews = getDataFromLocalStorage('news');
+  const parsedNews = getDataFromLocalStorage('news');
 
-  if (!readNews) {
+  if (!parsedNews) {
+    showErrorSearch();
+    return;
+  }
+  const filteredNews = parsedNews.filter(news => news.read === true);
+  console.log(filteredNews);
+  if (filteredNews.length < 1) {
     showErrorSearch();
     return;
   }
 
-  const dates = readNews.map(item => item.dayRead);
+  const dates = parsedNews.map(item => item.dayRead);
 
   if (dates.length < 1) {
     showErrorSearch();
@@ -35,17 +41,20 @@ function renderReadNews() {
 
   const uniqDates = Array.from(new Set(dates));
   const filteredDate = uniqDates.filter(date => date !== undefined);
+
   const sortedDates = filteredDate.sort((a, b) => b.localeCompare(a));
+  console.log(sortedDates);
 
   for (let i = 0; i < sortedDates.length; i += 1) {
-    const filteredNews = readNews.filter(
+    const filteredNews = parsedNews.filter(
       item => item.dayRead === sortedDates[i]
     );
+
     const cardMarkup = filteredNews.map(item => createNewsCard(item)).join('');
 
     markup += `<div class="read-news__list">
       <button class="read-news__btn js-read-news-btn">
-        <span>${uniqDates[i]}</span>
+        <span>${sortedDates[i]}</span>
         <svg><use href="${Sprite + '#arrow-down'}"></use></svg>
       </button>
       <ul class="news__lists">
@@ -98,12 +107,12 @@ function getDataFromLocalStorage(key) {
 
 function createNewsCard({
   id,
-  img,
+  media,
   title,
-  link,
-  date,
-  category,
-  description,
+  url,
+  published_date,
+  section,
+  abstract,
   uri,
   read,
   favorite,
@@ -116,8 +125,8 @@ function createNewsCard({
       <li class="news__item">
         <article class="news__article" id="${id}">
                     <div class="news__wrapper" >
-                        <img class="news__img" src="${img}" alt="">
-                        <p class="news__category">${category}</p>
+                        <img class="news__img" src="${media}" alt="">
+                        <p class="news__category">${section}</p>
 
                         <button type="button" class="item-news__add-to-favorite ${
                           favorite ? 'hidden-span' : ''
@@ -134,11 +143,11 @@ function createNewsCard({
                     </div>
                     <div class="new__text-wrapper">
                     <h2 class=" news__title">${title}</h2>
-                    <p class="news__description">${description}</p>
+                    <p class="news__description">${abstract}</p>
                     </div>
                     <div class="news__info">
-                        <span class="news__date">${date}</span>
-                        <a target="_blank" class="news__link-more" href="${link}">Read more</a>
+                        <span class="news__date">${published_date}</span>
+                        <a target="_blank" class="news__link-more" href="${url}">Read more</a>
                         <p class="hidden">${uri}</p>
                     </div>
                 </article>
