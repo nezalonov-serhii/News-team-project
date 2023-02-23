@@ -35,6 +35,7 @@ function onInput(e) {
     const date = refs.celendarDate.dataset.time.replaceAll('-', '');
     getSearchArticle(inputValue, date)
       .then(news => {
+        refs.filterCategories.addEventListener('click', resetPagination);
         refs.form.addEventListener('submit', resetPagination);
         refs.prevBtn.addEventListener('click', prevBtnClick);
         refs.nextBtn.addEventListener('click', nextBtnClick);

@@ -35,7 +35,8 @@ function renderNewsCategory(e) {
       currentPage = 0;
       refs.nextBtn.disabled = false;
 
-      refs.filterCategories.addEventListener('click', removeListner);
+      refs.form.addEventListener('submit', resetPagination);
+      refs.filterCategories.addEventListener('click', resetPagination);
       refs.pgContainer.addEventListener('click', clickOnPage);
       refs.prevBtn.addEventListener('click', prevBtnClick);
       refs.nextBtn.addEventListener('click', nextBtnClick);
@@ -93,7 +94,7 @@ function renderNewsCategory(e) {
           refs.nextBtn.disabled = true;
         } else refs.nextBtn.disabled = false;
       }
-      function removeListner() {
+      function resetPagination() {
         refs.pgContainer.removeEventListener('click', clickOnPage);
         refs.nextBtn.removeEventListener('click', nextBtnClick);
         refs.prevBtn.removeEventListener('click', prevBtnClick);
