@@ -134,7 +134,6 @@ function linkReadMore(event) {
   const readMore = event.target.closest(`.news__link-more`);
   if (!readMore) return;
 
-  console.log(readMore);
   // console.log(readMore.nextElementSibling);
 
   readMore.parentNode.parentNode.parentNode.classList.add('opacity');
@@ -164,16 +163,15 @@ function addReadMore(readMore) {
       readMore.closest('.news__article').dataset.id ||
       readMore.closest('.news__article').id,
     uri: readMore.nextElementSibling.textContent,
-    date: readMore.parentNode.firstElementChild.innerText,
-    img: readMore.parentNode.parentNode.childNodes[1].children[0].currentSrc,
+    published_date: readMore.parentNode.firstElementChild.innerText,
+    media: readMore.parentNode.parentNode.childNodes[1].children[0].currentSrc,
     title: readMore.parentNode.parentNode.childNodes[3].children[0].innerText,
-    description:
+    abstract:
       readMore.parentNode.parentNode.childNodes[3].children[1].innerText,
-    link: readMore.parentNode.children[1].href,
+    url: readMore.parentNode.children[1].href,
     read: true,
     favorite: false,
-    category:
-      readMore.parentNode.parentNode.childNodes[1].children[1].innerHTML,
+    section: readMore.parentNode.parentNode.childNodes[1].children[1].innerHTML,
     dayRead: readDateNow,
   };
   for (let i = 0; i < readMoreId.length; i += 1) {

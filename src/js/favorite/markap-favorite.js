@@ -10,10 +10,20 @@ const savedNews = localStorage.getItem('news');
 const parsedNews = JSON.parse(savedNews);
 
 if (!parsedNews) {
-  errorSearch();
+  refs.errorSearch.classList.remove('is-hidden');
+  refs.favorite.classList.add('is-hidden');
+
   return;
 }
+
 const filteredNews = parsedNews.filter(news => news.favorite === true);
+
+if (filteredNews.length < 1) {
+  refs.errorSearch.classList.remove('is-hidden');
+  refs.favorite.classList.add('is-hidden');
+  return;
+}
+
 // if (parsedNews.length === 0) {
 //   refs.errorSearch.classList.remove('is-hidden');
 // } else {
@@ -28,12 +38,12 @@ filteredNews.map(el => {
 
 function createNewsCard({
   id,
-  img,
+  media,
   title,
-  link,
-  date,
-  category,
-  description,
+  url,
+  published_date,
+  section,
+  abstract,
   uri,
   read,
   favorite,
@@ -46,8 +56,8 @@ function createNewsCard({
       <li class="news__item ${read ? 'opacity' : ''}">
         <article class="news__article" id="${id}">
                     <div class="news__wrapper" >
-                        <img class="news__img" src="${img}" alt="">
-                        <p class="news__category">${category}</p>
+                        <img class="news__img" src="${media}" alt="">
+                        <p class="news__category">${section}</p>
                           <span class ="news__read-status ${
                             !read ? 'hidden' : ''
                           }">Already read 
@@ -71,11 +81,11 @@ function createNewsCard({
                     </div>
                     <div class="new__text-wrapper">
                     <h2 class=" news__title">${title}</h2>
-                    <p class="news__description">${description}</p>
+                    <p class="news__description">${abstract}</p>
                     </div>
                     <div class="news__info">
-                        <span class="news__date">${date}</span>
-                        <a target="_blank" class="news__link-more" href="${link}">Read more</a>
+                        <span class="news__date">${published_date}</span>
+                        <a target="_blank" class="news__link-more" href="${url}">Read more</a>
                         <p class="hidden">${uri}</p>
                     </div>
                 </article>
