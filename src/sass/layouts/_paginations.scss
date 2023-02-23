@@ -11,15 +11,6 @@
   line-height: 19px;
   text-align: left;
   background-color: var(--bg-color);
-  @media screen and (min-width: $tablet) and (max-width: $pre_desktop) {
-    height: 31px;
-    margin-bottom: 100px;
-    margin-top: 48px;
-  }
-  @media screen and (min-width: $desktop) {
-    margin-bottom: 150px;
-    margin-top: 60px;
-  }
 }
 
 .pagin {
@@ -50,8 +41,6 @@
 }
 
 .page-container button {
-  display: flex;
-  justify-content: center;
   cursor: pointer;
   background-color: transparent;
   border: none;

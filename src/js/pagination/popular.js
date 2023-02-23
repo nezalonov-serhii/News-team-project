@@ -119,7 +119,7 @@ function renderPage(currentPage) {
       }
     }
   } else if (currentPage < 2) {
-    for (let i = 0; i < totalPage; i += 1) {
+    for (let i = 0; i < 4; i += 1) {
       if (i !== currentPage) {
         marcup += `<li class="pg-item" data-page="${i}"><a>${i + 1}</a></li>`;
       } else if (i < rightAmount.length) {
