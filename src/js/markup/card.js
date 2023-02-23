@@ -15,8 +15,22 @@ export function createNewsCard(
   },
   orderedNumber
 ) {
+  let isRead = false;
+  let isFavorite = false;
+  const parsedNews = getDataFromLocalStorage('news');
+
+  if (parsedNews) {
+    const filteredNews = parsedNews.find(news => {
+      return news.url === url;
+    });
+    if (filteredNews) {
+      isRead = filteredNews.read;
+      isFavorite = filteredNews.favorite;
+    }
+  }
+
   return `
-    <li class="news__item ${read ? 'opacity' : ''}" style = "order:${
+    <li class="news__item ${isRead ? 'opacity' : ''}" style = "order:${
     orderedNumber ? orderedNumber : 0
   }">
         <article class="news__article" data-id="${id}">
@@ -24,7 +38,7 @@ export function createNewsCard(
                   <img class="news__img" src="${media}" alt="">
                   <p class="news__category">${section}</p>
                   <span class ="news__read-status ${
-                    !read ? 'hidden' : ''
+                    !isRead ? 'hidden' : ''
                   }">Already read 
                       <svg class="icon-chek" width="24" height="24">
                         <use href=${Sprite + '#icon-chek'}>
@@ -32,7 +46,7 @@ export function createNewsCard(
                       </svg>
                   </span>
                   <button type="button" class="item-news__add-to-favorite ${
-                    favorite ? 'hidden-span' : ''
+                    isFavorite ? 'hidden-span' : ''
                   }">
                     Add to favorite
                       <svg class="item-news__block-icon active-news-icon" width="16" height="16" viewBox="0 0 37 32">
@@ -56,4 +70,14 @@ export function createNewsCard(
         </article>
     </li>
     `;
+}
+
+function getDataFromLocalStorage(key) {
+  try {
+    const data = localStorage.getItem(key);
+    return data === null ? undefined : JSON.parse(data);
+  } catch (error) {
+    refs.errorSearch.classList.remove('is-hidden');
+    refs.readNewsContainer.classList.add('is-hidden');
+  }
 }
