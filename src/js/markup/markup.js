@@ -22,7 +22,7 @@ function saveValuesFromCategoryNews(articles) {
       published_date: `${normolizeDate(article.published_date)}`,
       section: article.section,
       abstract: article.abstract,
-      id: article.id,
+      id: article.url,
       uri: article.uri,
     };
   });

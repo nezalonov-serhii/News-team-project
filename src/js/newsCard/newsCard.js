@@ -7,7 +7,7 @@ import { btnAddToFavorite } from '../favorite/addToFavorite';
 
 import Sprite from '../../images/sprite.svg';
 
-const newsList = document.querySelector('.news__lists');
+const newsContainer = document.querySelector('.news > .container');
 
 const newsCard = document.querySelector('.news__item');
 
@@ -72,12 +72,12 @@ function addMarkupAfter(element, constMarkup) {
 
 //Клік мишкою на улюблене
 
-newsList.addEventListener('click', btnAddToFavorite);
+newsContainer.addEventListener('click', btnAddToFavorite);
 let newLocalStorage = [];
 
 //Клік на readmore
 
-newsList.addEventListener('click', linkReadMore);
+newsContainer.addEventListener('click', linkReadMore);
 
 //Перевірка чи є Favorite в  LocalStorage
 
