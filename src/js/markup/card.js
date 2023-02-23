@@ -20,7 +20,9 @@ export function createNewsCard(
   const parsedNews = getDataFromLocalStorage('news');
 
   if (parsedNews) {
-    const filteredNews = parsedNews.find(news => news.id === id);
+    const filteredNews = parsedNews.find(news => {
+      return news.url === url;
+    });
     if (filteredNews) {
       isRead = filteredNews.read;
       isFavorite = filteredNews.favorite;
@@ -28,7 +30,7 @@ export function createNewsCard(
   }
 
   return `
-    <li class="news__item ${read ? 'opacity' : ''}" style = "order:${
+    <li class="news__item ${isRead ? 'opacity' : ''}" style = "order:${
     orderedNumber ? orderedNumber : 0
   }">
         <article class="news__article" data-id="${id}">
