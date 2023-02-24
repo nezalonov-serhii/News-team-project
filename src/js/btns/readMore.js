@@ -8,13 +8,10 @@ export function linkReadMore(event) {
   if (!readMore) return;
 
   readMore.parentNode.parentNode.parentNode.classList.add('opacity');
-  console.log('before');
   addReadMore(readMore);
-  console.log('after');
 
   // Have read
   const btn = event.target.closest(`.news__article`);
-  console.log(btn);
 
   const Readmorestatus = btn.parentNode.children[0].children[0].children[2];
 

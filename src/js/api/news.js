@@ -40,7 +40,6 @@ async function getDataByCategory(value) {
   if (data.ok) {
     const articles = await data.json();
 
-    console.log(articles.results);
     return articles.results;
   }
 

@@ -35,8 +35,6 @@ function onInput(e) {
     const date = refs.celendarDate.dataset.time.replaceAll('-', '');
     getSearchArticle(inputValue, date)
       .then(news => {
-        console.log(news[0] === undefined);
-
         refs.pgHidden.classList.remove('is-hidden');
         refs.errorSearch.classList.add('is-hidden');
         if (news[0] === undefined) {
