@@ -46,12 +46,11 @@ function onFormSubmit(evt) {
 
   if (!searchNews.length) {
     showErrorSearch();
-    return;
   } else {
     hideErrorSearch();
+    updateUI(searchNews);
   }
 
-  updateUI(searchNews);
   input.blur();
   evt.target.reset();
 }

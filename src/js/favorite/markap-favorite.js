@@ -37,7 +37,6 @@ function onFormSubmit(evt) {
   evt.preventDefault();
   const input = evt.target.elements.inputSearch;
   const inputValue = input.value.trim().toLowerCase();
-  console.log(inputValue);
 
   const searchNews = filteredNews.filter(news =>
     news.title.toLowerCase().includes(inputValue)
