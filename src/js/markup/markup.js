@@ -43,7 +43,7 @@ function saveValuesFromSearchNews(articles) {
           : `https://static01.nyt.com/${article.multimedia[0].url}`
       }`,
 
-      url: article.url,
+      url: article.web_url,
       published_date: `${normolizeDate(article.pub_date)}`,
       section: article.section_name,
       abstract: newsCardTextFormat(article.abstract),
