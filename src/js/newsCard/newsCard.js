@@ -6,6 +6,7 @@ import { newsCardTextFormat } from '../markup/card';
 import { btnAddToFavorite } from '../favorite/addToFavorite';
 
 import Sprite from '../../images/sprite.svg';
+import { addReadMore, linkReadMore } from '../btns/readMore';
 
 const newsContainer = document.querySelector('.news > .container');
 
@@ -100,60 +101,5 @@ function isLocalReadEmpty() {
   }
   readMoreId = JSON.parse(localStorage.getItem('news'));
 }
-
-//Кнопка Readmore
-
-function linkReadMore(event) {
-  const readMore = event.target.closest(`.news__link-more`);
-  if (!readMore) return;
-
-  readMore.parentNode.parentNode.parentNode.classList.add('opacity');
-  addReadMore(readMore);
-  // Have read
-  const btn = event.target.closest(`.news__article`);
-  console.log(btn);
-
-  const Readmorestatus = btn.parentNode.children[0].children[0].children[2];
-  console.log(Readmorestatus);
-
-  Readmorestatus.classList.remove('hidden');
-  addMarkupAfter(newsCard);
-}
-
-//Кнопка улюблене
-
-function addReadMore(readMore) {
-  const evenDateNow = new Date();
-  const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
-  const readDateNow = evenDateNow
-    .toLocaleDateString([], options)
-    .replaceAll('.', '/');
-  const read = {
-    id:
-      readMore.closest('.news__article').dataset.id ||
-      readMore.closest('.news__article').id,
-    uri: readMore.nextElementSibling.textContent,
-    published_date: readMore.parentNode.firstElementChild.innerText,
-    media: readMore.parentNode.parentNode.childNodes[1].children[0].currentSrc,
-    title: readMore.parentNode.parentNode.childNodes[3].children[0].innerText,
-    abstract: newsCardTextFormat(
-      readMore.parentNode.parentNode.childNodes[3].children[1].innerText
-    ),
-    url: readMore.parentNode.children[1].href,
-    read: true,
-    favorite: false,
-    section: readMore.parentNode.parentNode.childNodes[1].children[1].innerHTML,
-    dayRead: readDateNow,
-  };
-  for (let i = 0; i < readMoreId.length; i += 1) {
-    if (readMoreId[i].uri === read.uri) {
-      return;
-    }
-  }
-  readMoreId.push(read);
-  localStorage.setItem(`news`, JSON.stringify(readMoreId));
-}
-
-//
 
 export { createNewsCard };

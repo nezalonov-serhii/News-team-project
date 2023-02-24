@@ -8,13 +8,10 @@ export function linkReadMore(event) {
   if (!readMore) return;
 
   readMore.parentNode.parentNode.parentNode.classList.add('opacity');
-  console.log('before');
   addReadMore(readMore);
-  console.log('after');
 
   // Have read
   const btn = event.target.closest(`.news__article`);
-  console.log(btn);
 
   const Readmorestatus = btn.parentNode.children[0].children[0].children[2];
 
@@ -26,13 +23,13 @@ function addMarkupAfter(element, constMarkup) {
   element.insertAdjacentHTML('afterbegin', constMarkup);
 }
 
-function addReadMore(btn) {
+export function addReadMore(btn) {
   const data = localStorage.getItem('news');
 
   let newLocalStorage = [];
 
   if (data) {
-    newLocalStorage = JSON.parse(localStorage.getItem('news'));
+    newLocalStorage = JSON.parse(data);
   }
 
   const newsIndex = newLocalStorage.findIndex(
@@ -48,8 +45,6 @@ function addReadMore(btn) {
     .replaceAll('.', '/');
 
   if (newsIndex > -1) {
-    const evenDateNow = new Date();
-
     newLocalStorage[newsIndex].read = true;
     newLocalStorage[newsIndex].dayRead = evenDateNow
       .toLocaleDateString([], options)
@@ -71,7 +66,7 @@ function addReadMore(btn) {
     section: btn.parentNode.parentNode.childNodes[1].children[1].innerHTML,
     dayRead: readDateNow,
   };
-  newLocalStorage.push(readNews);
 
+  newLocalStorage.push(readNews);
   localStorage.setItem(`news`, JSON.stringify(newLocalStorage));
 }

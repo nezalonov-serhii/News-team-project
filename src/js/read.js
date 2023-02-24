@@ -8,10 +8,7 @@ import Sprite from '../images/sprite.svg';
 
 import { createNewsCard } from './markup/card';
 
-import {
-  addToFavoriteLocalStorage,
-  btnAddToFavorite,
-} from './favorite/addToFavorite';
+import { btnAddToFavorite } from './favorite/addToFavorite';
 
 init();
 
@@ -73,7 +70,6 @@ function addEventHandlers() {
   const btnsAddToFavorite = document.querySelectorAll(
     '.item-news__add-to-favorite'
   );
-  const newsLists = document.querySelectorAll('.read-news__list');
 
   btnsReadMore.forEach(btn =>
     btn.addEventListener('click', onReadNewsBtnClick)
@@ -81,8 +77,6 @@ function addEventHandlers() {
 
   refs.readNewsContainer.addEventListener('click', btnAddToFavorite);
 }
-
-  
 
 function onReadNewsBtnClick({ target }) {
   target.classList.toggle('isOpen');
@@ -93,12 +87,11 @@ function getDataFromLocalStorage(key) {
     const data = localStorage.getItem(key);
     return data === null ? undefined : JSON.parse(data);
   } catch (error) {
-    refs.errorSearch.classList.remove('is-hidden');
-    refs.readNewsContainer.classList.add('is-hidden');
+    showErrorSearch();
   }
 }
 
-function showErrorSearch() {
+export function showErrorSearch() {
   refs.errorSearch.classList.remove('is-hidden');
   refs.readNewsContainer.classList.add('is-hidden');
 }
