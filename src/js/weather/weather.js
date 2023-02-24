@@ -2,9 +2,7 @@ import { getWeather } from '../api/weather';
 import { refs } from '../refs/refs';
 
 const fillWeather = async ({ deg, value, city, day, year, imgWeather }) => {
-
-
-  const KIEV_LATITUDE = 50.4333;;
+  const KIEV_LATITUDE = 50.4333;
   const KIEV_LONGITUDE = 30.5166;
 
   const getCurrentWeather = async (lat, lon) => {
@@ -35,7 +33,7 @@ const fillWeather = async ({ deg, value, city, day, year, imgWeather }) => {
       value.innerText = currentWeather.weather.type;
       imgWeather.src = `https://openweathermap.org/img/wn/${currentWeather.weather.icon}@4x.png`;
     } catch (error) {
-      console.log(error);
+      console.log('Error: ' + error.message);
     }
   };
 
@@ -47,7 +45,7 @@ const fillWeather = async ({ deg, value, city, day, year, imgWeather }) => {
         await getCurrentWeather(lat, lon);
       },
       async error => {
-        console.log(error);
+        console.log('Error: ' + error.message);
         await getCurrentWeather(KIEV_LATITUDE, KIEV_LONGITUDE);
       }
     );
@@ -55,6 +53,5 @@ const fillWeather = async ({ deg, value, city, day, year, imgWeather }) => {
     await getCurrentWeather(KIEV_LATITUDE, KIEV_LONGITUDE);
   }
 };
-
 
 export { fillWeather };
