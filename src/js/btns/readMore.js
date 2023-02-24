@@ -26,13 +26,13 @@ function addMarkupAfter(element, constMarkup) {
   element.insertAdjacentHTML('afterbegin', constMarkup);
 }
 
-function addReadMore(btn) {
+export function addReadMore(btn) {
   const data = localStorage.getItem('news');
 
   let newLocalStorage = [];
 
   if (data) {
-    newLocalStorage = JSON.parse(localStorage.getItem('news'));
+    newLocalStorage = JSON.parse(data);
   }
 
   const newsIndex = newLocalStorage.findIndex(
@@ -48,8 +48,6 @@ function addReadMore(btn) {
     .replaceAll('.', '/');
 
   if (newsIndex > -1) {
-    const evenDateNow = new Date();
-
     newLocalStorage[newsIndex].read = true;
     newLocalStorage[newsIndex].dayRead = evenDateNow
       .toLocaleDateString([], options)
@@ -71,7 +69,7 @@ function addReadMore(btn) {
     section: btn.parentNode.parentNode.childNodes[1].children[1].innerHTML,
     dayRead: readDateNow,
   };
-  newLocalStorage.push(readNews);
 
+  newLocalStorage.push(readNews);
   localStorage.setItem(`news`, JSON.stringify(newLocalStorage));
 }

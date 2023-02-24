@@ -3,7 +3,6 @@ import { errorSearch } from '../errorSearch';
 import Sprite from '../../images/sprite.svg';
 
 import { btnAddToFavorite } from '../favorite/addToFavorite';
-import { addReadMore } from '../btns/readMore';
 import { addReadMore, linkReadMore } from '../btns/readMore';
 
 const savedNews = localStorage.getItem('news');
