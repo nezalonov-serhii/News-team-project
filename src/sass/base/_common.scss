@@ -22,6 +22,7 @@ main {
   z-index: -999;
   flex-grow: 1;
 
+  overflow: hidden;
   padding-bottom: 65px;
 
   @include tablet {
