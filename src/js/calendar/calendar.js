@@ -104,7 +104,7 @@ function addEventForDates() {
   });
 }
 
-//открытие массива годов списком
+//открытие массива years списком
 yearListButton.addEventListener('click', generateYearList);
 
 function generateYearList() {
