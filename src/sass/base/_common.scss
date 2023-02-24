@@ -20,6 +20,17 @@ body {
 main {
   position: relative;
   z-index: -999;
+  flex-grow: 1;
+
+  padding-bottom: 65px;
+
+  @include tablet {
+    padding-bottom: 100px;
+  }
+
+  @include desktop {
+    padding-bottom: 175px;
+  }
 }
 
 .container {
@@ -36,8 +47,4 @@ main {
   @media screen and (min-width: $desktop) {
     max-width: 1280px;
   }
-}
-
-main {
-  flex-grow: 1;
 }

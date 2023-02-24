@@ -1,12 +1,12 @@
 .read-news__container {
-  padding: 40px 16 60px;
+  padding-top: 40px;
 
   @include tablet {
-    padding: 48px 16 100px;
+    padding-top: 48px;
   }
 
   @include desktop {
-    padding: 60px 16 210px;
+    padding-top: 60px;
   }
 
   overflow: hidden;
