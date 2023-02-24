@@ -25,6 +25,7 @@ if (window.matchMedia('(max-width: 767.98px)').matches) {
 
 function onInput(e) {
   e.preventDefault();
+  e.target.elements.inputSearch.blur();
 
   currentPage = 0;
   refs.newsList.innerHTML = '';

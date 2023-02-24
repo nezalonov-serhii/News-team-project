@@ -5,50 +5,90 @@ import './currentPage/currentPage';
 import './darkMode/darkMode';
 import { refs } from './refs/refs';
 import Sprite from '../images/sprite.svg';
+import { showLoader, hideLoader } from './loader/loader';
 
 import { createNewsCard } from './markup/card';
 
 import { btnAddToFavorite } from './favorite/addToFavorite';
 
-init();
+let filteredNews = [];
 
-function init() {
-  renderReadNews();
-}
+showLoader();
+renderReadNews();
+hideLoader();
+
+refs.form.addEventListener('submit', onFormSubmit);
 
 function renderReadNews() {
-  let markup = '';
-
   const parsedNews = getDataFromLocalStorage('news');
 
   if (!parsedNews) {
     showErrorSearch();
     return;
   }
-  const filteredNews = parsedNews.filter(news => news.read === true);
+
+  filteredNews = parsedNews.filter(news => news.read === true);
 
   if (filteredNews.length < 1) {
     showErrorSearch();
     return;
   }
 
-  const dates = parsedNews.map(item => item.dayRead);
+  updateUI(filteredNews);
+}
+
+function onFormSubmit(evt) {
+  evt.preventDefault();
+
+  const input = evt.target.elements.inputSearch;
+  const inputValue = input.value.trim().toLowerCase();
+
+  const searchNews = filteredNews.filter(news =>
+    news.title.toLowerCase().includes(inputValue)
+  );
+
+  if (!searchNews.length) {
+    showErrorSearch();
+  } else {
+    hideErrorSearch();
+    updateUI(searchNews);
+  }
+
+  input.blur();
+  evt.target.reset();
+}
+
+function hideErrorSearch() {
+  refs.errorSearch.classList.add('is-hidden');
+  refs.readNewsContainer.classList.remove('is-hidden');
+}
+
+export function showErrorSearch() {
+  refs.errorSearch.classList.remove('is-hidden');
+  refs.readNewsContainer.classList.add('is-hidden');
+}
+
+function updateUI(searchNews) {
+  const markup = getNewsMarkup(searchNews);
+  refs.readNewsContainer.innerHTML = markup;
+  addEventHandlers();
+}
+
+function getNewsMarkup(news) {
+  const dates = news.map(item => item.dayRead);
 
   if (dates.length < 1) {
     showErrorSearch();
   }
 
+  let markup = '';
   const uniqDates = Array.from(new Set(dates));
   const filteredDate = uniqDates.filter(date => date !== undefined);
-
   const sortedDates = filteredDate.sort((a, b) => b.localeCompare(a));
 
   for (let i = 0; i < sortedDates.length; i += 1) {
-    const filteredNews = parsedNews.filter(
-      item => item.dayRead === sortedDates[i]
-    );
-
-    const cardMarkup = filteredNews.map(item => createNewsCard(item)).join('');
+    const newsArray = news.filter(item => item.dayRead === sortedDates[i]);
+    const cardMarkup = newsArray.map(item => createNewsCard(item)).join('');
 
     markup += `<div class="read-news__list">
       <button class="read-news__btn js-read-news-btn">
@@ -61,8 +101,7 @@ function renderReadNews() {
     </div>`;
   }
 
-  refs.readNewsContainer.insertAdjacentHTML('beforeend', markup);
-  addEventHandlers();
+  return markup;
 }
 
 function addEventHandlers() {
@@ -89,9 +128,4 @@ function getDataFromLocalStorage(key) {
   } catch (error) {
     showErrorSearch();
   }
-}
-
-export function showErrorSearch() {
-  refs.errorSearch.classList.remove('is-hidden');
-  refs.readNewsContainer.classList.add('is-hidden');
 }

@@ -6,12 +6,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.filter__wrap {
-  display: flex;
-  align-items: center;
-  gap: 16px;
 
   opacity: 0;
   transform: translateY(-100%);
@@ -21,6 +15,12 @@
     opacity: 1;
     transform: translateY(0%);
   }
+}
+
+.filter__wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .main-categories {
