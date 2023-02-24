@@ -104,11 +104,11 @@ async function updateCategoriesInUI() {
 }
 
 function showCategoryWrapper() {
-  refs.categoryWrapper.classList.add('isFilled');
+  document.querySelector('.filter__container').classList.add('isFilled');
 }
 
 function hideCategoryWrapper() {
-  refs.categoryWrapper.classList.remove('isFilled');
+  document.querySelector('.filter__container').classList.remove('isFilled');
 }
 
 function updateBtnText() {

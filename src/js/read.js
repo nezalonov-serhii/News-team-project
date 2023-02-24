@@ -5,6 +5,7 @@ import './currentPage/currentPage';
 import './darkMode/darkMode';
 import { refs } from './refs/refs';
 import Sprite from '../images/sprite.svg';
+import { showLoader, hideLoader } from './loader/loader';
 
 import { createNewsCard } from './markup/card';
 
@@ -12,7 +13,9 @@ import { btnAddToFavorite } from './favorite/addToFavorite';
 
 let filteredNews = [];
 
+showLoader();
 renderReadNews();
+hideLoader();
 
 refs.form.addEventListener('submit', onFormSubmit);
 
@@ -46,12 +49,11 @@ function onFormSubmit(evt) {
 
   if (!searchNews.length) {
     showErrorSearch();
-    return;
   } else {
     hideErrorSearch();
+    updateUI(searchNews);
   }
 
-  updateUI(searchNews);
   input.blur();
   evt.target.reset();
 }
