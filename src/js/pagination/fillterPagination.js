@@ -16,10 +16,10 @@ refs.filterCategories.addEventListener('click', renderNewsCategory);
 
 if (window.matchMedia('(max-width: 767.98px)').matches) {
   newsPerPage = 4;
-} else if (window.matchMedia('(min-width: 768px)').matches) {
-  newsPerPage = 7;
 } else if (window.matchMedia('(min-width: 1280px)').matches) {
   newsPerPage = 8;
+} else if (window.matchMedia('(min-width: 768px)').matches) {
+  newsPerPage = 7;
 }
 
 function renderNewsCategory(e) {
