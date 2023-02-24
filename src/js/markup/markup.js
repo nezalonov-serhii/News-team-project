@@ -94,16 +94,6 @@ function renderNewsList(arrayNewsCard) {
   orderedNumber = 0;
 }
 
-function updateNewsList(markup) {
-  refs.newsList.innerHTML = markup;
-  const deg = document.querySelector('.weather__degree');
-  const value = document.querySelector('.weather__value');
-  const city = document.querySelector('.weather__city');
-  const day = document.querySelector('.weather__day');
-  const year = document.querySelector('.weather__year');
-  const imgWeather = document.querySelector('.weather__image');
-  fillWeather(deg, value, city, day, year, imgWeather);
-}
 function createMarkupWidgetWeather() {
   return `<li id="weather" class="weather news__item location_weather">
 <div class="weather__position">
