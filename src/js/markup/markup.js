@@ -1,6 +1,7 @@
 import { refs } from '../refs/refs';
 import Sprite from '../../images/sprite.svg';
 import { fillWeather } from '../weather/weather';
+import { newsCardTextFormat } from '../markup/card';
 
 import { createNewsCard } from '../markup/card';
 
@@ -21,7 +22,7 @@ function saveValuesFromCategoryNews(articles) {
       url: article.url,
       published_date: `${normolizeDate(article.published_date)}`,
       section: article.section,
-      abstract: article.abstract,
+      abstract: newsCardTextFormat(article.abstract),
       id: article.url,
       uri: article.uri,
     };
@@ -45,7 +46,7 @@ function saveValuesFromSearchNews(articles) {
       url: article.url,
       published_date: `${normolizeDate(article.pub_date)}`,
       section: article.section_name,
-      abstract: article.abstract,
+      abstract: newsCardTextFormat(article.abstract),
       id: article._id,
       uri: article.uri,
     };
@@ -66,7 +67,7 @@ function saveValuesFromPopularNews(articles) {
       url: article.url,
       published_date: article.published_date,
       section: article.section,
-      abstract: article.abstract,
+      abstract: newsCardTextFormat(article.abstract),
       id: article.id,
       uri: article.uri,
     };
@@ -152,7 +153,6 @@ function updateNewsList(markup) {
 
 export {
   renderNewsList,
-  updateNewList,
   createMarkupWidgetWeather,
   orderedNumber,
   saveValuesFromCategoryNews,

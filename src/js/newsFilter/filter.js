@@ -14,16 +14,6 @@ mql.addEventListener('change', updateCategoriesInUI);
 
 init();
 
-function onMainCategoriesClick({ target }) {
-  if (target.nodeName !== 'BUTTON') {
-    return;
-  }
-
-  deactivateShowOthersBtn();
-  closeDropdownList();
-  selectNewCategory(target);
-}
-
 function onShowOthersBtnClick({ target }) {
   if (isMainCategorySelected()) {
     target.classList.toggle('isActive');
