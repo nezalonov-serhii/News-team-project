@@ -14,16 +14,6 @@ mql.addEventListener('change', updateCategoriesInUI);
 
 init();
 
-function onMainCategoriesClick({ target }) {
-  if (target.nodeName !== 'BUTTON') {
-    return;
-  }
-
-  deactivateShowOthersBtn();
-  closeDropdownList();
-  selectNewCategory(target);
-}
-
 function onShowOthersBtnClick({ target }) {
   if (isMainCategorySelected()) {
     target.classList.toggle('isActive');
@@ -73,8 +63,6 @@ async function selectNewCategory(newCategory) {
 
     prevCategory && prevCategory.classList.remove('isSelected');
     newCategory.classList.add('isSelected');
-
-    // const result = await getDataByCategory(newCategory.dataset.category_name);
   } catch (error) {
     Notify.failure('Error: ' + error.message);
   } finally {

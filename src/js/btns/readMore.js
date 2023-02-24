@@ -59,7 +59,9 @@ export function addReadMore(btn) {
     published_date: btn.parentNode.firstElementChild.innerText,
     media: btn.parentNode.parentNode.childNodes[1].children[0].currentSrc,
     title: btn.parentNode.parentNode.childNodes[3].children[0].innerText,
-    abstract: btn.parentNode.parentNode.childNodes[3].children[1].innerText,
+    abstract: newsCardTextFormat(
+      btn.parentNode.parentNode.childNodes[3].children[1].innerText
+    ),
     url: btn.parentNode.children[1].href,
     read: true,
     favorite: false,

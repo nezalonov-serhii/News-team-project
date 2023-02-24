@@ -4,7 +4,6 @@ export function btnAddToFavorite(event) {
   const btn = event.target.closest(`.item-news__add-to-favorite`);
 
   if (!btn) return;
-  ///
 
   const data = localStorage.getItem('news');
   let newLocalStorage = [];
